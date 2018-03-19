@@ -1,0 +1,39 @@
+{% extends "layout.html" %} {% block body %}
+<p class="subtitle">Enter a list to be sorted.</p>
+<form action="">
+    <label>
+        <input type="radio" name="enter_list" value="manual"> Type in a list:<br>
+            <input type="text" name="manual_list">
+    </label><br>
+    <label>
+        <input type="radio" name="enter_list" value="file"> Load from a file:<br>
+                <input type="text" name="browse" id="browse">
+                <label for="file-upload" class="custom-file-upload">
+                    <i class="fa fa-cloud-upload"></i> Browse
+                </label>
+                <input id="file-upload" name='upload_cont_img' type="file" style="display:none;">
+    </label><br>
+    <label>
+        <input type="radio" name="enter_list" value="random"> Generate a random list:<br> 
+            Choose size:
+                <select>
+                    {% for n in range(0,1001,10) %}
+                        <option value="{{ n }}">{{ n }}</option>
+                    {% endfor %}
+                </select><br>
+            Choose range:
+                <select>
+                    {% for n in range(0,1001,10) %}
+                        <option value="{{ n }}">{{ n }}</option>
+                    {% endfor %}
+                </select>
+            to 
+                <select>
+                    {% for n in range(0,1001,10) %}
+                        <option value="{{ n }}">{{ n }}</option>
+                    {% endfor %}
+                </select>
+    </label><br>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

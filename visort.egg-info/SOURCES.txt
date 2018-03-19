@@ -1,0 +1,13 @@
+MANIFEST.in
+visort/__init__.py
+visort/visort.py
+visort.egg-info/PKG-INFO
+visort.egg-info/SOURCES.txt
+visort.egg-info/dependency_links.txt
+visort.egg-info/requires.txt
+visort.egg-info/top_level.txt
+visort/static/bootstrap.min.css
+visort/static/bootstrap.min.js
+visort/static/global.css
+visort/static/jquery.min.js
+visort/templates/enter_list.html
