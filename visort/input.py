@@ -77,19 +77,8 @@ class Input:
             self.input_list.append(random.randint(l_min, l_max))
 
     def analyze_list(self):
-        if (len(self.input_list) > 20):
+        if (len(self.input_list) > 120):
             self.output_type = "benchmark"
-
-def main():
-    x = "visualize"
-    y = "2342, 234234, 234234"
-    z = "bubble, , bubble, insertion"
-    a = "extext.txt"
-    Input1 = Input()
-    Input1.receive_output_type(x)
-    Input1.manual(y)
-    Input1.generate(10,20,50)
-    Input1.receive_alg_types(z)
-    Input1.load(a)
-
-main()
+        for each in self.input_list:
+            if (int(each) > 9999):
+                self.output_type = "benchmark"
