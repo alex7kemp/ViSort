@@ -1,4 +1,5 @@
 import random
+import sys
 
 class Input:
     
@@ -7,13 +8,14 @@ class Input:
         self.output_type = ""
         self.input_type = ""
         self.input_list = list()
+        self.errors = []
 
     
     def receive_output_type(self, out_type):
         if (out_type ==  "visualize" or out_type == "benchmark"):
             self.output_type = out_type
         else:
-            raise ValueError('Not a valid output type.')
+            self.errors.append('Not a valid output type.')
             
     def receive_alg_types(self, algo_types):
         algo_count = 0
@@ -35,50 +37,61 @@ class Input:
         if (algo_count > 1):
             self.output_type = "benchmark"
         if (algo_count == 0):
-            raise ValueError("No valid algorithms chosen.")
+            self.errors.append("No valid algorithms chosen.")
             
 
     def receive_input_type(self, in_type):
         if (in_type ==  "manual" or in_type == "load" or in_type == "generate"):
             self.input_type = in_type
         else:
-            raise ValueError('Not a valid output type.')
+            self.errors.append('Not a valid output type.')
 
     def manual(self, m_list):
+        self.input_list = []
+        m_list = "".join(m_list.split())
         temp_list = m_list.split(',')
         for x in temp_list:
             try:
                 x = int(x)
             except:
-                raise ValueError("List contains invalid value(s).")
+                self.errors.append("List contains invalid character(s).")
         self.input_list = temp_list
         
 
     def load(self, file_name):
+        self.input_list = []
         try:
-            with open(file_name, 'r') as myfile:
-                m_list = myfile.read().replace('\n', '')
+            m_list = file_name.read()
+            m_list = str(m_list, 'utf-8')
+            m_list = "".join(m_list.split())
+            temp_list = m_list.split(',')
+            for x in temp_list:
+                try:
+                    x = int(x)
+                except:
+                    self.errors.append("List contains invalid value(s).")
+            self.input_list = temp_list
         except:
-            raise ValueError("Unable to open file.")
-        temp_list = m_list.split(',')
-        for x in temp_list:
-            try:
-                x = int(x)
-            except:
-                raise ValueError("List contains invalid value(s).")
-        self.input_list = temp_list
+            self.errors.append("Unable to read file.")
 
     def generate(self, l_min, l_max, l_size):
+        self.input_list = []
         if (l_min >= l_max):
-            raise ValueError("Invalid range")
+            self.errors.append("Invalid range.")
         if (l_size < 2):
-            raise ValueError("List size is too small")
+            self.errors.append("List size is too small.")
         for x in range(l_size):
             self.input_list.append(random.randint(l_min, l_max))
 
     def analyze_list(self):
         if (len(self.input_list) > 120):
             self.output_type = "benchmark"
-        for each in self.input_list:
-            if (int(each) > 9999):
+        else:
+            count = 0
+            for each in self.input_list:
+                if (int(each) > 9999):
+                    count += 1
+            if count >= 1:
                 self.output_type = "benchmark"
+            else:
+                self.output_type = "visualize"
