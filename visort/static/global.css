@@ -9,8 +9,195 @@
 }
 
 .custom-file-upload {
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
+    display: inline-block;
+    padding: 1px 12px;
+    cursor: pointer;
+    margin-bottom: 0;
+    float: right;
+}
+
+.enter_list {
+    width: 100%;
+}
+
+#browse {
+    margin-left: 18px;
+    width: calc(100% - 103px);         /* standards-based answer for IE9+, FF16+ */
+    width: -moz-calc(100% - 103px);    /* support for FF4 - FF15                 */
+    width: -webkit-calc(100% - 103px); /* support for Chrome19+ and Safari6+     */
+}
+
+.border_color {
+    border: 1px solid #aeadad!important;
+}
+
+#size {
+    margin-bottom: 7px;
+    margin-left: 14px;
+}
+
+.random {
+    margin-bottom: 1rem;
+}
+
+#errors {
+    color: red
+}
+
+.radio_details {
+    margin-left: 18px;
+    width: calc(100% - 18px);         /* standards-based answer for IE9+, FF16+ */
+    width: -moz-calc(100% - 18px);    /* support for FF4 - FF15                 */
+    width: -webkit-calc(100% - 18px); /* support for Chrome19+ and Safari6+     */
+}
+
+.algorithm_popup {
+    text-align: center;
+    margin-left: 23px!important;
+    margin-right: 20px;
+    width: 125px;
+}
+
+@media only screen and (min-width: 575px) {
+    .alg_popuptext {
+        width: 300px!important;
+        margin-left: -147px!important;
+    }
+}
+
+@media only screen and (min-width: 371px) and (max-width: 574px) {
+    .alg_popuptext {
+        width: 187px!important;
+        margin-left: -94px!important;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    #list_subtitle {
+        display: inline-block;
+        float: right;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .old_subtitle {
+        text-align: center;
+    }
+    #enterlist_subtitle {
+        margin-bottom: 0px;
+    }
+    .check {
+        margin-bottom: 0px;
+    }
+    #list_subtitle {
+        display: block!important;
+    }
+    
+}
+
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: black;
+    margin-left: 18px;
+    text-decoration: underline;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 102%;
+    left: 50%;
+    margin-left: -66px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+.old_subtitle {
+    border-bottom-width: 2px;
+    border-bottom-color: #aeadad;
+    border-bottom-style: solid;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#enterlist_subtitle {
+    display: inline-block;
+}
+
+.check {
+    display: inline-block;
+    font-weight: bold;
+}
+#checkboxes {
+    width:100%;
+    display: inline-block;
+}
+
+.algorithms {
+    display: inline-block;
+    border: 1px solid #aeadad;
+    margin-left: 10px;
+    margin-right: 20px;
+    padding: 1px 12px;
+    cursor: pointer;
+    width: 125px;
+    text-align: center;
+}
+
+#checkboxes {
+    border-bottom-width: 2px;
+    border-bottom-color: #aeadad;
+    border-bottom-style: solid;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#benchmark {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.algorithm_checkboxes {
+    margin-bottom: 1rem;
 }

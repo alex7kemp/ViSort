@@ -1,38 +1,106 @@
 {% extends "layout.html" %} {% block body %}
+
+{% for error_detail in error %}
+    <p id=errors>{{ error_detail }}</p>
+{% endfor %}
+
+{% if "enter_list" in entries %}
+    {% set enter_list = entries["enter_list"] %}
+{% endif %}
+
 <p class="subtitle">Enter a list to be sorted.</p>
-<form action="">
-    <label>
-        <input type="radio" name="enter_list" value="manual"> Type in a list:<br>
-            <input type="text" name="manual_list">
+<form action="{{ url_for('add_list') }}" method="post" enctype="multipart/form-data">
+    <label class="enter_list">
+        {% if enter_list == "manual" %}
+            <input type="radio" name="enter_list" value="manual" checked="checked"> Type in a list:<br>
+        {% else %}
+            <input type="radio" name="enter_list" value="manual"> Type in a list:<br>
+        {% endif %}
+        
+        {% if "manual_list" in entries %}
+            <input type="text" name="manual_list" class="border_color radio_details" value="{{ entries['manual_list'] }}">
+        {% else %}
+            <input type="text" name="manual_list" class="border_color radio_details">
+        {% endif %}
+        
+        <!-- Popup code found at https://www.w3schools.com/howto/howto_js_popup.asp -->
+        <div class="popup" onclick="myFunction('popup1')">Formatting
+            <span class="popuptext" id="popup1">Comma separated list of integers: 1,2,3 (whitespace ignored)</span>
+        </div>
+        
     </label><br>
-    <label>
-        <input type="radio" name="enter_list" value="file"> Load from a file:<br>
-                <input type="text" name="browse" id="browse">
-                <label for="file-upload" class="custom-file-upload">
+    <label class="enter_list">
+        {% if enter_list == "load" %}
+            <input type="radio" name="enter_list" value="load" checked="checked"> Load from a file:<br>
+        {% else %}
+            <input type="radio" name="enter_list" value="load"> Load from a file:<br>
+        {% endif %}
+        
+            <div class="enter_list">
+                {% if "file_name" in entries %}
+                    <input type="text" id="browse" class="border_color" value="{{ entries['file_name'] }}">
+                {% else %}
+                    <input type="text" id="browse" class="border_color">
+                {% endif %}
+                
+                
+                <label for="file-upload" class="custom-file-upload border_color">
                     <i class="fa fa-cloud-upload"></i> Browse
                 </label>
-                <input id="file-upload" name='upload_cont_img' type="file" style="display:none;">
+                
+                <!-- Popup code found at https://www.w3schools.com/howto/howto_js_popup.asp -->
+                <div class="popup" onclick="myFunction('popup2')">Formatting
+                    <span class="popuptext" id="popup2">Text file (.txt) containing a comma separated list of integers: 1,2,3 (whitespace ignored)</span>
+                </div>
+                
+                {% if "file_name" in entries %}
+                    <input id="file-upload" name='file_name' type="file" style="display:none;" value="{{ entries['file_name'] }}">
+                {% else %}
+                    <input id="file-upload" name='file_name' type="file" style="display:none;">
+                {% endif %}
+                
+            </div>
     </label><br>
-    <label>
-        <input type="radio" name="enter_list" value="random"> Generate a random list:<br> 
+    <label class="random">
+        {% if enter_list == "generate" %}
+            <input type="radio" name="enter_list" value="generate" checked="checked"> Generate a random list:<br>
+        {% else %}
+            <input type="radio" name="enter_list" value="generate"> Generate a random list:<br>
+        {% endif %}
+        
+        <div class="radio_details">
             Choose size:
-                <select>
-                    {% for n in range(0,1001,10) %}
-                        <option value="{{ n }}">{{ n }}</option>
+                <select id="size" name="size" class="border_color">
+                    {% for n in range(10,1001,10) %}
+                        {% if "size" in entries and entries['size']|int == n %}
+                            <option value="{{ n }}" selected="selected">{{ n }}</option>
+                        {% else %}
+                            <option value="{{ n }}">{{ n }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select><br>
+                
             Choose range:
-                <select>
+                <select name="range_min" class="border_color">
                     {% for n in range(0,1001,10) %}
-                        <option value="{{ n }}">{{ n }}</option>
+                        {% if "range_min" in entries and entries['range_min']|int == n %}
+                            <option value="{{ n }}" selected="selected">{{ n }}</option>
+                        {% else %}
+                            <option value="{{ n }}">{{ n }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             to 
-                <select>
-                    {% for n in range(0,1001,10) %}
-                        <option value="{{ n }}">{{ n }}</option>
+                <select name="range_max" class="border_color">
+                    {% for n in range(10,1001,10) %}
+                        {% if "range_max" in entries and entries['range_max']|int == n %}
+                            <option value="{{ n }}" selected="selected">{{ n }}</option>
+                        {% else %}
+                            <option value="{{ n }}">{{ n }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
+        </div>
     </label><br>
     <input type="submit" value="Submit">
 </form>

@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="old_subtitle">
+    <p id="enterlist_subtitle">Enter a list to be sorted </p>
+    
+    <p class="check">&#x2713;</p>
+
+    {% if "list" in entries %}
+        {% set list = entries["list"] %}
+        <p id="list_subtitle">[
+        {% for item in list[:10] %}
+            {{item}}
+            {{ "," if not loop.last }}
+        {% endfor %}
+        {% if list|length > 10 %}
+            {{ "..." }}
+        {% endif %}
+        ]</p>
+    {% endif %}  
+</div>
+
+<p class="subtitle">Visualization</p>
+
+{% endblock %}

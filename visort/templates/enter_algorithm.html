@@ -1,0 +1,99 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="old_subtitle">
+    <p id="enterlist_subtitle">Enter a list to be sorted </p>
+    
+    <p class="check">&#x2713;</p>
+
+    {% if "list" in entries %}
+        {% set list = entries["list"] %}
+        <p id="list_subtitle">[
+        {% for item in list[:10] %}
+            {{item}}
+            {{ "," if not loop.last }}
+        {% endfor %}
+        {% if list|length > 10 %}
+            {{ "..." }}
+        {% endif %}
+        ]</p>
+    {% endif %}  
+</div>
+
+{% for error_detail in error %}
+    <p id=errors>{{ error_detail }}</p>
+{% endfor %}
+
+<p class="subtitle">Choose algorithm(s).</p>
+
+<form action="{{ url_for('add_algorithm') }}" method="post" enctype="multipart/form-data">
+    <div id="checkboxes">
+        <label class="algorithm_checkboxes ">
+            {% if entries["algorithm1"] == "bubble" %}
+                <input type="checkbox" name="algorithm1" value="bubble" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})" checked>
+            {% else %}
+                <input type="checkbox" name="algorithm1" value="bubble" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})">
+            {% endif %}
+            <div class="algorithms">Bubble Sort</div><br>
+            <div class="popup algorithm_popup" onclick="myFunction('popup3')">More Info
+                <span class="alg_popuptext popuptext" id="popup3">A sorting algorithm that compares adjacent elements, swapping them to order them correctly, continuing through the list until it is completely sorted</span>
+            </div>
+        </label>
+        <label class="algorithm_checkboxes">
+            {% if entries["algorithm2"] == "counting" %}
+                <input type="checkbox" name="algorithm2" value="counting" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})" checked>
+            {% else %}
+                <input type="checkbox" name="algorithm2" value="counting" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})">
+            {% endif %}
+            <div class="algorithms">Counting Sort</div><br>
+            <div class="popup algorithm_popup" onclick="myFunction('popup4')">More Info
+                <span class="alg_popuptext popuptext" id="popup4">A sorting algorithm based on keys between a specific range. It works by counting the number of objects having distinct key values (kind of hashing). Then doing some arithmetic to calculate the position of each object in the output sequence</span>
+            </div>
+        </label>
+        <label class="algorithm_checkboxes">
+            {% if entries["algorithm3"] == "insertion" %}
+                <input type="checkbox" name="algorithm3" value="insertion" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})" checked>
+            {% else %}
+                <input type="checkbox" name="algorithm3" value="insertion" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})">
+            {% endif %}
+            <div class="algorithms">Insertion Sort</div><br>
+            <div class="popup algorithm_popup" onclick="myFunction('popup5')">More Info
+                <span class="alg_popuptext popuptext" id="popup5">A sorting algorithm that inserts one element at at time to the end of the list and incrementally compares it to each element already in the list, moving it into the correct order</span>
+            </div>
+        </label>
+        <label class="algorithm_checkboxes">
+            {% if entries["algorithm4"] == "merge" %}
+                <input type="checkbox" name="algorithm4" value="merge" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})" checked>
+            {% else %}
+                <input type="checkbox" name="algorithm4" value="merge" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})">
+            {% endif %}
+            <div class="algorithms">Merge Sort</div><br>
+            <div class="popup algorithm_popup" onclick="myFunction('popup6')">More Info
+                <span class="alg_popuptext popuptext" id="popup6">Sorting is done by dividing an array in two halves each time until the sections of the array only contain one element, and them combining the subarrays in ascending order</span>
+            </div>
+        </label>
+        <label class="algorithm_checkboxes">
+            {% if entries["algorithm5"] == "quick" %}
+                <input type="checkbox" name="algorithm5" value="quick" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})" checked>
+            {% else %}
+                <input type="checkbox" name="algorithm5" value="quick" class="checkbox" onchange="checkboxes({{ entries['benchmark'] }})">
+            {% endif %}
+            <div class="algorithms">Quick Sort</div><br>
+            <div class="popup algorithm_popup" onclick="myFunction('popup7')">More Info
+                <span class="alg_popuptext popuptext" id="popup7">A recursive sorting algorithm that uses a divide and conquer strategy to partition an array of elements. Pivots are chosen at each partition and elements are sorted around these pivots. Once the groups of elements are relatively small, a non-recursive algorithm is used to complete the sorting</span>
+            </div>
+        </label> 
+    </div>
+    <label class="algorithm_checkboxes">
+        {% if entries['benchmark'] == "true" %}
+            <input type="checkbox" name="benchmark" value="benchmark" id="benchmark_check" checked><div id="benchmark">Benchmark algorithm?</div>
+        {% elif entries["benchmark"] == "benchmark" %}
+            <input type="checkbox" name="benchmark" value="benchmark" id="benchmark_check" checked><div id="benchmark">Benchmark algorithm?</div>
+        {% else %}
+            <input type="checkbox" name="benchmark" value="benchmark" id="benchmark_check"><div id="benchmark">Benchmark algorithm?</div>
+        {% endif %}
+    </label>
+    <br> 
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
