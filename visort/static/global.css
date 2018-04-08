@@ -77,6 +77,15 @@
         display: inline-block;
         float: right;
     }
+    
+    #alg_list_subtitle {
+        display: inline-block;
+        float: right;
+    }
+    
+    #breakpoint {
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 575px) {
@@ -85,6 +94,12 @@
     }
     #enterlist_subtitle {
         margin-bottom: 0px;
+    }
+    #algorithm_subtitle {
+        margin-bottom: 0px;
+    }
+    #breakpoint {
+        display: none;
     }
     .check {
         margin-bottom: 0px;
@@ -164,6 +179,10 @@
     display: inline-block;
 }
 
+#algorithm_subtitle {
+    display: inline-block;
+}
+
 .check {
     display: inline-block;
     font-weight: bold;
@@ -201,3 +220,34 @@
 .algorithm_checkboxes {
     margin-bottom: 1rem;
 }
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: 0px;
+    margin-top: -1500px;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 18px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: left;
+    background-color: #800000;
+    color: white;
+
+    }
+
+#customers th {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    }

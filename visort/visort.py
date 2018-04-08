@@ -14,6 +14,53 @@ app.config.from_envvar('VISORT_SETTINGS', silent=True)
 
 input_class = Input()
 
+noflinesofpsuedocode=12
+# Line of psuedocode executed for each list
+executingline = [0,1,2,3,4,5,6,7,8,9,10,11] #Line 0 is line 1, line 1 is line 2 and so on+/6
+
+# Changing colour
+# If we are comparing 2 with 3, 2 is green and 3 is blue
+squarecolourpair=[[2,13],[14,2],[8,10],[12,5],[14,5],[3,14],[2,13],[4,2],[8,1],[2,9],[14,2],[8,10]]
+
+array=[[16,13,11,12,1,6,9,12,9,120,11,12,1,6,9],[1,3,1,2,1,6,9,1,9,0,11,12,1,6,9],[16,4,121,102,11,6,91,12,9,0,11,12,1,6,9],[1,3,1,2,1,6,9,2,9,0,11,12,1,6,9],
+       [116,113,111,112,11,16,19,112,91,120,11,12,1,6,9],[116,113,111,112,11,6,9,12,9,12,11,12,1,6,9],[16,13,11,12,1,6,9,12,9,120,11,12,1,6,9],
+       [1,3,1,2,1,6,9,1,9,0,11,12,1,6,9],[16,4,121,102,11,6,91,12,9,0,11,12,1,6,9],[1,3,1,2,1,6,9,2,9,0,11,12,1,6,999],
+[116,113,111,112,11,6,9,12,9,12,11,12,1,6,9],[16,13,11,12,1,6,9,112,119,120,11,12,21,336,4499]
+       ]
+steps=12 #vTotal number of lists
+squarenumber=15 # Total number of elements in each list
+
+# print "Number of lines of psuedocode :",noflinesofpsuedocode
+# print "Executing line array :",executingline
+# print "Pair for squaring array :",squarecolourpair
+# print "All the sequence of steps :",array
+# print "Total number of lists :",steps
+# print "Number of elements in each list :", squarenumber
+
+tb=10
+sb=10
+cb=10
+db=10
+
+tc=10
+sc=10
+cc=10
+dc=10
+
+ti=10
+si=10
+ci=10
+di=10
+
+tq=10
+sq=10
+cq=10
+dq=10
+
+tm=0
+sm=0
+cm=0
+dm=0
 
 @app.route('/')
 def enter_list():
@@ -167,7 +214,9 @@ def add_algorithm():
             if not input_class.errors:
                 input_class.output_type2 = "benchmark"
                 data.update({'algorithms': input_class.alg_types, 'list': input_class.input_list})
-                return render_template('benchmark.html', error=errors, entries=data)
+                return render_template('benchmark.html', error=errors, entries=data, tb=tb, tc=tc, ti =ti,tq =tq,tm=tm,
+                                       sb =sb,sc=sc, si=si, sq =sq,sm=sm,cb=cb ,cc=cc, ci=ci ,cq=cq, cm=cm, db=db,
+                                       dc=dc,di=di,dq=dq,dm=dm)
             else:
                 errors.extend(input_class.errors)
                 data.update(
@@ -209,7 +258,10 @@ def add_algorithm():
                         return render_template('enter_algorithm.html', error=errors, entries=data)
                     else:
                         data.update({'algorithms': input_class.alg_types, 'list': input_class.input_list})
-                        return render_template('visualize.html', error=errors, entries=data)
+                        return render_template('visualize.html', error=errors, entries=data, squarenumber=squarenumber,
+                                               squarecolourpair=squarecolourpair,array=array,
+                                               steps=steps,noflinesofpsuedocode=noflinesofpsuedocode,
+                                               executingline=executingline)
                 else:
                     errors.extend(input_class.errors)
                     data.update(

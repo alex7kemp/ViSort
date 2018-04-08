@@ -15,10 +15,253 @@
         {% if list|length > 10 %}
             {{ "..." }}
         {% endif %}
-        ]</p>
+        ]</p><br id="breakpoint">
     {% endif %}  
+    
+    <p id="algorithm_subtitle">Choose algorithm </p>
+    
+    <p class="check">&#x2713;</p>
+    
+    {% if "algorithms" in entries %}
+        {% set alg_list = entries["algorithms"] %}
+        <p id="alg_list_subtitle">
+        {% for item in alg_list[:3] %}
+            {% if item == "bubble" %}
+                {{ "Bubble" }}
+            {% elif item == "counting" %}
+                {{ "Counting" }}
+            {% elif item == "insertion" %}
+                {{ "Insertion" }}
+            {% elif item == "merge" %}
+                {{ "Merge" }}
+            {% elif item == "quick" %}
+                {{ "Quick" }}
+            {% endif %}
+            {{ "," if not loop.last }}
+        {% endfor %}
+        {% if alg_list|length > 3 %}
+            {{ "..." }}
+        {% endif %}
+        </p>
+    {% endif %}
+    
 </div>
 
-<p class="subtitle">Benchmarking</p>
+<p class="subtitle">Benchmark</p>
+
+<canvas id="myCanvas" width="1300" height="80" style="border:0px solid #6699cc;">
+    </canvas>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
+var width = canvas.width;
+var height = canvas.height;
+
+
+ctx.fillStyle= 'maroon';
+ctx.fillRect(750,0,400,73);
+ctx.fillStyle= 'white';
+ctx.font = "30px Verdana";
+ctx.fillText("Benchmarking", 830,50);
+
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(chart1);
+      google.charts.setOnLoadCallback(chart2);
+      google.charts.setOnLoadCallback(chart3);
+      google.charts.setOnLoadCallback(chart4);
+
+      function chart1() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Bubble Sort',{{tb }} ],
+          ['Counting Sort',{{tc }} ],
+          ['Insertion Sort',{{ti}} ],
+          ['Quick Sort',{{ tq }} ],
+          ['Merge Sort',{{tm}} ]
+
+        ]);
+
+        var options = {title:' Time Complexity',
+                       width:550
+,
+                       height:300,
+
+            titleTextStyle: {
+               fontSize: 15,
+                    }};
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart1_div'));
+        chart.draw(data, options);
+      }
+
+      function chart2() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+         data.addRows([
+          ['Bubble Sort',{{sb}} ],
+          ['Counting Sort',{{ sc }} ],
+          ['Insertion Sort',{{si }} ],
+          ['Quick Sort',{{sq }} ],
+          ['Merge Sort',{{sm}} ]
+
+        ]);
+
+
+        var options = {title:' Space Complexity',
+                       width:400
+,
+                       height:300,
+
+            titleTextStyle: {
+               fontSize: 15,
+                    }};
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart2_div'));
+        chart.draw(data, options);
+      }
+
+      function chart3() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+         data.addRows([
+          ['Bubble Sort',{{cb }} ],
+          ['Counting Sort',{{cc }} ],
+          ['Insertion Sort',{{ci }} ],
+          ['Quick Sort',{{cq }} ],
+          ['Merge Sort',{{cm}} ]
+
+        ]);
+
+
+        var options = {title:' Comparisions',
+                       width:400
+,
+                       height:300,
+
+            titleTextStyle: {
+               fontSize: 15,
+                    }};
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart3_div'));
+        chart.draw(data, options);
+      }
+
+      function chart4() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+         data.addRows([
+          ['Bubble Sort',{{db }} ],
+          ['Counting Sort',{{dc }} ],
+          ['Insertion Sort',{{di}} ],
+          ['Quick Sort',{{ dq }} ],
+          ['Merge Sort',{{dm}} ]
+
+        ]);
+
+
+        var options = {title:' Data Movement',
+                       width:400
+,
+                       height:300,
+
+            titleTextStyle: {
+               fontSize: 15,
+                    }};
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart4_div'));
+        chart.draw(data, options);
+      }
+
+
+
+</script>
+
+
+<div class="tl">
+    <table class="columns">
+        <td><div id="chart1_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="chart2_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="chart3_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="chart4_div" style="border: 1px solid #ccc"></div></td>
+</table>
+
+    </div>
+
+
+
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<div id="chartContainer" style="width: 100%; height: 400px;display: inline-block;"></div>
+<div id="chartContainer1" style="width: 100%; height: 400px;display: inline-block;"></div>
+<div id="chartContainer2" style="width: 100%; height: 400px;display: inline-block;"></div>
+<div id="chartContainer3" style="width: 100%; height: 400px;display: inline-block;"></div>
+<br/>
+
+
+<table id="customers">
+  <tr>
+    <th>Algorithm</th>
+    <th>Time Complexity</th>
+    <th>Space complexity</th>
+      <th>Comparisions</th>
+    <th>Data Movements</th>
+  </tr>
+  <tr>
+    <td>Bubble Sort </td>
+    <td>{{tb}}</td>
+    <td>{{sb}}</td>
+      <td>{{cb}}</td>
+    <td>{{db}}</td>
+
+  </tr>
+
+  <tr>
+    <td>Counting Sort</td>
+    <td>{{tc}}</td>
+    <td>{{sc}}</td>
+      <td>{{cc}}</td>
+    <td>{{dc}}</td>
+
+
+  </tr>
+  <tr>
+    <td>Insertion Sort</td>
+    <td>{{ti}}</td>
+    <td>{{si}}</td>
+      <td>{{ci}}</td>
+    <td>{{di}}</td>
+
+
+  </tr>
+  <tr>
+    <td>Quick Sort</td>
+    <td>{{tq}}</td>
+    <td>{{sq}}</td>
+      <td>{{cq}}</td>
+    <td>{{dq}}</td>
+
+  </tr>
+  <tr>
+    <td>Merge Sort</td>
+    <td>{{tm}}</td>
+    <td>{{sm}}</td>
+      <td>{{cm}}</td>
+    <td>{{dm}}</td>
+
+  </tr>
+
+</table>
 
 {% endblock %}

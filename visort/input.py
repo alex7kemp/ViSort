@@ -19,6 +19,7 @@ class Input:
             
     def receive_alg_types(self, algo_types):
         algo_count = 0
+        self.alg_types = []
         if 'bubble' in algo_types:
             algo_count += 1
             self.alg_types.append("bubble")
