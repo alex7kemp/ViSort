@@ -251,3 +251,29 @@
     padding-top: 18px;
     padding-bottom: 18px;
     }
+
+.links {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #aeadad;
+    padding: 1px 12px;
+    cursor: pointer;
+    width: 135px;
+    text-align: center;
+}
+
+.links:hover {
+    color: black;
+    text-decoration: none;
+}
+
+#myCanvas {
+    left: -368px;
+    position: relative;
+}
+
+.tl {
+    position: relative;
+    left: -330px;
+}

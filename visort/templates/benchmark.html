@@ -49,23 +49,8 @@
 
 <p class="subtitle">Benchmark</p>
 
-<canvas id="myCanvas" width="1300" height="80" style="border:0px solid #6699cc;">
-    </canvas>
-
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-
-var canvas = document.getElementById('myCanvas');
-var ctx = canvas.getContext('2d');
-var width = canvas.width;
-var height = canvas.height;
-
-
-ctx.fillStyle= 'maroon';
-ctx.fillRect(750,0,400,73);
-ctx.fillStyle= 'white';
-ctx.font = "30px Verdana";
-ctx.fillText("Benchmarking", 830,50);
 
 
       google.charts.load('current', {'packages':['corechart']});
@@ -263,5 +248,20 @@ ctx.fillText("Benchmarking", 830,50);
   </tr>
 
 </table>
+<br>
+<div class="row text-center">
+    <div class="col">
+        <a href="{{ url_for('benchmark') }}" class="links">Rerun</a>
+    </div>
+    <div class="col">
+        <a href="{{ url_for('add_algorithm') }}" class="links">New Algorithm</a>
+    </div>
+    <div class="col">
+        <a href="{{ url_for('add_list') }}" class="links">New List</a>
+    </div>
+    <div class="col">
+        <a href="{{ url_for('enter_list') }}" class="links">Quit</a>
+    </div>
+</div>
 
 {% endblock %}

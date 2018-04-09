@@ -69,7 +69,7 @@ def enter_list():
     return render_template('enter_list.html', error=errors, entries=data)
 
 
-@app.route('/add_list', methods=['POST'])
+@app.route('/add_list', methods=['POST', 'GET'])
 def add_list():
     errors = []
     input_class.errors = []
@@ -185,14 +185,10 @@ def add_list():
                          'range_min': request.form.get('range_min'), 'range_max': request.form.get('range_max')})
             return render_template('enter_list.html', error=errors, entries=data)
     else:
-        errors.append("Please enter information below and hit submit.")
-        data.update({'enter_list': request.form.get('enter_list'), 'manual_list': request.form.get('manual_list'),
-                     'file_name': request.form.get('file_name'), 'size': request.form.get('size'),
-                     'range_min': request.form.get('range_min'), 'range_max': request.form.get('range_max')})
         return render_template('enter_list.html', error=errors, entries=data)
 
 
-@app.route('/add_algorithm', methods=['POST'])
+@app.route('/add_algorithm', methods=['POST', 'GET'])
 def add_algorithm():
     errors = []
     input_class.errors = []
@@ -270,3 +266,36 @@ def add_algorithm():
                          'algorithm5': request.form.get('algorithm5'), 'benchmark': request.form.get('benchmark'),
                          'list': input_class.input_list})
                     return render_template('enter_algorithm.html', error=errors, entries=data)
+    else:
+        if input_class.output_type == "benchmark":
+            data.update(
+                {'benchmark': 'true', 'list': input_class.input_list}
+            )
+        else:
+            data.update(
+                {'benchmark': 'false', 'list': input_class.input_list}
+            )
+        return render_template('enter_algorithm.html', error=errors, entries=data)
+
+@app.route('/visualize', methods=['GET'])
+def visualize():
+    errors = []
+    data = {}
+    data.update({'algorithms': input_class.alg_types, 'list': input_class.input_list})
+    return render_template('visualize.html', error=errors, entries=data, squarenumber=squarenumber,
+                           squarecolourpair=squarecolourpair, array=array,
+                           steps=steps, noflinesofpsuedocode=noflinesofpsuedocode,
+                           executingline=executingline)
+
+
+@app.route('/benchmark', methods=['GET'])
+def benchmark():
+    errors = []
+    data = {}
+    input_class.output_type2 = "benchmark"
+    data.update({'algorithms': input_class.alg_types, 'list': input_class.input_list})
+    return render_template('benchmark.html', error=errors, entries=data, tb=tb, tc=tc, ti=ti, tq=tq, tm=tm,
+                           sb=sb, sc=sc, si=si, sq=sq, sm=sm, cb=cb, cc=cc, ci=ci, cq=cq, cm=cm, db=db,
+                           dc=dc, di=di, dq=dq, dm=dm)
+
+
