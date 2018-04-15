@@ -1,18 +1,39 @@
 def insertionSort(stepsList):
-    aList = list(stepsList[0])    
-    
+    aList = list(stepsList[0])
+    indiciesList = list()
+    indiciesList.append([0, 0])
+    pseudocodeList = list()
+    pseudocodeList.append("Unsorted list.")
+ 
     for index in range(1, len(aList)):
         value = aList[index]
         location = index
+        copyaList = list(aList)
 
         while location > 0 and aList[location - 1] > value:
             aList[location] = aList[location - 1]
             location -= 1
+            stepsList.append(list(aList))
+            indiciesList.append([index, location])
+            
             
         aList[location] = value
-        stepsList.append(list(aList))
+        
+        pseudocodeList.append(str("Data value " + str(copyaList[index]) + " from position " + str(index) + " inserted at position " + str(location)))
+        
+        
 
     aList[location] = value
+    print(len(pseudocodeList))
+    print(list(range(len(pseudocodeList))))
+    print(indiciesList)
+    print(stepsList)
+    print(len(stepsList))
+    print(len(aList))
+    #print(pseudocodeList)
+
+    return(len(pseudocodeList), list(range(len(pseudocodeList))), indiciesList, stepsList, len(stepsList), len(aList))
+    
     
 def insertionSortSteps(stepsList):
     aList = list(stepsList[0])
@@ -66,6 +87,7 @@ def main():
     stepsList = [list1]
 
     insertionSort(stepsList)
+    '''
     insertionSortSteps(stepsList) 
     
     for array in stepsList:
@@ -75,5 +97,6 @@ def main():
 
     print(insertionSortComparisons(list2))
     print(list2)
+    '''
     
 main()
