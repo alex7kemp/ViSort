@@ -1,31 +1,60 @@
-import time
-import copy
 
-def bubble(input_list):
-    output_list =[]
-    for i in range(len(input_list)):
-        for j in range(0, len(input_list)-i-1):
-            if input_list[j]>input_list[j+1]:
-                output_list.append(copy.deepcopy(input_list))
-                input_list[j],input_list[j+1]=input_list[j+1],input_list[j]
-    return output_list
-
-def bubble_time_func(input_list):
-    start_time = time.clock()
-    for i in range(len(input_list)):
-        for j in range(0, len(input_list)-i-1):
-            if input_list[j]>input_list[j+1]:
-                input_list[j],input_list[j+1]=input_list[j+1],input_list[j]
-    stop_time = time.clock()
+def bubble(alist):
+    data_movements = 0
+    comparisons = 0
     
-    bubble_time = stop_time - start_time
-    return bubble_time
+    for i in range(len(alist)):
+        value = alist [i]
+        location = i
+        for j in range(0, len(alist)-i-1):
+            if input_list[j]>alist[j+1]:
+                alist[location] = alist[location-1]
+                comparisons += 1
+                data_movements += 1
+                alist[j],alist[j+1]=alist[j+1],alist[j]
+        alist[location] = value
+    alist[location] = value
+    return (comparisons, data_movements)
+
+def bubble_steps(stepsList):
+    aList = list (stepsList[0])
+    indiciesList = list()
+    indiciesList.append ([0,0])
+    pseudocodeList = list()
+    pseudocodeList.append ("Unsorted list.")
+    
+    for index in range( 1, len( aList ) ):
+        value = aList[index]
+        location = index
+        copyaList = list( aList )
+
+        while location > 0 and aList[location - 1] > value:
+            aList[location] = aList[location - 1]
+            location -= 1
+
+        aList[location] = value
+        stepsList.append( list( aList ) )
+        indiciesList.append( [index, location] )
+        pseudocodeList.append( str("Data value " + str( copyaList[index] ) + " from position " + str( index ) + " inserted at position " + str(location ) ) )
+
+    aList[location] = value
+    print("noflinesofpsuedocode",(len(pseudocodeList)))
+    print("executingline",(list(range(len(pseudocodeList)))))
+    print("squarecolourpair",(indiciesList))
+    print("array",(stepsList))
+    print("steps",(len(stepsList)))
+    print("squarenumber",(len(aList)))
+    #return (len( aList ),indiciesList,stepsList,len( stepsList ),len( pseudocodeList ),list( range( len( pseudocodeList ) ) ))
+
     
 def main():
     alist = [200, 3, 86, 75, 16, 54, 38, 100]
-    print ("Sorted array is "+str(bubble(alist)))
-    print ("Time: "+str(bubble_time_func(alist)))
     
-
+    alist2 = list(alist)
+    stepsList = [alist]
+    print (stepsList)
+    bubble(stepsList)
+    
 main()
+
     
