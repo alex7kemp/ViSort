@@ -34,7 +34,7 @@ class Algorithm_class:
         self.insertion_steps = [self.myList]
         self.insertion_indices = [[0, 0]]
         self.insertion_pseudo = ["Unsorted list."]
-    
+
     #this function just sorts the list. the sorted list is stored in self.bubble_sorted
     def bubble(self):
         self.bubble_sorted = list(self.myList)
@@ -49,20 +49,20 @@ class Algorithm_class:
 
             self.bubble_sorted[location] = value
         self.bubble_sorted[location] = value
-        
+
     #this function returns the amount of bytes used to sort the list
     def bubble_memory(self):
         p = psutil.Process(os.getpid())
         self.bubble()
         return p.memory_info().peak_wset
-    
+
     #this function returns the amount of time taken to sort the list
     def bubble_time(self):
         start = time.time()
         self.bubble()
         stop = time.time()
         return stop - start
-    
+
     #this function sorts the list and writes data to the associated steps, indices, and pseduo variables
     def bubble_visual(self):
         self.bubble_sorted = list(self.myList)
@@ -84,7 +84,7 @@ class Algorithm_class:
                     location)))
 
         self.bubble_sorted[location] = value
-        
+
     #this function returns the amount of comparisons and data movements used to sort the list
     def bubble_comparisons(self):
         self.bubble_sorted = list(self.myList)
@@ -108,12 +108,12 @@ class Algorithm_class:
         
         return (comparisons, data_movements)
 
-        
+
     #this function just sorts the list. the sorted list is stored in self.quick_sorted
     def quick(self):
         self.quick_sorted = list(self.myList)
         self.quick_helper(0, len(self.quick_sorted) - 1)
-        
+
     #this is a helper funciton, it shouldn't be used outside this class
     def quick_helper(self, first, last):
         if first < last:
@@ -269,11 +269,11 @@ class Algorithm_class:
 
         return rightmark
 
-        
+
     #this function just sorts the list. the sorted list is stored in self.merge_sorted
     def merge(self):
-        list1 = list(self.myList)
-        self.merge_helper(list1)
+        self.merge_sorted = list(self.myList)
+        self.merge_helper(list(self.merge_sorted))
 
     # this is a helper funciton, it shouldn't be used outside this class
     def merge_helper(self, paraList):
@@ -316,18 +316,18 @@ class Algorithm_class:
         p = psutil.Process(os.getpid())
         self.merge()
         return p.memory_info().peak_wset
-    
+
     # this function returns the amount of time taken to sort the list
     def merge_time(self):
         start = time.time()
         self.merge()
         stop = time.time()
         return stop - start
-    
+
     # this function sorts the list and writes data to the associated steps, indices, and pseduo variables --- this one only sort of works
     def merge_visual(self):
-        list1 = list(self.myList)
-        self.merge_visual_helper(list1)
+        self.merge_sorted = list(self.myList)
+        self.merge_visual_helper(list(self.merge_sorted))
 
     # this is a helper funciton, it shouldn't be used outside this class
     def merge_visual_helper(self, paraList):
@@ -384,13 +384,13 @@ class Algorithm_class:
                         righthalf) + " overwrites data at index " + str(k))
                 j = j + 1
                 k = k + 1
-                
+
     # this function returns the amount of comparisons and data movements used to sort the list
     def merge_comparisons(self):
-        list1 = list(self.myList)
+        self.merge_sorted = list(self.myList)
         self.merge_comp = 0
         self.merge_data = 0
-        self.merge_comparisons_helper(list1)
+        self.merge_comparisons_helper(list(self.merge_sorted))
         return self.merge_comp, self.merge_data
 
     # this is a helper funciton, it shouldn't be used outside this class
@@ -521,8 +521,8 @@ class Algorithm_class:
                 comparisons += 1
                 data_movements += 1
         return comparisons, data_movements
-    
-    
+
+
     # this function just sorts the list. the sorted list is stored in self.insertion_sorted
     def insertion(self):
         self.insertion_sorted = list(self.myList)
@@ -575,7 +575,7 @@ class Algorithm_class:
 
 
         self.insertion_sorted[location] = value
-    
+
     # this function returns the amount of comparisons and data movements used to sort the list
     def insertion_comparisons(self):
         data_movements = 0
