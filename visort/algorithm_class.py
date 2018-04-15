@@ -10,30 +10,30 @@ class Algorithm_class:
 
         self.bubble_sorted = []
         self.bubble_steps = [self.myList]
-        self.bubble_indices = []
-        self.bubble_pseudo = []
+        self.bubble_indices = [[0, 0]]
+        self.bubble_pseudo = ["Unsorted list."]
 
         self.quick_sorted = []
         self.quick_steps = [self.myList]
-        self.quick_indices = []
-        self.quick_pseudo = []
+        self.quick_indices = [[0, 0]]
+        self.quick_pseudo = ["Unsorted list."]
         self.quickcomp = 0 #quick sort is recursive, so I just I didnt' want to mess with it's return statements
         self.quickdata = 0 #quick sort is recursive, so I just I didnt' want to mess with it's return statements
 
         self.merge_sorted = []
         self.merge_steps = [self.myList]
-        self.merge_indices = []
-        self.merge_pseudo = []
+        self.merge_indices = [[0, 0]]
+        self.merge_pseudo = ["Unsorted list."]
 
         self.counting_sorted = []
         self.counting_steps = [self.myList]
-        self.counting_indices = []
-        self.counting_pseudo = []
+        self.counting_indices = [[0, 0]]
+        self.counting_pseudo = ["Unsorted list."]
 
         self.insertion_sorted = []
         self.insertion_steps = [self.myList]
-        self.insertion_indices = []
-        self.insertion_pseudo = []
+        self.insertion_indices = [[0, 0]]
+        self.insertion_pseudo = ["Unsorted list."]
 
     def bubble(self):
 
@@ -62,10 +62,6 @@ class Algorithm_class:
 
     def bubble_visual(self):
         self.bubble_sorted = list(self.myList)
-        self.bubble_indices = list()
-        self.bubble_indices.append([0, 0])
-        self.bubble_pseudo = list()
-        self.bubble_pseudo.append("Unsorted list.")
 
         for index in range(1, len(self.bubble_sorted)):
             value = self.bubble_sorted[index]
@@ -80,7 +76,7 @@ class Algorithm_class:
             self.bubble_steps.append(list(self.bubble_sorted))
             self.bubble_indices.append([index, location])
             self.bubble_pseudo.append(str(
-                "Data value " + str(copy_bubble_sorted[index]) + " from position " + str(index) + " inserted at position " + str(
+                "Data value " + str(copy_bubble_sorted[index]) + " from index " + str(index) + " inserted at index " + str(
                     location)))
 
         self.bubble_sorted[location] = value
@@ -97,8 +93,8 @@ class Algorithm_class:
                 comparisons += 1
                 if self.bubble_sorted[j] > self.bubble_sorted[j + 1]:
                     self.bubble_sorted[location] = self.bubble_sorted[location - 1]
-                    data_movements += 1
                     self.bubble_sorted[j], self.bubble_sorted[j + 1] = self.bubble_sorted[j + 1], self.bubble_sorted[j]
+                    data_movements += 1
             self.bubble_sorted[location] = value
         self.bubble_sorted[location] = value
         
@@ -302,29 +298,20 @@ class Algorithm_class:
         maxplus = max(self.counting_sorted) + 1  # this is used to get the correct range of numbers to iterate through
         count = [0] * maxplus  # prefilling count list
 
-        self.counting_pseudo.append("insert pseudocode step 1 here")
-        self.counting_steps.append(list(self.counting_sorted))
-        self.counting_indices.append(list(changedIndices))
+        # this is for formating the pseudo list nicely
+        SUFFIXES = {1: "st", 2: "nd", 3: "rd"}
+        suffix = "th"
 
         for number in self.counting_sorted:
             count[number] += 1  # creating count list
 
-            self.counting_pseudo.append("insert pseudocode step 2 here")
-            self.counting_steps.append(list(self.counting_sorted))
-            self.counting_indices.append(list(changedIndices))
-
         index = 0
         for value in range(maxplus):
-
-            self.counting_pseudo.append("insert pseudocode step 3 here")
-            self.counting_steps.append(list(self.counting_sorted))
-            self.counting_indices.append(list(changedIndices))
+            ordinal = count[value]  #this is for formating the pseudo list nicely
 
             for number in range(count[value]):
 
                 self.counting_sorted[index] = value  # actual sorting
-
-                self.counting_pseudo.append("insert pseudocode step 4 here")
                 self.counting_steps.append(list(self.counting_sorted))  # creating steps list
                 if index > 0:  # creating index list
                     changedIndices = [index - 1, index]
@@ -335,9 +322,13 @@ class Algorithm_class:
 
                 index += 1  # this is for iterating through count list
 
-                self.counting_pseudo.append("insert pseudocode step 5 here")
-                self.counting_steps.append(list(self.counting_sorted))
-                self.counting_indices.append(list(changedIndices))
+                # this is for formating the pseudo list nicely
+                if 10 <= ordinal %100 <=20:
+                    suffix = "th"
+                else:
+                    suffix = SUFFIXES.get(ordinal % 10, "th")
+                self.counting_pseudo.append(str(ordinal)+suffix+" data value from count index " + str(value) + " inserted at position " + str(index))
+                ordinal -= 1
 
     def counting_comparisons(self):
         comparisons = 0
@@ -383,10 +374,6 @@ class Algorithm_class:
 
     def insertion_visual(self):
         self.insertion_sorted = list(self.myList)
-        self.insertion_indices = list()
-        self.insertion_indices.append([0, 0])
-        self.insertion_pseudo = list()
-        self.insertion_pseudo.append("Unsorted list.")
 
         for index in range(1, len(self.insertion_sorted)):
             value = self.insertion_sorted[index]
@@ -398,12 +385,10 @@ class Algorithm_class:
                 location -= 1
                 self.insertion_steps.append(list(self.insertion_sorted))
                 self.insertion_indices.append([index, location])
+                self.insertion_pseudo.append(str("Data value " + str(copy_insertion_sorted[index]) + " from index " + str(index) + " inserted at index " + str(location)))
 
             self.insertion_sorted[location] = value
 
-            self.insertion_pseudo.append(str(
-                "Data value " + str(copy_insertion_sorted[index]) + " from position " + str(index) + " inserted at position " + str(
-                    location)))
 
         self.insertion_sorted[location] = value
 
