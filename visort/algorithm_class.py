@@ -56,14 +56,14 @@ class Algorithm_class:
 
     def quick(self):
         self.quick_sorted = list(self.myList)
-        self.quick_helper(self.quick_sorted, 0, len(self.quick_sorted) - 1)
+        self.quick_helper(0, len(self.quick_sorted) - 1)
 
     def quick_helper(self, first, last):
         if first < last:
-            splitpoint = self.quick_partition(self.quick_sorted, first, last)
+            splitpoint = self.quick_partition(first, last)
 
-            self.quick_helper(self.quick_sorted, first, splitpoint - 1)
-            self.quick_helper(self.quick_sorted, splitpoint + 1, last)
+            self.quick_helper(first, splitpoint - 1)
+            self.quick_helper(splitpoint + 1, last)
 
     def quick_partition(self, first, last):
         pivotvalue = self.quick_sorted[first]
@@ -107,14 +107,14 @@ class Algorithm_class:
 
     def quick_visual(self):
         self.quick_sorted = list(self.myList)
-        self.quick_helper_visual(self.quick_sorted, 0, len(self.quick_sorted) - 1)
-    
+        self.quick_helper_visual(0, (len(self.quick_sorted) - 1))
+
     def quick_helper_visual(self, first, last):
         if first < last:
-            splitpoint = self.quick_partition(self.quick_sorted, first, last)
+            splitpoint = self.quick_partition_visual(first, last)
 
-            self.quick_helper_visual(self.quick_sorted, first, splitpoint - 1)
-            self.quick_helper_visual(self.quick_sorted, splitpoint + 1, last)
+            self.quick_helper_visual(first, splitpoint - 1)
+            self.quick_helper_visual(splitpoint + 1, last)
         
     def quick_partition_visual(self, first, last):
         pivotvalue = self.quick_sorted[first]
@@ -133,7 +133,7 @@ class Algorithm_class:
 
             if rightmark < leftmark:
                 done = True
-                
+
             else:
                 self.quick_indices.append([rightmark,leftmark])
                 temp = self.quick_sorted[leftmark]
@@ -153,18 +153,16 @@ class Algorithm_class:
         self.quick_sorted = list(self.myList)
         self.quickdata = 0
         self.quickcomp = 0
-        self.quick_helper_comparisons(self.quick_sorted, 0, len(self.quick_sorted) - 1)
-        return quickdata, quickcomp
+        self.quick_helper_comparisons(0, len(self.quick_sorted) - 1)
+        return  self.quickdata, self.quickcomp
         
     def quick_helper_comparisons(self, first, last):
         self.quickcomp +=1
         if first < last:
-            splitpoint = self.quick_partition(self.quick_sorted, first, last)
+            splitpoint = self.quick_partition_comparisons(first, last)
 
-            self.quick_helper_comparisons(self.quick_sorted, first, splitpoint - 1)
-            self.quick_helper_comparisons(self.quick_sorted, splitpoint + 1, last)
-            
-        return quickdata, quickcomp
+            self.quick_helper_comparisons(first, splitpoint - 1)
+            self.quick_helper_comparisons(splitpoint + 1, last)
         
     def quick_partition_comparisons(self, first, last):
         pivotvalue = self.quick_sorted[first]
@@ -186,7 +184,7 @@ class Algorithm_class:
             if rightmark < leftmark:
                 done = True
                 self.quickcomp += 1
-                
+
             else:
 
                 temp = self.quick_sorted[leftmark]
