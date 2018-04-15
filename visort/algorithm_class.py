@@ -190,14 +190,14 @@ class Algorithm_class:
                 self.quick_sorted[leftmark] = self.quick_sorted[rightmark]
                 self.quick_sorted[rightmark] = temp
                 self.quick_steps.append(list(self.quick_sorted))
-                self.quick_pseudo.append("Data value "+str(self.quick_sorted[leftmark])+" from index "+str(leftmark)+" inserted at index " +str(rightmark))
+                self.quick_pseudo.append("Data value "+str(self.quick_sorted[leftmark])+" from index "+str(rightmark)+" inserted at index " +str(leftmark))
 
         self.quick_indices.append([rightmark, first])
         temp = self.quick_sorted[first]
         self.quick_sorted[first] = self.quick_sorted[rightmark]
         self.quick_sorted[rightmark] = temp
         self.quick_steps.append(list(self.quick_sorted))
-        self.quick_pseudo.append("Data value " + str(self.quick_sorted[first]) + " from index " + str(first) + " inserted at index " + str(rightmark))
+        self.quick_pseudo.append("Data value " + str(self.quick_sorted[first]) + " from index " + str(rightmark) + " inserted at index " + str(first))
 
         return rightmark
     
@@ -378,20 +378,22 @@ class Algorithm_class:
 
     def insertion_visual(self):
         self.insertion_sorted = list(self.myList)
-
+        index1 = 0
         for index in range(1, len(self.insertion_sorted)):
+            index1 = index
             value = self.insertion_sorted[index]
             location = index
-            copy_insertion_sorted = list(self.insertion_sorted)
 
             while location > 0 and self.insertion_sorted[location - 1] > value:
                 self.insertion_sorted[location] = self.insertion_sorted[location - 1]
                 location -= 1
-                self.insertion_steps.append(list(self.insertion_sorted))
-                self.insertion_indices.append([index, location])
-                self.insertion_pseudo.append(str("Data value " + str(copy_insertion_sorted[index]) + " from index " + str(index) + " inserted at index " + str(location)))
+
 
             self.insertion_sorted[location] = value
+            self.insertion_steps.append(list(self.insertion_sorted))
+            self.insertion_indices.append([index, location])
+            self.insertion_pseudo.append(str("Data value " + str(self.insertion_sorted[index]) + " from index " + str(
+                index) + " inserted at index " + str(location)))
 
 
         self.insertion_sorted[location] = value
