@@ -63,6 +63,26 @@ def countingSort(aList):
             aList[index] = value
             index += 1
 
+
+def countingSortComparisons(aList):
+    comparisons = 0
+    dataMovements = 0
+    maxplus = max(aList) + 1
+    count = [0] * maxplus
+
+    for number in aList:
+        count[number] += 1
+        comparisons+=1
+
+    index = 0
+    for value in range(maxplus):
+        for c in range(count[value]):
+            aList[index] = value
+            index += 1
+            comparisons += 1
+            dataMovements += 1
+    return comparisons, dataMovements
+
 def countingSortTime(aList):
     start = time.start()
     countingSort(aList)
