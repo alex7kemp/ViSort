@@ -7,12 +7,12 @@ class Algorithm_class:
 
     def __init__(self, myList):
         self.myList = myList
-        
+
         self.bubble_sorted = []
         self.bubble_steps = [self.myList]
         self.bubble_indices = []
         self.bubble_psuedo = []
-        
+
         self.quick_sorted = []
         self.quick_steps = [self.myList]
         self.quick_indices = []
@@ -56,8 +56,8 @@ class Algorithm_class:
 
     def quick(self):
         self.quick_sorted = list(self.myList)
-        self.quickSortHelper(self.quick_sorted, 0, len(self.quick_sorted) - 1)
-        
+        self.quick_helper(self.quick_sorted, 0, len(self.quick_sorted) - 1)
+
     def quick_helper(self, first, last):
         if first < last:
             splitpoint = self.quick_partition(self.quick_sorted, first, last)
@@ -106,22 +106,100 @@ class Algorithm_class:
         return stop - start
 
     def quick_visual(self):
-        placeholder = 1
+        self.quick_sorted = list(self.myList)
+        self.quick_helper_visual(self.quick_sorted, 0, len(self.quick_sorted) - 1)
     
     def quick_helper_visual(self, first, last):
-        placeholder = 1
+        if first < last:
+            splitpoint = self.quick_partition(self.quick_sorted, first, last)
+
+            self.quick_helper_visual(self.quick_sorted, first, splitpoint - 1)
+            self.quick_helper_visual(self.quick_sorted, splitpoint + 1, last)
         
     def quick_partition_visual(self, first, last):
-        placeholder = 1
+        pivotvalue = self.quick_sorted[first]
+
+        leftmark = first + 1
+        rightmark = last
+
+        done = False
+        while not done:
+
+            while leftmark <= rightmark and self.quick_sorted[leftmark] <= pivotvalue:
+                leftmark = leftmark + 1
+
+            while self.quick_sorted[rightmark] >= pivotvalue and rightmark >= leftmark:
+                rightmark = rightmark - 1
+
+            if rightmark < leftmark:
+                done = True
+                
+            else:
+                self.quick_indices.append([rightmark,leftmark])
+                temp = self.quick_sorted[leftmark]
+                self.quick_sorted[leftmark] = self.quick_sorted[rightmark]
+                self.quick_sorted[rightmark] = temp
+                self.quick_steps.append(list(self.quick_sorted))
+
+        self.quick_indices.append([rightmark, first])
+        temp = self.quick_sorted[first]
+        self.quick_sorted[first] = self.quick_sorted[rightmark]
+        self.quick_sorted[rightmark] = temp
+        self.quick_steps.append(list(self.quick_sorted))
+
+        return rightmark
     
     def quick_comparisons(self):
-        placeholder = 1
+        self.quick_sorted = list(self.myList)
+        self.quickdata = 0
+        self.quickcomp = 0
+        self.quick_helper_comparisons(self.quick_sorted, 0, len(self.quick_sorted) - 1)
+        return quickdata, quickcomp
         
     def quick_helper_comparisons(self, first, last):
-        placeholder=1
+        self.quickcomp +=1
+        if first < last:
+            splitpoint = self.quick_partition(self.quick_sorted, first, last)
+
+            self.quick_helper_comparisons(self.quick_sorted, first, splitpoint - 1)
+            self.quick_helper_comparisons(self.quick_sorted, splitpoint + 1, last)
+            
+        return quickdata, quickcomp
         
     def quick_partition_comparisons(self, first, last):
-        placeholder = 1
+        pivotvalue = self.quick_sorted[first]
+
+        leftmark = first + 1
+        rightmark = last
+
+        done = False
+        while not done:
+
+            while leftmark <= rightmark and self.quick_sorted[leftmark] <= pivotvalue:
+                leftmark = leftmark + 1
+                self.quickcomp += 1
+
+            while self.quick_sorted[rightmark] >= pivotvalue and rightmark >= leftmark:
+                rightmark = rightmark - 1
+                self.quickcomp += 1
+
+            if rightmark < leftmark:
+                done = True
+                self.quickcomp += 1
+                
+            else:
+
+                temp = self.quick_sorted[leftmark]
+                self.quick_sorted[leftmark] = self.quick_sorted[rightmark]
+                self.quick_sorted[rightmark] = temp
+                self.quickdata += 1
+
+        temp = self.quick_sorted[first]
+        self.quick_sorted[first] = self.quick_sorted[rightmark]
+        self.quick_sorted[rightmark] = temp
+        self.quickdata += 1
+
+        return rightmark
         
 
     def merge(self):
