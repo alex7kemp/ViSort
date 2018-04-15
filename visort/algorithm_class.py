@@ -137,10 +137,10 @@ class Algorithm_class:
                 temp = self.quick_sorted[leftmark]
                 self.quick_sorted[leftmark] = self.quick_sorted[rightmark]
                 self.quick_sorted[rightmark] = temp
-
-        temp = self.quick_sorted[first]
-        self.quick_sorted[first] = self.quick_sorted[rightmark]
-        self.quick_sorted[rightmark] = temp
+        if first != rightmark:
+            temp = self.quick_sorted[first]
+            self.quick_sorted[first] = self.quick_sorted[rightmark]
+            self.quick_sorted[rightmark] = temp
 
         return rightmark
 
@@ -185,19 +185,21 @@ class Algorithm_class:
                 done = True
 
             else:
-                self.quick_indices.append([rightmark,leftmark])
+
                 temp = self.quick_sorted[leftmark]
                 self.quick_sorted[leftmark] = self.quick_sorted[rightmark]
                 self.quick_sorted[rightmark] = temp
+                self.quick_indices.append([rightmark, leftmark])
                 self.quick_steps.append(list(self.quick_sorted))
-                self.quick_pseudo.append("Data value "+str(self.quick_sorted[leftmark])+" from index "+str(rightmark)+" inserted at index " +str(leftmark))
+                self.quick_pseudo.append("Data value "+str(self.quick_sorted[leftmark])+" at index "+str(rightmark)+" swapped with data value "+str(self.quick_sorted[rightmark])+" at index "+str(leftmark))
 
-        self.quick_indices.append([rightmark, first])
-        temp = self.quick_sorted[first]
-        self.quick_sorted[first] = self.quick_sorted[rightmark]
-        self.quick_sorted[rightmark] = temp
-        self.quick_steps.append(list(self.quick_sorted))
-        self.quick_pseudo.append("Data value " + str(self.quick_sorted[first]) + " from index " + str(rightmark) + " inserted at index " + str(first))
+        if first != rightmark:
+            temp = self.quick_sorted[first]
+            self.quick_sorted[first] = self.quick_sorted[rightmark]
+            self.quick_sorted[rightmark] = temp
+            self.quick_indices.append([rightmark, first])
+            self.quick_steps.append(list(self.quick_sorted))
+            self.quick_pseudo.append("Data value " + str(self.quick_sorted[first]) + " at index " + str(rightmark) + " swapped with data value " + str(self.quick_sorted[rightmark])+" at index "+str(first))
 
         return rightmark
     
@@ -243,11 +245,11 @@ class Algorithm_class:
                 self.quick_sorted[leftmark] = self.quick_sorted[rightmark]
                 self.quick_sorted[rightmark] = temp
                 self.quickdata += 1
-
-        temp = self.quick_sorted[first]
-        self.quick_sorted[first] = self.quick_sorted[rightmark]
-        self.quick_sorted[rightmark] = temp
-        self.quickdata += 1
+        if first != rightmark:
+            temp = self.quick_sorted[first]
+            self.quick_sorted[first] = self.quick_sorted[rightmark]
+            self.quick_sorted[rightmark] = temp
+            self.quickdata += 1
 
         return rightmark
         
@@ -357,13 +359,17 @@ class Algorithm_class:
         for index in range(1, len(self.insertion_sorted)):
             value = self.insertion_sorted[index]
             location = index
+            #print("for, index, value, location", index, value, location)
 
             while location > 0 and self.insertion_sorted[location - 1] > value:
                 self.insertion_sorted[location] = self.insertion_sorted[location - 1]
                 location -= 1
+                #print("while, index, value, location", index, value, location)
 
             self.insertion_sorted[location] = value
-        self.insertion_sorted[location] = value
+            #print("after1, index, value, location", index, value, location)
+        #self.insertion_sorted[location] = value
+        #print("after2, index, value, location", index, value, location)
 
     def insertion_memory(self):
         p = psutil.Process(os.getpid())
@@ -414,6 +420,6 @@ class Algorithm_class:
 
             self.insertion_sorted[location] = value
 
-        self.insertion_sorted[location] = value
+        #self.insertion_sorted[location] = value
 
         return (comparisons, data_movements)
