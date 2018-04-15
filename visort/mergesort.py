@@ -1,91 +1,119 @@
-#algorithm sourced from interactive python.org
-#url: http://interactivepython.org/runestone/static/pythonds/SortSearch/TheMergeSort.html
+import time
 
-def mergeSort (stepsList):
-    alist = list (stepsList[0])
+def merge_sort_helper(alist, first, last):
+    if first < last:
+        midpoint = (first + last) // 2
+        merge_sort_helper(alist, first, midpoint)
+        merge_sort_helper(alist, midpoint + 1, last)
+        merge_partition(alist, first, midpoint, last)
+
+def merge_partition(alist, first, midpoint, last):
+    n1 = midpoint - first + 1
+    n2 = last - midpoint
+    right= []
+    left = []
+    for i in range(n1):
+        left.append(alist[first + i])
+    for j in range(n2):
+        right.append(alist[midpoint + j + 1])
+    left.append(float('inf'))
+    right.append(float('inf'))
+    i = j = 0
+    for k in range(first, last + 1):
+        if left[i] <= right[j]:
+            alist[k] = left[i]
+            i += 1
+        else:
+            alist[k] = right[j]
+            j += 1
+    return alist
+
+def merge_visual (alist):
+    stepsList = list(alist)
+    merge_helper_visual (alist, 0, (len(stepsList)-1))
+
+def merge_helper_visual(alist, first, last):
+    if first < last:
+        midpoint = (first + last) // 2
+        merge_helper_visual(alist, first, midpoint)
+        merge_helper_visual(alist, midpoint + 1, last)
+        merge_partition_visual(alist, first, midpoint, last)
+
+def merge_partition_visual(alist, first, midpoint, last):
+    stepsList = list (alist[0])
     indiciesList = list()
     indiciesList.append([0,0])
-    pseudocodeList = list()
-    pseudocodeList.append ("Unsorted list.")
-
-    for index in range( 1, len( alist ) ):
-        value = alist[index]
-        location = index
-        copyaList = list( alist )
-
-        while location > 0 and alist[location - 1] > value:
-            alist[location] = alist[location - 1]
-            location -= 1
-
-        alist[location] = value
-        stepsList.append( list( alist ) )
-        indiciesList.append( [index, location] )
-        pseudocodeList.append( str("Data value " + str( copyaList[index] ) + " from position " + str( index ) + " inserted at position " + str(location ) ) )
-
-    alist[location] = value
-    print("noflinesofpsuedocode",(len(pseudocodeList)))
-    print("executingline",(list(range(len(pseudocodeList)))))
-    print("squarecolourpair",(indiciesList))
-    print("array",(stepsList))
-    print("steps",(len(stepsList)))
-    print("squarenumber",(len(alist)))
-
-
-    #return (len( aList ),indiciesList,stepsList,len( stepsList ),len( pseudocodeList ),list( range( len( pseudocodeList ) ) ))
-
-def mergeSortComparisons (alist):
+    pseudoList = list()
+    pseudoList.append ("Unsorted list.")
+    n1 = midpoint - first + 1
+    n2 = last - midpoint
+    right= []
+    left = []
+    for i in range(n1):
+        left.append(alist[first + i])
+    for j in range(n2):
+        right.append(alist[midpoint + j + 1])
+    left.append(float('inf'))
+    right.append(float('inf'))
+    i = j = 0
+    for k in range(first, last + 1):
+        copyList = list (alist)
+        if left[i] <= right[j]:
+            alist[k] = left[i]
+            indiciesList.append([k,i])
+            
+            i += 1
+        else:
+            alist[k] = right[j]
+            indiciesList.append([k,j])
+            j += 1
+    return alist
+    
+def merge_comparisons (alist):
+    stepsList = list (alist)
     data_movements = 0
     comparisons = 0
-
-    for index in range( 1, len( aList ) ):
-        value = aList[index]
-        location = index
-
-    if len(alist)>1:
-        mid = len(alist)//2
-        lefthalf = alist[:mid]
-        righthalf = alist[mid:]
-
-        mergeSort(lefthalf)
-        mergeSort(righthalf)
-
-        i=0
-        j=0
-        k=0
-        while i < len(lefthalf) and j < len(righthalf):
-            if lefthalf[i] < righthalf[j]:
-                alist[k]=lefthalf[i]
-                comparisons +=1
-                data_movements +=1
-                i=i+1
-            else:
-                alist[k]=righthalf[j]
-                comparisons +=1
-                data_movements +=1
-                j=j+1
-            k=k+1
-
-        while i < len(lefthalf):
-            alist[k]=lefthalf[i]
-            comparisons +=1
-            data_movements +=1
-            i=i+1
-            k=k+1
-
-        while j < len(righthalf):
-            alist[k]=righthalf[j]
-            comparisons +=1
-            data_movements +=1
-            j=j+1
-            k=k+1
-        alist[location] = value
-    alist[location] = value
+    merge_helper_comparisons (alist, 0, len(alist)-1)
     return (comparisons, data_movements)
 
+def merge_helper_comparisons (alist, first, last):
+    comparisons +=1
+    if first < last:
+        midpoint = (first + last) // 2
+        merge_helper_comparisons(alist, first, midpoint)
+        merge_helper_comparisons(alist, midpoint + 1, last)
+        merge_partition_comparisons(alist, first, midpoint, last)
+
+def merge_partition_comparisons(alist, first, midpoint, last):
+    n1 = midpoint - first + 1
+    n2 = last - midpoint
+    right= []
+    left = []
+    for i in range(n1):
+        left.append(alist[first + i])
+    for j in range(n2):
+        right.append(alist[midpoint + j + 1])
+    left.append(float('inf'))
+    right.append(float('inf'))
+    i = j = 0
+    for k in range(first, last + 1):
+        if left[i] <= right[j]:
+            comparisons +=1
+            alist[k] = left[i]
+            data_movements +=1
+            i += 1
+        else:
+            comparisons +=1
+            alist[k] = right[j]
+            data_movements += 1
+            j += 1
+    return alist
+
 def main():
-    alist = [54,26,93,17,77,31,44,55,20]
-    alist2 = list (alist)
-    stepsList = [alist]
+    list1 = [25, 42, 14, 57, 111, 3, 72, 96]
+    list2 = list (list1)
+    stepsList = list(list1)
+    merge_sort_helper(list1, 0, len(list1) - 1)
+    print (list1)
     print (stepsList)
-    mergeSort(stepsList)
 main()
