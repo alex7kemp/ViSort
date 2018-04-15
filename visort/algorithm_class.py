@@ -364,12 +364,11 @@ class Algorithm_class:
             while location > 0 and self.insertion_sorted[location - 1] > value:
                 self.insertion_sorted[location] = self.insertion_sorted[location - 1]
                 location -= 1
-                #print("while, index, value, location", index, value, location)
 
             self.insertion_sorted[location] = value
-            #print("after1, index, value, location", index, value, location)
-        #self.insertion_sorted[location] = value
-        #print("after2, index, value, location", index, value, location)
+
+        self.insertion_sorted[location] = value
+
 
     def insertion_memory(self):
         p = psutil.Process(os.getpid())
@@ -420,6 +419,6 @@ class Algorithm_class:
 
             self.insertion_sorted[location] = value
 
-        #self.insertion_sorted[location] = value
+        self.insertion_sorted[location] = value
 
         return (comparisons, data_movements)
