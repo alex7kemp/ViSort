@@ -58,9 +58,9 @@ class Algorithm_class:
     
     #this function returns the amount of time taken to sort the list
     def bubble_time(self):
-        start = time.time()
+        start = time.perf_counter()
         self.bubble()
-        stop = time.time()
+        stop = time.perf_counter()
         return stop - start
     
     #this function sorts the list and writes data to the associated steps, indices, and pseduo variables
@@ -160,9 +160,9 @@ class Algorithm_class:
 
     # this function returns the amount of time taken to sort the list
     def quick_time(self):
-        start = time.time()
+        start = time.perf_counter()
         self.quick()
-        stop = time.time()
+        stop = time.perf_counter()
         return stop - start
 
     # this function sorts the list and writes data to the associated steps, indices, and pseduo variables
@@ -319,9 +319,9 @@ class Algorithm_class:
     
     # this function returns the amount of time taken to sort the list
     def merge_time(self):
-        start = time.time()
+        start = time.perf_counter()
         self.merge()
-        stop = time.time()
+        stop = time.perf_counter()
         return stop - start
     
     # this function sorts the list and writes data to the associated steps, indices, and pseduo variables --- this one only sort of works
@@ -460,9 +460,9 @@ class Algorithm_class:
         return p.memory_info().peak_wset
 
     def counting_time(self):
-        start = time.time()
+        start = time.perf_counter()
         self.counting()
-        stop = time.time()
+        stop = time.perf_counter()
         return stop - start
 
     # this function returns the amount of comparisons and data movements used to sort the list
@@ -548,9 +548,9 @@ class Algorithm_class:
 
     # this function returns the amount of time taken to sort the list
     def insertion_time(self):
-        start = time.time()
+        start = time.perf_counter()
         self.insertion()
-        stop = time.time()
+        stop = time.perf_counter()
         return stop - start
 
     # this function sorts the list and writes data to the associated steps, indices, and pseduo variables
