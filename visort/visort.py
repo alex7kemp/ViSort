@@ -3,6 +3,7 @@ import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from .input import Input
 import sys
+import webbrowser
 
 app = Flask(__name__) # create the application instance
 app.config.from_object(__name__) # load config from this file , visort.py
@@ -297,5 +298,6 @@ def benchmark():
     return render_template('benchmark.html', error=errors, entries=data, tb=tb, tc=tc, ti=ti, tq=tq, tm=tm,
                            sb=sb, sc=sc, si=si, sq=sq, sm=sm, cb=cb, cc=cc, ci=ci, cq=cq, cm=cm, db=db,
                            dc=dc, di=di, dq=dq, dm=dm)
+
 
 

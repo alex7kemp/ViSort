@@ -63,7 +63,11 @@ class Input:
         self.input_list = []
         try:
             m_list = file_name.read()
-            m_list = str(m_list, 'utf-8')
+            try:
+                m_list = str(m_list, 'utf-8')
+            except TypeError:
+                file_name.seek(0)  # offset of 0
+                m_list = file_name.read()  # read again
             m_list = "".join(m_list.split())
             temp_list = m_list.split(',')
             for x in temp_list:

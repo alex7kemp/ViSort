@@ -1,0 +1,61 @@
+*Note: make sure to run visort_cmd.py NOT visort.py when doing command line arguments
+________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________
+
+INPUT TYPES:
+
+-m = manual input
+
+*Note: Comma separated list (whitespace ignored)
+
+Example:
+>python visort_cmd.py -m 5,3,7,8,9,10
+*Note: will still need an algorithm defined (see below)
+________________________________________________________________________________________________________________________
+
+-f = file input
+
+*Note: Comma separated list (whitespace ignored)
+
+Example:
+>python visort_cmd.py -f myfile.txt
+*Note: will still need an algorithm defined (see below)
+________________________________________________________________________________________________________________________
+
+-r = randomly generated input
+
+*Note: specify size and range
+
+*First number is the size
+*Second number is the starting range
+*Third number is the ending range
+
+Example:
+>python visort_cmd.py -r 10 0 20
+*Note: will still need an algorithm defined (see below)
+________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________
+
+ALGORITHM TYPES:
+
+-b = Bubble Sort
+
+-c = Counting Sort
+
+-i = Insertion Sort
+
+-mg = Merge Sort
+
+-q = Quick Sort
+________________________________________________________________________________________________________________________
+
+Examples:
+
+>python visort_cmd.py -m 5,3,7,8,9,10 -b -c -i -mg -q
+(manual input of 5,3,7... with all algorithms chosen)
+
+>python visort_cmd.py -f myfile.txt -i -mg -b
+(file input of 'myfile.txt' with insertion, merge, and bubble sort chosen)
+
+>python visort_cmd.py -r 10 0 20 -c
+(randomly generated list of size 10, ranging from 0 to 20 with counting sort chosen)
