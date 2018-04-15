@@ -2,7 +2,8 @@ import time
 import psutil
 import os
 
-#code for quick, merge, bubble, and insertion adapted from interactivepython.org, counting sort from learntosolveit.com
+
+# code for quick, merge, bubble, and insertion adapted from interactivepython.org, counting sort from learntosolveit.com
 
 class Algorithm_class:
 
@@ -19,7 +20,6 @@ class Algorithm_class:
         self.quick_indices = [[0, 0]]
         self.quick_pseudo = ["Unsorted list."]
 
-
         self.merge_sorted = []
         self.merge_steps = [self.myList]
         self.merge_indices = [[0, 0]]
@@ -35,7 +35,7 @@ class Algorithm_class:
         self.insertion_indices = [[0, 0]]
         self.insertion_pseudo = ["Unsorted list."]
 
-    #this function just sorts the list. the sorted list is stored in self.bubble_sorted
+    # this function just sorts the list. the sorted list is stored in self.bubble_sorted
     def bubble(self):
         self.bubble_sorted = list(self.myList)
 
@@ -50,20 +50,20 @@ class Algorithm_class:
             self.bubble_sorted[location] = value
         self.bubble_sorted[location] = value
 
-    #this function returns the amount of bytes used to sort the list
+    # this function returns the amount of bytes used to sort the list
     def bubble_memory(self):
         p = psutil.Process(os.getpid())
         self.bubble()
         return p.memory_info().peak_wset
 
-    #this function returns the amount of time taken to sort the list
+    # this function returns the amount of time taken to sort the list
     def bubble_time(self):
         start = time.perf_counter()
         self.bubble()
         stop = time.perf_counter()
         return stop - start
 
-    #this function sorts the list and writes data to the associated steps, indices, and pseduo variables
+    # this function sorts the list and writes data to the associated steps, indices, and pseduo variables
     def bubble_visual(self):
         self.bubble_sorted = list(self.myList)
 
@@ -80,12 +80,13 @@ class Algorithm_class:
             self.bubble_steps.append(list(self.bubble_sorted))
             self.bubble_indices.append([index, location])
             self.bubble_pseudo.append(str(
-                "Data value " + str(copy_bubble_sorted[index]) + " from index " + str(index) + " inserted at index " + str(
+                "Data value " + str(copy_bubble_sorted[index]) + " from index " + str(
+                    index) + " inserted at index " + str(
                     location)))
 
         self.bubble_sorted[location] = value
 
-    #this function returns the amount of comparisons and data movements used to sort the list
+    # this function returns the amount of comparisons and data movements used to sort the list
     def bubble_comparisons(self):
         self.bubble_sorted = list(self.myList)
         data_movements = 0
@@ -101,20 +102,19 @@ class Algorithm_class:
             while location > 0 and self.bubble_sorted[location - 1] > value:
                 self.bubble_sorted[location] = self.bubble_sorted[location - 1]
                 location -= 1
-                data_movements +=1
+                data_movements += 1
 
             self.bubble_sorted[location] = value
         self.bubble_sorted[location] = value
-        
+
         return (comparisons, data_movements)
 
-
-    #this function just sorts the list. the sorted list is stored in self.quick_sorted
+    # this function just sorts the list. the sorted list is stored in self.quick_sorted
     def quick(self):
         self.quick_sorted = list(self.myList)
         self.quick_helper(0, len(self.quick_sorted) - 1)
 
-    #this is a helper funciton, it shouldn't be used outside this class
+    # this is a helper funciton, it shouldn't be used outside this class
     def quick_helper(self, first, last):
         if first < last:
             splitpoint = self.quick_partition(first, last)
@@ -204,7 +204,9 @@ class Algorithm_class:
                 self.quick_sorted[rightmark] = temp
                 self.quick_indices.append([rightmark, leftmark])
                 self.quick_steps.append(list(self.quick_sorted))
-                self.quick_pseudo.append("Data value "+str(self.quick_sorted[leftmark])+" at index "+str(rightmark)+" swapped with data value "+str(self.quick_sorted[rightmark])+" at index "+str(leftmark))
+                self.quick_pseudo.append("Data value " + str(self.quick_sorted[leftmark]) + " at index " + str(
+                    rightmark) + " swapped with data value " + str(self.quick_sorted[rightmark]) + " at index " + str(
+                    leftmark))
 
         if first != rightmark:
             temp = self.quick_sorted[first]
@@ -212,7 +214,9 @@ class Algorithm_class:
             self.quick_sorted[rightmark] = temp
             self.quick_indices.append([rightmark, first])
             self.quick_steps.append(list(self.quick_sorted))
-            self.quick_pseudo.append("Data value " + str(self.quick_sorted[first]) + " at index " + str(rightmark) + " swapped with data value " + str(self.quick_sorted[rightmark])+" at index "+str(first))
+            self.quick_pseudo.append("Data value " + str(self.quick_sorted[first]) + " at index " + str(
+                rightmark) + " swapped with data value " + str(self.quick_sorted[rightmark]) + " at index " + str(
+                first))
 
         return rightmark
 
@@ -222,11 +226,11 @@ class Algorithm_class:
         self.quickdata = 0
         self.quickcomp = 0
         self.quick_helper_comparisons(0, len(self.quick_sorted) - 1)
-        return  self.quickcomp, self.quickdata
+        return self.quickcomp, self.quickdata
 
     # this is a helper funciton, it shouldn't be used outside this class
     def quick_helper_comparisons(self, first, last):
-        self.quickcomp +=1
+        self.quickcomp += 1
         if first < last:
             splitpoint = self.quick_partition_comparisons(first, last)
 
@@ -269,8 +273,7 @@ class Algorithm_class:
 
         return rightmark
 
-
-    #this function just sorts the list. the sorted list is stored in self.merge_sorted
+    # this function just sorts the list. the sorted list is stored in self.merge_sorted
     def merge(self):
         self.merge_sorted = list(self.myList)
         self.merge_helper(list(self.merge_sorted))
@@ -440,9 +443,9 @@ class Algorithm_class:
                 self.merge_data += 1
                 self.merge_comp += 1
 
-
     # this function just sorts the list. the sorted list is stored in self.counting_sorted
     def counting(self):
+        self.counting_sorted = list(self.myList)
         maxplus = max(self.myList) + 1
         count = [0] * maxplus
         for number in self.myList:
@@ -482,7 +485,7 @@ class Algorithm_class:
 
         index = 0
         for value in range(maxplus):
-            ordinal = count[value]  #this is for formating the pseudo list nicely
+            ordinal = count[value]  # this is for formating the pseudo list nicely
 
             for number in range(count[value]):
 
@@ -498,11 +501,12 @@ class Algorithm_class:
                 index += 1  # this is for iterating through count list
 
                 # this is for formating the pseudo list nicely
-                if 10 <= ordinal %100 <=20:
+                if 10 <= ordinal % 100 <= 20:
                     suffix = "th"
                 else:
                     suffix = SUFFIXES.get(ordinal % 10, "th")
-                self.counting_pseudo.append(str(ordinal)+suffix+" data value from count index " + str(value) + " inserted at position " + str(index))
+                self.counting_pseudo.append(str(ordinal) + suffix + " data value from count index " + str(
+                    value) + " inserted at position " + str(index))
                 ordinal -= 1
 
     # this function just sorts the list. the sorted list is stored in self.insertion_sorted
@@ -522,7 +526,6 @@ class Algorithm_class:
                 data_movements += 1
         return comparisons, data_movements
 
-
     # this function just sorts the list. the sorted list is stored in self.insertion_sorted
     def insertion(self):
         self.insertion_sorted = list(self.myList)
@@ -530,7 +533,7 @@ class Algorithm_class:
         for index in range(1, len(self.insertion_sorted)):
             value = self.insertion_sorted[index]
             location = index
-            #print("for, index, value, location", index, value, location)
+            # print("for, index, value, location", index, value, location)
 
             while location > 0 and self.insertion_sorted[location - 1] > value:
                 self.insertion_sorted[location] = self.insertion_sorted[location - 1]
@@ -566,13 +569,11 @@ class Algorithm_class:
                 self.insertion_sorted[location] = self.insertion_sorted[location - 1]
                 location -= 1
 
-
             self.insertion_sorted[location] = value
             self.insertion_steps.append(list(self.insertion_sorted))
             self.insertion_indices.append([index, location])
             self.insertion_pseudo.append(str("Data value " + str(self.insertion_sorted[index]) + " from index " + str(
                 index) + " inserted at index " + str(location)))
-
 
         self.insertion_sorted[location] = value
 
@@ -584,15 +585,17 @@ class Algorithm_class:
         for index in range(1, len(self.insertion_sorted)):
             value = self.insertion_sorted[index]
             location = index
+            comparisons += 1
 
             while location > 0 and self.insertion_sorted[location - 1] > value:
                 self.insertion_sorted[location] = self.insertion_sorted[location - 1]
                 location -= 1
-                comparisons += 1
                 data_movements += 1
 
             self.insertion_sorted[location] = value
+            data_movements+=1
 
         self.insertion_sorted[location] = value
+        data_movements += 1
 
         return (comparisons, data_movements)
