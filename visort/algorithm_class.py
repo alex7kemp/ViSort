@@ -36,7 +36,19 @@ class Algorithm_class:
         self.insertion_pseudo = []
 
     def bubble(self):
-        placeholder = 1
+        
+        self.bubble_sorted = list(self.myList)
+        
+        for i in range(len(self.bubble_sorted)):
+            value = self.bubble_sorted[i]
+            location = i
+            for j in range(0, len(self.bubble_sorted) - i - 1):
+                if input_list[j] > self.bubble_sorted[j + 1]:
+                    self.bubble_sorted[location] = self.bubble_sorted[location - 1]
+                    self.bubble_sorted[j], self.bubble_sorted[j + 1] = self.bubble_sorted[j + 1], self.bubble_sorted[j]
+            self.bubble_sorted[location] = value
+        self.bubble_sorted[location] = value
+
 
     def bubble_memory(self):
         p = psutil.Process(os.getpid())
@@ -50,10 +62,48 @@ class Algorithm_class:
         return stop - start
 
     def bubble_visual(self):
-        placeholder = 1
+        self.bubble_sorted = list(self.myList)
+        self.bubble_indices = list()
+        self.bubble_indices.append([0, 0])
+        self.bubble_pseudo = list()
+        self.bubble_pseudo.append("Unsorted list.")
+
+        for index in range(1, len(self.bubble_sorted)):
+            value = self.bubble_sorted[index]
+            location = index
+            copybubble_sorted = list(self.bubble_sorted)
+
+            while location > 0 and self.bubble_sorted[location - 1] > value:
+                self.bubble_sorted[location] = self.bubble_sorted[location - 1]
+                location -= 1
+
+            self.bubble_sorted[location] = value
+            stepsList.append(list(self.bubble_sorted))
+            self.bubble_indices.append([index, location])
+            self.bubble_pseudo.append(str(
+                "Data value " + str(copybubble_sorted[index]) + " from position " + str(index) + " inserted at position " + str(
+                    location)))
+
+        self.bubble_sorted[location] = value
 
     def bubble_comparisons(self):
-        placeholder = 1
+        self.bubble_sorted = list(self.myList)
+        data_movements = 0
+        comparisons = 0
+
+        for i in range(len(self.bubble_sorted)):
+            value = self.bubble_sorted[i]
+            location = i
+            for j in range(0, len(self.bubble_sorted) - i - 1):
+                if input_list[j] > self.bubble_sorted[j + 1]:
+                    self.bubble_sorted[location] = self.bubble_sorted[location - 1]
+                    comparisons += 1
+                    data_movements += 1
+                    self.bubble_sorted[j], self.bubble_sorted[j + 1] = self.bubble_sorted[j + 1], self.bubble_sorted[j]
+            self.bubble_sorted[location] = value
+        self.bubble_sorted[location] = value
+        
+        return (comparisons, data_movements)
         
 
     def quick(self):
