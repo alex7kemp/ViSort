@@ -74,12 +74,19 @@
 
 //Input data needed
 
-var squarenumber ={{squarenumber}};
-var squarecolourpair = {{squarecolourpair}}
-var array={{array}}
-var noflinesofpsuedocode = {{noflinesofpsuedocode}}
-var steps={{steps}}
-var executingline = {{executingline}}
+var squarenumber = {{squarenumber}};
+var squarecolourpair = {{squarecolourpair}};
+var array = {{array}};
+var noflinesofpsuedocode = {{noflinesofpsuedocode}};
+var steps = {{steps}};
+var executingline = {{pseudocode}};
+var algorithmnumber = {{algorithmnumber}};
+
+console.log(executingline);
+console.log(steps);
+console.log(array);
+console.log(noflinesofpsuedocode);
+console.log(squarecolourpair);
 
 
 // CREATING SQUARES OF REQUIRED ARRAY SIZE
@@ -89,11 +96,6 @@ var ctx = canvas.getContext('2d');
 var width = canvas.width;
 var height = canvas.height;
 
-//ctx.beginPath();
-//ctx.moveTo(900, 20);
-//ctx.lineTo(900, 800);
-//ctx.strokeStyle = '#ff0000';
-//ctx.stroke();
 
 
 //Seperation line
@@ -190,6 +192,10 @@ ctx.fillStyle= 'white';
 }
 ctx.fillRect(1100,130+(q*60),700,40);
 }
+
+
+if(algorithmnumber==0)
+{
 ctx.fillStyle= 'black';
 ctx.font = "22px Verdana";
 ctx.fillText("Line 1 ", 1110, 160);
@@ -204,6 +210,75 @@ ctx.fillText("Line 9",  1110, 640);
 ctx.fillText("Line 10",  1110, 700);
 ctx.fillText("Line 11",  1110, 760);
 ctx.fillText("Line 12",  1110, 820);
+}
+
+
+if(algorithmnumber==1)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("Line 1 ", 1110, 160);
+ctx.fillText("Line 2",  1110, 220);
+ctx.fillText("Line 3",  1110, 280);
+ctx.fillText("Line 4",  1110, 340);
+ctx.fillText("Line 5",  1110, 400);
+ctx.fillText("Line 6",  1110, 460);
+ctx.fillText("Line 7 ", 1110, 520);
+ctx.fillText("Line 8",  1110, 580);
+ctx.fillText("Line 9",  1110, 640);
+ctx.fillText("Line 10",  1110, 700);
+ctx.fillText("Line 11",  1110, 760);
+
+}
+
+
+if(algorithmnumber==2)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("for index in range(1 to length(list)):", 1110, 160);
+ctx.fillText("list_item = list[index]",  1160, 220);
+ctx.fillText("location = index",  1160, 280);
+ctx.fillText("while location > 0 and list[location-1] > list_item:",  1160, 340);
+ctx.fillText("list[location] = list[location-1]",  1210, 400);
+ctx.fillText("location = location - 1",  1210, 460);
+ctx.fillText("list[location] = list_item", 1160, 520);
+ctx.fillText("list[location] = list_item",  1110, 580);
+}
+
+
+if(algorithmnumber==3)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("Line 1 ", 1110, 160);
+ctx.fillText("Line 2",  1110, 220);
+ctx.fillText("Line 3",  1110, 280);
+ctx.fillText("Line 4",  1110, 340);
+ctx.fillText("Line 5",  1110, 400);
+ctx.fillText("Line 6",  1110, 460);
+ctx.fillText("Line 7 ", 1110, 520);
+ctx.fillText("Line 8",  1110, 580);
+
+}
+
+
+if(algorithmnumber==4)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("Line 1 ", 1110, 160);
+ctx.fillText("Line 2",  1110, 220);
+ctx.fillText("Line 3",  1110, 280);
+ctx.fillText("Line 4",  1110, 340);
+ctx.fillText("Line 5",  1110, 400);
+ctx.fillText("Line 6",  1110, 460);
+ctx.fillText("Line 7 ", 1110, 520);
+ctx.fillText("Line 8",  1110, 580);
+ctx.fillText("Line 9",  1110, 640);
+ctx.fillText("Line 10",  1110, 700);
+ctx.fillText("Line 11",  1110, 760);
+}
 
 
 ctx.fillStyle= 'maroon';
@@ -235,6 +310,10 @@ ctx.fillStyle= 'white';
 }
 ctx.fillRect(1100,130+(q*60),700,40);
 }
+
+
+if(algorithmnumber==0)
+{
 ctx.fillStyle= 'black';
 ctx.font = "22px Verdana";
 ctx.fillText("Line 1 ", 1110, 160);
@@ -249,6 +328,77 @@ ctx.fillText("Line 9",  1110, 640);
 ctx.fillText("Line 10",  1110, 700);
 ctx.fillText("Line 11",  1110, 760);
 ctx.fillText("Line 12",  1110, 820);
+}
+
+
+if(algorithmnumber==1)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("Line 1 ", 1110, 160);
+ctx.fillText("Line 2",  1110, 220);
+ctx.fillText("Line 3",  1110, 280);
+ctx.fillText("Line 4",  1110, 340);
+ctx.fillText("Line 5",  1110, 400);
+ctx.fillText("Line 6",  1110, 460);
+ctx.fillText("Line 7 ", 1110, 520);
+ctx.fillText("Line 8",  1110, 580);
+ctx.fillText("Line 9",  1110, 640);
+ctx.fillText("Line 10",  1110, 700);
+ctx.fillText("Line 11",  1110, 760);
+
+}
+
+
+if(algorithmnumber==2)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("for index in range(1 to length(list)):", 1110, 160);
+ctx.fillText("list_item = list[index]",  1160, 220);
+ctx.fillText("location = index",  1160, 280);
+ctx.fillText("while location > 0 and list[location-1] > list_item:",  1160, 340);
+ctx.fillText("list[location] = list[location-1]",  1210, 400);
+ctx.fillText("location = location - 1",  1210, 460);
+ctx.fillText("list[location] = list_item", 1160, 520);
+ctx.fillText("list[location] = list_item",  1110, 580);
+
+}
+
+
+if(algorithmnumber==3)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("Line 1 ", 1110, 160);
+ctx.fillText("Line 2",  1110, 220);
+ctx.fillText("Line 3",  1110, 280);
+ctx.fillText("Line 4",  1110, 340);
+ctx.fillText("Line 5",  1110, 400);
+ctx.fillText("Line 6",  1110, 460);
+ctx.fillText("Line 7 ", 1110, 520);
+ctx.fillText("Line 8",  1110, 580);
+
+}
+
+
+if(algorithmnumber==4)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("Line 1 ", 1110, 160);
+ctx.fillText("Line 2",  1110, 220);
+ctx.fillText("Line 3",  1110, 280);
+ctx.fillText("Line 4",  1110, 340);
+ctx.fillText("Line 5",  1110, 400);
+ctx.fillText("Line 6",  1110, 460);
+ctx.fillText("Line 7 ", 1110, 520);
+ctx.fillText("Line 8",  1110, 580);
+ctx.fillText("Line 9",  1110, 640);
+ctx.fillText("Line 10",  1110, 700);
+ctx.fillText("Line 11",  1110, 760);
+}
+
 
 ctx.fillStyle= 'maroon';
 ctx.fillRect(1050,10,800,90);
@@ -278,6 +428,10 @@ ctx.fillStyle= 'white';
 }
 ctx.fillRect(1100,130+(q*60),700,40);
 }
+
+
+if(algorithmnumber==0)
+{
 ctx.fillStyle= 'black';
 ctx.font = "22px Verdana";
 ctx.fillText("Line 1 ", 1110, 160);
@@ -292,6 +446,77 @@ ctx.fillText("Line 9",  1110, 640);
 ctx.fillText("Line 10",  1110, 700);
 ctx.fillText("Line 11",  1110, 760);
 ctx.fillText("Line 12",  1110, 820);
+}
+
+
+if(algorithmnumber==1)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("Line 1 ", 1110, 160);
+ctx.fillText("Line 2",  1110, 220);
+ctx.fillText("Line 3",  1110, 280);
+ctx.fillText("Line 4",  1110, 340);
+ctx.fillText("Line 5",  1110, 400);
+ctx.fillText("Line 6",  1110, 460);
+ctx.fillText("Line 7 ", 1110, 520);
+ctx.fillText("Line 8",  1110, 580);
+ctx.fillText("Line 9",  1110, 640);
+ctx.fillText("Line 10",  1110, 700);
+ctx.fillText("Line 11",  1110, 760);
+
+}
+
+
+if(algorithmnumber==2)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("for index in range(1 to length(list)):", 1110, 160);
+ctx.fillText("list_item = list[index]",  1160, 220);
+ctx.fillText("location = index",  1160, 280);
+ctx.fillText("while location > 0 and list[location-1] > list_item:",  1160, 340);
+ctx.fillText("list[location] = list[location-1]",  1210, 400);
+ctx.fillText("location = location - 1",  1210, 460);
+ctx.fillText("list[location] = list_item", 1160, 520);
+ctx.fillText("list[location] = list_item",  1110, 580);
+
+}
+
+
+if(algorithmnumber==3)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("Line 1 ", 1110, 160);
+ctx.fillText("Line 2",  1110, 220);
+ctx.fillText("Line 3",  1110, 280);
+ctx.fillText("Line 4",  1110, 340);
+ctx.fillText("Line 5",  1110, 400);
+ctx.fillText("Line 6",  1110, 460);
+ctx.fillText("Line 7 ", 1110, 520);
+ctx.fillText("Line 8",  1110, 580);
+
+}
+
+
+if(algorithmnumber==4)
+{
+ctx.fillStyle= 'black';
+ctx.font = "22px Verdana";
+ctx.fillText("Line 1 ", 1110, 160);
+ctx.fillText("Line 2",  1110, 220);
+ctx.fillText("Line 3",  1110, 280);
+ctx.fillText("Line 4",  1110, 340);
+ctx.fillText("Line 5",  1110, 400);
+ctx.fillText("Line 6",  1110, 460);
+ctx.fillText("Line 7 ", 1110, 520);
+ctx.fillText("Line 8",  1110, 580);
+ctx.fillText("Line 9",  1110, 640);
+ctx.fillText("Line 10",  1110, 700);
+ctx.fillText("Line 11",  1110, 760);
+}
+
 
 
 ctx.fillStyle= 'maroon';
