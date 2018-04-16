@@ -1,5 +1,6 @@
 import sys
 from input import Input
+from algorithm_class import Algorithm_class
 
 # Command-Line arguments found at https://gist.github.com/dideler/2395703
 def getopts(argv):
@@ -86,6 +87,69 @@ def getopts(argv):
 
 
 def benchmark():
+    algorithm_class = Algorithm_class(input_class.input_list)
+    if "bubble" in input_class.alg_types:
+        tb = algorithm_class.bubble_time()
+        sb = algorithm_class.bubble_memory()
+        cb, db = algorithm_class.bubble_comparisons()
+        print("========================================")
+        print("BUBBLE SORT:")
+        print("----------------------------------------")
+        print("Time Complexity: " + str(tb))
+        print("Space Complexity: " + str(sb))
+        print("Comparisons: " + str(cb))
+        print("Data Movements: " + str(db))
+        print("========================================")
+    if "counting" in input_class.alg_types:
+        tc = algorithm_class.counting_time()
+        sc = algorithm_class.counting_memory()
+        cc, dc = algorithm_class.counting_comparisons()
+        print("COUNTING SORT:")
+        print("----------------------------------------")
+        print("Time Complexity: " + str(tc))
+        print("Space Complexity: " + str(sc))
+        print("Comparisons: " + str(cc))
+        print("Data Movements: " + str(dc))
+        print("========================================")
+    if "insertion" in input_class.alg_types:
+        ti = algorithm_class.insertion_time()
+        si = algorithm_class.insertion_memory()
+        ci, di = algorithm_class.insertion_comparisons()
+        print("INSERTION SORT:")
+        print("----------------------------------------")
+        print("Time Complexity: " + str(ti))
+        print("Space Complexity: " + str(si))
+        print("Comparisons: " + str(ci))
+        print("Data Movements: " + str(di))
+        print("========================================")
+    if "merge" in input_class.alg_types:
+        tm = algorithm_class.merge_time()
+        sm = algorithm_class.merge_memory()
+        cm, dm = algorithm_class.merge_comparisons()
+        print("MERGE SORT:")
+        print("----------------------------------------")
+        print("Time Complexity: " + str(tm))
+        print("Space Complexity: " + str(sm))
+        print("Comparisons: " + str(cm))
+        print("Data Movements: " + str(dm))
+        print("========================================")
+    if "quick" in input_class.alg_types:
+        tq = algorithm_class.quick_time()
+        sq = algorithm_class.quick_memory()
+        cq, dq = algorithm_class.quick_comparisons()
+        print("QUICK SORT:")
+        print("----------------------------------------")
+        print("Time Complexity: " + str(tq))
+        print("Space Complexity: " + str(sq))
+        print("Comparisons: " + str(cq))
+        print("Data Movements: " + str(dq))
+        print("========================================")
+    user_input = input("Rerun (Y/N): ")
+    if user_input == "y" or user_input == "Y":
+        benchmark()
+
+
+def algorithm():
     algorithms = []
     if "bubble" in myargs:
         algorithms.append("bubble")
@@ -100,7 +164,7 @@ def benchmark():
     input_class.receive_alg_types(algorithms)
     if not input_class.errors:
         input_class.output_type2 = "benchmark"
-        print("Sent to benchmark.")
+        benchmark()
     else:
         error_list.extend(input_class.errors)
         for each_item in error_list:
@@ -115,7 +179,7 @@ if __name__ == '__main__':
             manual_list = myargs['manual']
             input_class.manual(manual_list)
             if not input_class.errors:
-                benchmark()
+                algorithm()
             else:
                 error_list.extend(input_class.errors)
                 for item in error_list:
@@ -125,7 +189,7 @@ if __name__ == '__main__':
             file = open(file_name, "r")
             input_class.load(file)
             if not input_class.errors:
-                benchmark()
+                algorithm()
             else:
                 error_list.extend(input_class.errors)
                 for item in error_list:
@@ -141,7 +205,7 @@ if __name__ == '__main__':
             else:
                 input_class.generate(range_min, range_max, size)
                 if not input_class.errors:
-                    benchmark()
+                    algorithm()
                 else:
                     error_list.extend(input_class.errors)
                     for item in error_list:
