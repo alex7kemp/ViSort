@@ -240,11 +240,11 @@ class Algorithm_class:
 
             else:
                 self.quick_temp_pseudo.append(17)
-
                 temp = self.quick_sorted[leftmark]
                 self.quick_sorted[leftmark] = self.quick_sorted[rightmark]
                 self.quick_sorted[rightmark] = temp
                 self.quick_temp_pseudo.append(18)
+
                 self.quick_indices.append([rightmark, leftmark])
                 self.quick_steps.append(list(self.quick_sorted))
                 self.quick_pseudo.append(self.quick_temp_pseudo)
@@ -257,6 +257,7 @@ class Algorithm_class:
             self.quick_sorted[first] = self.quick_sorted[rightmark]
             self.quick_sorted[rightmark] = temp
             self.quick_temp_pseudo.append(20)
+
             self.quick_indices.append([rightmark, first])
             self.quick_steps.append(list(self.quick_sorted))
             self.quick_pseudo.append(self.quick_temp_pseudo)
@@ -376,10 +377,13 @@ class Algorithm_class:
     # this function sorts the list and writes data to the associated steps, indices, and pseduo variables
     def merge_visual(self):
         self.merge_sorted = list(self.myList)
+        self.merge_temp_pseudo = []
         self.merge_visual_helper(list(self.merge_sorted))
 
     # this is a helper funciton, it shouldn't be used outside this class
     def merge_visual_helper(self, paraList):
+        self.merge_temp_pseudo.append(0)
+        self.merge_temp_pseudo.append(1)
         if len(paraList) > 1:
             mid = len(paraList) // 2
             lefthalf = paraList[:mid]
@@ -391,46 +395,76 @@ class Algorithm_class:
             i = 0
             j = 0
             k = 0
+
+            for each in range(2, 8):
+                self.merge_temp_pseudo.append(each)
+
             while i < len(lefthalf) and j < len(righthalf):
+                self.merge_temp_pseudo.append(8)
                 if lefthalf[i] < righthalf[j]:
+                    self.merge_temp_pseudo.append(9)
                     paraList[k] = lefthalf[i]
                     self.merge_sorted[k] = lefthalf[i]
                     self.merge_steps.append(list(self.merge_sorted))
                     self.merge_indices.append([k, k])
-                    self.merge_pseudo.append(
-                        "Data value " + str(lefthalf[i]) + " from index " + str(i) + " in left sublist " + str(
-                            lefthalf) + " overwrites data at index " + str(k))
+
+                    self.merge_temp_pseudo.append(10)
+                    self.merge_pseudo.append(list(self.merge_temp_pseudo))
+                    self.merge_temp_pseudo = []
+                    self.merge_temp_pseudo.append(11)
+
+
                     i = i + 1
                 else:
+                    self.merge_temp_pseudo.append(12)
                     paraList[k] = righthalf[j]
                     self.merge_sorted[k] = righthalf[j]
                     self.merge_steps.append(list(self.merge_sorted))
                     self.merge_indices.append([k, k])
-                    self.merge_pseudo.append(
-                        "Data value " + str(righthalf[j]) + " from index " + str(j) + " in right sublist " + str(
-                            righthalf) + " overwrites data at index " + str(k))
+
+                    self.merge_temp_pseudo.append(13)
+                    self.merge_pseudo.append(list(self.merge_temp_pseudo))
+                    self.merge_temp_pseudo = []
+                    self.merge_temp_pseudo.append(14)
+
+
                     j = j + 1
                 k = k + 1
+                self.merge_temp_pseudo.append(15)
 
             while i < len(lefthalf):
+                self.merge_temp_pseudo.append(16)
+
                 paraList[k] = lefthalf[i]
                 self.merge_sorted[k] = lefthalf[i]
                 self.merge_steps.append(list(self.merge_sorted))
                 self.merge_indices.append([k, k])
-                self.merge_pseudo.append(
-                    "Data value " + str(lefthalf[i]) + " from index " + str(i) + " in left sublist " + str(
-                        lefthalf) + " overwrites data at index " + str(k))
+
+                self.merge_temp_pseudo.append(17)
+                self.merge_pseudo.append(list(self.merge_temp_pseudo))
+                self.merge_temp_pseudo = []
+                self.merge_temp_pseudo.append(18)
+                self.merge_temp_pseudo.append(19)
+
+
                 i = i + 1
                 k = k + 1
 
             while j < len(righthalf):
+                self.merge_temp_pseudo.append(20)
+
                 paraList[k] = righthalf[j]
                 self.merge_sorted[k] = righthalf[j]
                 self.merge_steps.append(list(self.merge_sorted))
                 self.merge_indices.append([k, k])
-                self.merge_pseudo.append(
-                    "Data value " + str(righthalf[j]) + " from index " + str(j) + " in right sublist " + str(
-                        righthalf) + " overwrites data at index " + str(k))
+
+                self.merge_temp_pseudo.append(21)
+                self.merge_pseudo.append(list(self.merge_temp_pseudo))
+                self.merge_temp_pseudo = []
+                self.merge_temp_pseudo.append(22)
+                self.merge_temp_pseudo.append(23)
+
+
                 j = j + 1
                 k = k + 1
 
