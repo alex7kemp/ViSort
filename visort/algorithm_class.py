@@ -501,7 +501,7 @@ class Algorithm_class:
 
                 self.counting_steps.append(list(self.counting_sorted))  # creating steps list
                 if index > 0:  # creating index list
-                    changed_indices = [0, index]
+                    changed_indices = [index, index]
                     self.counting_indices.append(list(changed_indices))
                 else:
                     changed_indices = [0, 0]
