@@ -575,6 +575,9 @@ class Algorithm_class:
                 pseudo_list.append(4)
                 location -= 1
                 pseudo_list.append(5)
+                self.insertion_indices.append([index, location])
+                self.insertion_pseudo.append(pseudo_list)
+                pseudo_list = []
 
             self.insertion_sorted[location] = value
             pseudo_list.append(6)
@@ -584,9 +587,9 @@ class Algorithm_class:
             pseudo_list = []
 
         self.insertion_sorted[location] = value
-        pseudo_list = self.insertion_pseudo[:-1] #Needs more work
+        pseudo_list = self.insertion_pseudo[-1]
         pseudo_list.append(7)
-        self.insertion_pseudo.append(pseudo_list)
+        self.insertion_pseudo[-1] = pseudo_list
 
 
     # this function returns the amount of comparisons and data movements used to sort the list
