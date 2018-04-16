@@ -132,6 +132,7 @@ class Algorithm_class:
         self.quick_sorted = list(self.myList)
         self.quick_helper(0, len(self.quick_sorted) - 1)
 
+
     # this is a helper funciton, it shouldn't be used outside this class
     def quick_helper(self, first, last):
         if first < last:
@@ -186,55 +187,81 @@ class Algorithm_class:
     # this function sorts the list and writes data to the associated steps, indices, and pseduo variables
     def quick_visual(self):
         self.quick_sorted = list(self.myList)
+        self.quick_temp_pseudo = []
         self.quick_helper_visual(0, (len(self.quick_sorted) - 1))
 
     # this is a helper funciton, it shouldn't be used outside this class
     def quick_helper_visual(self, first, last):
+        self.quick_temp_pseudo.append(0)
+        self.quick_temp_pseudo.append(1)
+
         if first < last:
             splitpoint = self.quick_partition_visual(first, last)
+            self.quick_temp_pseudo.append(2)
 
+            self.quick_temp_pseudo.append(3)
             self.quick_helper_visual(first, splitpoint - 1)
+
+            self.quick_temp_pseudo.append(4)
             self.quick_helper_visual(splitpoint + 1, last)
 
     # this is a helper funciton, it shouldn't be used outside this class
     def quick_partition_visual(self, first, last):
+        self.quick_temp_pseudo.append(5)
+        self.quick_temp_pseudo.append(6)
         pivotvalue = self.quick_sorted[first]
 
+        self.quick_temp_pseudo.append(7)
+        self.quick_temp_pseudo.append(8)
+        self.quick_temp_pseudo.append(9)
         leftmark = first + 1
         rightmark = last
 
         done = False
+
         while not done:
+            self.quick_temp_pseudo.append(10)
 
             while leftmark <= rightmark and self.quick_sorted[leftmark] <= pivotvalue:
+                self.quick_temp_pseudo.append(11)
                 leftmark = leftmark + 1
+                self.quick_temp_pseudo.append(12)
 
             while self.quick_sorted[rightmark] >= pivotvalue and rightmark >= leftmark:
+                self.quick_temp_pseudo.append(13)
                 rightmark = rightmark - 1
+                self.quick_temp_pseudo.append(14)
+
 
             if rightmark < leftmark:
+                self.quick_temp_pseudo.append(15)
                 done = True
+                self.quick_temp_pseudo.append(16)
 
             else:
+                self.quick_temp_pseudo.append(17)
 
                 temp = self.quick_sorted[leftmark]
                 self.quick_sorted[leftmark] = self.quick_sorted[rightmark]
                 self.quick_sorted[rightmark] = temp
+                self.quick_temp_pseudo.append(18)
                 self.quick_indices.append([rightmark, leftmark])
                 self.quick_steps.append(list(self.quick_sorted))
-                self.quick_pseudo.append("Data value " + str(self.quick_sorted[leftmark]) + " at index " + str(
-                    rightmark) + " swapped with data value " + str(self.quick_sorted[rightmark]) + " at index " + str(
-                    leftmark))
+                self.quick_pseudo.append(self.quick_temp_pseudo)
+                self.quick_temp_pseudo = []
+
 
         if first != rightmark:
+            self.quick_temp_pseudo.append(19)
             temp = self.quick_sorted[first]
             self.quick_sorted[first] = self.quick_sorted[rightmark]
             self.quick_sorted[rightmark] = temp
+            self.quick_temp_pseudo.append(20)
             self.quick_indices.append([rightmark, first])
             self.quick_steps.append(list(self.quick_sorted))
-            self.quick_pseudo.append("Data value " + str(self.quick_sorted[first]) + " at index " + str(
-                rightmark) + " swapped with data value " + str(self.quick_sorted[rightmark]) + " at index " + str(
-                first))
+            self.quick_pseudo.append(self.quick_temp_pseudo)
+            self.quick_temp_pseudo = []
+
 
         return rightmark
 
@@ -291,6 +318,7 @@ class Algorithm_class:
 
         return rightmark
 
+
     # this function just sorts the list. the sorted list is stored in self.merge_sorted
     def merge(self):
         self.merge_sorted = list(self.myList)
@@ -345,7 +373,7 @@ class Algorithm_class:
         stop = time.perf_counter()
         return stop - start
 
-    # this function sorts the list and writes data to the associated steps, indices, and pseduo variables --- this one only sort of works
+    # this function sorts the list and writes data to the associated steps, indices, and pseduo variables
     def merge_visual(self):
         self.merge_sorted = list(self.myList)
         self.merge_visual_helper(list(self.merge_sorted))
@@ -461,6 +489,7 @@ class Algorithm_class:
                 self.merge_data += 1
                 self.merge_comp += 1
 
+
     # this function just sorts the list. the sorted list is stored in self.counting_sorted
     def counting(self):
         self.counting_sorted = list(self.myList)
@@ -529,8 +558,6 @@ class Algorithm_class:
                 counting_temp_pseudo.append(8)
                 self.counting_pseudo.append(counting_temp_pseudo)
                 counting_temp_pseudo = []
-        
-
 
     # this function just sorts the list. the sorted list is stored in self.insertion_sorted
     def counting_comparisons(self):
@@ -548,6 +575,7 @@ class Algorithm_class:
                 comparisons += 1
                 data_movements += 1
         return comparisons, data_movements
+
 
     # this function just sorts the list. the sorted list is stored in self.insertion_sorted
     def insertion(self):
@@ -618,7 +646,6 @@ class Algorithm_class:
         self.insertion_pseudo.pop(0)
         self.insertion_indices.pop(0)
         self.insertion_steps.pop(0)
-
 
     # this function returns the amount of comparisons and data movements used to sort the list
     def insertion_comparisons(self):
