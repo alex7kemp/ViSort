@@ -1,8 +1,8 @@
 import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
-from .input import Input
-from .algorithm_class import Algorithm_class
+from input import Input
+from algorithm_class import Algorithm_class
 import sys
 
 app = Flask(__name__) # create the application instance
@@ -345,21 +345,14 @@ def visualize():
     if "bubble" in input_class.alg_types:
         algorithm_class.bubble_visual()
         noflinesofpsuedocode = len(algorithm_class.bubble_pseudo)  # Length of pseudocode list
-        print(noflinesofpsuedocode, file=sys.stderr)
         executingline = []  # Order of execution for psuedocode list
         for x in range(0, noflinesofpsuedocode):
             executingline.append(x)
-        print(executingline, file=sys.stderr)
         squarecolourpair = algorithm_class.bubble_indices  # List of the selected indices
-        print(squarecolourpair, file=sys.stderr)
         array = algorithm_class.bubble_steps  # Steps array
-        print(array, file=sys.stderr)
         steps = len(algorithm_class.bubble_steps)  # Total number of lists in steps array
-        print(steps, file=sys.stderr)
         squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
-        print(squarenumber, file=sys.stderr)
         pseudocode = algorithm_class.bubble_pseudo  # Pseudocode array
-        print(pseudocode, file=sys.stderr)
     elif "counting" in input_class.alg_types:
         algorithm_class.counting_visual()
         noflinesofpsuedocode = len(algorithm_class.counting_pseudo)  # Length of psuedocode list
