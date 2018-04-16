@@ -13,27 +13,27 @@ class Algorithm_class:
         self.bubble_sorted = []
         self.bubble_steps = [self.myList]
         self.bubble_indices = [[0, 0]]
-        self.bubble_pseudo = ["Unsorted list."]
+        self.bubble_pseudo = [[]]
 
         self.quick_sorted = []
         self.quick_steps = [self.myList]
         self.quick_indices = [[0, 0]]
-        self.quick_pseudo = ["Unsorted list."]
+        self.quick_pseudo = [[]]
 
         self.merge_sorted = []
         self.merge_steps = [self.myList]
         self.merge_indices = [[0, 0]]
-        self.merge_pseudo = ["Unsorted list."]
+        self.merge_pseudo = [[]]
 
         self.counting_sorted = []
         self.counting_steps = [self.myList]
         self.counting_indices = [[0, 0]]
-        self.counting_pseudo = ["Unsorted list."]
+        self.counting_pseudo = [[]]
 
         self.insertion_sorted = []
         self.insertion_steps = [self.myList]
         self.insertion_indices = [[0, 0]]
-        self.insertion_pseudo = ["Unsorted list."]
+        self.insertion_pseudo = [[]]
 
     # this function just sorts the list. the sorted list is stored in self.bubble_sorted
     def bubble(self):
@@ -560,22 +560,34 @@ class Algorithm_class:
     def insertion_visual(self):
         self.insertion_sorted = list(self.myList)
         index1 = 0
+        pseudo_list = []
         for index in range(1, len(self.insertion_sorted)):
+            pseudo_list.append(0)
             index1 = index
             value = self.insertion_sorted[index]
+            pseudo_list.append(1)
             location = index
+            pseudo_list.append(2)
 
             while location > 0 and self.insertion_sorted[location - 1] > value:
+                pseudo_list.append(3)
                 self.insertion_sorted[location] = self.insertion_sorted[location - 1]
+                pseudo_list.append(4)
                 location -= 1
+                pseudo_list.append(5)
 
             self.insertion_sorted[location] = value
+            pseudo_list.append(6)
             self.insertion_steps.append(list(self.insertion_sorted))
             self.insertion_indices.append([index, location])
-            self.insertion_pseudo.append(str("Data value " + str(self.insertion_sorted[index]) + " from index " + str(
-                index) + " inserted at index " + str(location)))
+            self.insertion_pseudo.append(pseudo_list)
+            pseudo_list = []
 
         self.insertion_sorted[location] = value
+        pseudo_list = self.insertion_pseudo[:-1] #Needs more work
+        pseudo_list.append(7)
+        self.insertion_pseudo.append(pseudo_list)
+
 
     # this function returns the amount of comparisons and data movements used to sort the list
     def insertion_comparisons(self):
