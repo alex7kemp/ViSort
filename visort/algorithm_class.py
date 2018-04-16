@@ -71,38 +71,25 @@ class Algorithm_class:
 
         for i in range(0, len(self.bubble_sorted)):
             bubble_temp_pseudo.append(0)
-            for index in range(0,len(self.bubble_sorted)-i-1):
+            for index in range(0, len(self.bubble_sorted) - i - 1):
                 bubble_temp_pseudo.append(1)
                 bubble_temp_pseudo.append(2)
-                if self.bubble_sorted[index] > self.bubble_sorted[index+1]:
+                if self.bubble_sorted[index] > self.bubble_sorted[index + 1]:
 
                     temp = self.bubble_sorted[index]
-                    self.bubble_sorted[index] = self.bubble_sorted[index+1]
+                    self.bubble_sorted[index] = self.bubble_sorted[index + 1]
                     self.bubble_sorted[index + 1] = temp
 
                     self.bubble_steps.append(list(self.bubble_sorted))
-                    self.bubble_indices.append([index, index+1])
+                    self.bubble_indices.append([index, index + 1])
                     bubble_temp_pseudo.append(3)
+                    self.bubble_pseudo.append(bubble_temp_pseudo)
+                else:
+                    self.bubble_steps.append(list(self.bubble_sorted))
+                    self.bubble_indices.append([index, index + 1])
                     self.bubble_pseudo.append(bubble_temp_pseudo)
 
                 bubble_temp_pseudo = []
-
-        # for index in range(1, len(self.bubble_sorted)):
-        #     bubble_temp_pseudo.append(0)
-        #     value = self.bubble_sorted[index]
-        #     location = index
-        #
-        #
-        #     while location > 0 and self.bubble_sorted[location - 1] > value:
-        #         self.bubble_sorted[location] = self.bubble_sorted[location - 1]
-        #         location -= 1
-        #
-        #     self.bubble_sorted[location] = value
-        #     self.bubble_steps.append(list(self.bubble_sorted))
-        #     self.bubble_indices.append([index, location])
-        #
-        #
-        # self.bubble_sorted[location] = value
 
     # this function returns the amount of comparisons and data movements used to sort the list
     def bubble_comparisons(self):
