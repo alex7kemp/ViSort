@@ -471,43 +471,48 @@ class Algorithm_class:
     # this function returns the amount of comparisons and data movements used to sort the list
     def counting_visual(self):
 
-        changedIndices = [0, 0]
+        changed_indices = [0, 0]
+        counting_temp_pseudo = []
         self.counting_sorted = list(self.myList)  # creating a copy of the list
+        
         maxplus = max(self.counting_sorted) + 1  # this is used to get the correct range of numbers to iterate through
-        count = [0] * maxplus  # prefilling count list
+        counting_temp_pseudo.append(0)
 
-        # this is for formating the pseudo list nicely
-        SUFFIXES = {1: "st", 2: "nd", 3: "rd"}
-        suffix = "th"
+        count = [0] * maxplus  # prefilling count list
+        counting_temp_pseudo.append(1)
+
 
         for number in self.counting_sorted:
+            counting_temp_pseudo.append(2)
             count[number] += 1  # creating count list
+            counting_temp_pseudo.append(3)
 
         index = 0
+        counting_temp_pseudo.append(4)
+
         for value in range(maxplus):
-            ordinal = count[value]  # this is for formating the pseudo list nicely
+            counting_temp_pseudo.append(5)
 
             for number in range(count[value]):
+                counting_temp_pseudo.append(6)
 
                 self.counting_sorted[index] = value  # actual sorting
+                counting_temp_pseudo.append(7)
+
                 self.counting_steps.append(list(self.counting_sorted))  # creating steps list
                 if index > 0:  # creating index list
-                    changedIndices = [index - 1, index]
-                    self.counting_indices.append(list(changedIndices))
+                    changed_indices = [0, index]
+                    self.counting_indices.append(list(changed_indices))
                 else:
-                    changedIndices = [0, 0]
-                    self.counting_indices.append(list(changedIndices))
+                    changed_indices = [0, 0]
+                    self.counting_indices.append(list(changed_indices))
 
                 index += 1  # this is for iterating through count list
+                counting_temp_pseudo.append(8)
+                self.counting_pseudo.append(counting_temp_pseudo)
+                counting_temp_pseudo = []
+        
 
-                # this is for formating the pseudo list nicely
-                if 10 <= ordinal % 100 <= 20:
-                    suffix = "th"
-                else:
-                    suffix = SUFFIXES.get(ordinal % 10, "th")
-                self.counting_pseudo.append(str(ordinal) + suffix + " data value from count index " + str(
-                    value) + " inserted at position " + str(index))
-                ordinal -= 1
 
     # this function just sorts the list. the sorted list is stored in self.insertion_sorted
     def counting_comparisons(self):
