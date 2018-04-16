@@ -466,4 +466,6 @@ def benchmark():
                            dc=dc, di=di, dq=dq, dm=dm)
 
 
+if __name__ == '__main__':
+   app.run()
 
