@@ -259,7 +259,7 @@ def add_algorithm():
                         algorithm_class = Algorithm_class(input_class.input_list)
                         if "bubble" in input_class.alg_types:
                             algorithm_class.bubble_visual()
-                            noflinesofpsuedocode = len(algorithm_class.bubble_pseudo)  # Length of pseudocode list
+                            noflinesofpsuedocode = 4  # Length of pseudocode list
                             squarecolourpair = algorithm_class.bubble_indices  # List of the selected indices
                             array = algorithm_class.bubble_steps  # Steps array
                             steps = len(algorithm_class.bubble_steps)  # Total number of lists in steps array
@@ -268,7 +268,7 @@ def add_algorithm():
                             algorithmnumber = 0
                         elif "counting" in input_class.alg_types:
                             algorithm_class.counting_visual()
-                            noflinesofpsuedocode = len(algorithm_class.counting_pseudo)  # Length of psuedocode list
+                            noflinesofpsuedocode = 9  # Length of psuedocode list
                             squarecolourpair = algorithm_class.counting_indices  # List of the selected indices
                             array = algorithm_class.counting_steps  # Steps array
                             steps = len(algorithm_class.counting_steps)  # Total number of lists in steps array
@@ -277,7 +277,7 @@ def add_algorithm():
                             algorithmnumber = 1
                         elif "insertion" in input_class.alg_types:
                             algorithm_class.insertion_visual()
-                            noflinesofpsuedocode = len(algorithm_class.insertion_pseudo)  # Length of psuedocode list
+                            noflinesofpsuedocode = 8  # Length of psuedocode list
                             squarecolourpair = algorithm_class.insertion_indices  # List of the selected indices
                             array = algorithm_class.insertion_steps  # Steps array
                             steps = len(algorithm_class.insertion_steps)  # Total number of lists in steps array
@@ -286,7 +286,7 @@ def add_algorithm():
                             algorithmnumber = 2
                         elif "merge" in input_class.alg_types:
                             algorithm_class.merge_visual()
-                            noflinesofpsuedocode = len(algorithm_class.merge_pseudo)  # Length of psuedocode list
+                            noflinesofpsuedocode = 24  # Length of psuedocode list
                             squarecolourpair = algorithm_class.merge_indices  # List of the selected indices
                             array = algorithm_class.merge_steps  # Steps array
                             steps = len(algorithm_class.merge_steps)  # Total number of lists in steps array
@@ -295,7 +295,7 @@ def add_algorithm():
                             algorithmnumber = 3
                         elif "quick" in input_class.alg_types:
                             algorithm_class.quick_visual()
-                            noflinesofpsuedocode = len(algorithm_class.quick_pseudo)  # Length of psuedocode list
+                            noflinesofpsuedocode = 21  # Length of psuedocode list
                             squarecolourpair = algorithm_class.quick_indices  # List of the selected indices
                             array = algorithm_class.quick_steps  # Steps array
                             steps = len(algorithm_class.quick_steps)  # Total number of lists in steps array

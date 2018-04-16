@@ -2,49 +2,23 @@
 
 <div class="old_subtitle">
     <p id="enterlist_subtitle">Enter a list to be sorted </p>
-    
+
     <p class="check">&#x2713;</p>
 
-    {% if "list" in entries %}
-        {% set list = entries["list"] %}
-        <p id="list_subtitle">[
-        {% for item in list[:10] %}
-            {{item}}
-            {{ "," if not loop.last }}
-        {% endfor %}
-        {% if list|length > 10 %}
-            {{ "..." }}
-        {% endif %}
-        ]</p><br id="breakpoint">
-    {% endif %}  
-    
+    {% if "list" in entries %} {% set list = entries["list"] %}
+    <p id="list_subtitle">[ {% for item in list[:10] %} {{item}} {{ "," if not loop.last }} {% endfor %} {% if list|length > 10 %} {{ "..." }} {% endif %} ]
+    </p><br id="breakpoint"> {% endif %}
+
     <p id="algorithm_subtitle">Choose algorithm </p>
-    
+
     <p class="check">&#x2713;</p>
-    
-    {% if "algorithms" in entries %}
-        {% set alg_list = entries["algorithms"] %}
-        <p id="alg_list_subtitle">
-        {% for item in alg_list[:3] %}
-            {% if item == "bubble" %}
-                {{ "Bubble" }}
-            {% elif item == "counting" %}
-                {{ "Counting" }}
-            {% elif item == "insertion" %}
-                {{ "Insertion" }}
-            {% elif item == "merge" %}
-                {{ "Merge" }}
-            {% elif item == "quick" %}
-                {{ "Quick" }}
-            {% endif %}
-            {{ "," if not loop.last }}
-        {% endfor %}
-        {% if alg_list|length > 3 %}
-            {{ "..." }}
-        {% endif %}
-        </p>
+
+    {% if "algorithms" in entries %} {% set alg_list = entries["algorithms"] %}
+    <p id="alg_list_subtitle">
+        {% for item in alg_list[:3] %} {% if item == "bubble" %} {{ "Bubble" }} {% elif item == "counting" %} {{ "Counting" }} {% elif item == "insertion" %} {{ "Insertion" }} {% elif item == "merge" %} {{ "Merge" }} {% elif item == "quick" %} {{ "Quick" }} {% endif %} {{ "," if not loop.last }} {% endfor %} {% if alg_list|length > 3 %} {{ "..." }} {% endif %}
+    </p>
     {% endif %}
-    
+
 </div>
 
 <p class="subtitle">Visualization</p>
@@ -71,488 +45,219 @@
 </div>
 
 <script>
-
-//Input data needed
-
-var squarenumber = {{squarenumber}};
-var squarecolourpair = {{squarecolourpair}};
-var array = {{array}};
-var noflinesofpsuedocode = {{noflinesofpsuedocode}};
-var steps = {{steps}};
-var executingline = {{pseudocode}};
-var algorithmnumber = {{algorithmnumber}};
-
-console.log(executingline);
-console.log(steps);
-console.log(array);
-console.log(noflinesofpsuedocode);
-console.log(squarecolourpair);
-
-
-// CREATING SQUARES OF REQUIRED ARRAY SIZE
-function SQUARES(sizeofarray,J,p){
-var canvas = document.getElementById('myCanvas');
-var ctx = canvas.getContext('2d');
-var width = canvas.width;
-var height = canvas.height;
-
-
-
-//Seperation line
-ctx.fillStyle= 'red';
-ctx.fillRect(1000,20,5,835);
-
-
-
-
-var rectSize = 50;
-for(var i=0;i<sizeofarray;i++) {
-
-if(i<12)
-{
-j=i;
-column=0;
-}
-else if(i>=12 && i<24)
-{
-j=i-12;
-column=1;
-}
-else if(i>=24 && i<36)
-{
-j=i-24;
-column=2;
-}
-else if(i>=36 && i<48)
-{
-j=i-36;
-column=3;
-}
-else if(i>=48 && i<60)
-{
-j=i-48;
-column=4;
-}
-else if(i>=60 && i<72)
-{
-j=i-60;
-column=5;
-}
-else if(i>=72 && i<84)
-{
-j=i-72;
-column=6;
-}
-else if(i>=84 && i<96)
-{
-j=i-84;
-column=7;
-}
-else if(i>=96 && i<108)
-{
-j=i-96;
-column=8;
-}
-else if(i>=108 && i<120){
-j=i-108;
-column=9;
-}
-else if(i>=120 && i<132){
-j=i-120;
-column=10;
-}
-else if(i>=132 && i<144){
-j=i-132;
-column=11;
-}
-else
-{
-j=i-144;
-column=12;
-}
-
-if(i == squarecolourpair[J][0])
-{
-ctx.fillStyle= 'green';
-ctx.fillRect(20+(80*j),20+(80*column),rectSize,rectSize);
-ctx.fillStyle= 'white';
-ctx.font = "18px Verdana";
-ctx.fillText(array[J][i], 22+(80*j), 55+(80*column));
-
-for(var q=0;q<noflinesofpsuedocode;q++) {
-
-if(p==q)
-{
-ctx.fillStyle= 'green';
-
-}
-else
-{
-ctx.fillStyle= 'white';
-}
-ctx.fillRect(1100,130+(q*60),700,40);
-}
-
-
-if(algorithmnumber==0)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-ctx.fillText("Line 9",  1110, 640);
-ctx.fillText("Line 10",  1110, 700);
-ctx.fillText("Line 11",  1110, 760);
-ctx.fillText("Line 12",  1110, 820);
-}
-
-
-if(algorithmnumber==1)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-ctx.fillText("Line 9",  1110, 640);
-ctx.fillText("Line 10",  1110, 700);
-ctx.fillText("Line 11",  1110, 760);
-
-}
-
-
-if(algorithmnumber==2)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("for index in range(1 to length(list)):", 1110, 160);
-ctx.fillText("list_item = list[index]",  1160, 220);
-ctx.fillText("location = index",  1160, 280);
-ctx.fillText("while location > 0 and list[location-1] > list_item:",  1160, 340);
-ctx.fillText("list[location] = list[location-1]",  1210, 400);
-ctx.fillText("location = location - 1",  1210, 460);
-ctx.fillText("list[location] = list_item", 1160, 520);
-ctx.fillText("list[location] = list_item",  1110, 580);
-}
-
-
-if(algorithmnumber==3)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-
-}
-
-
-if(algorithmnumber==4)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-ctx.fillText("Line 9",  1110, 640);
-ctx.fillText("Line 10",  1110, 700);
-ctx.fillText("Line 11",  1110, 760);
-}
-
-
-ctx.fillStyle= 'maroon';
-ctx.fillRect(1050,10,800,90);
-ctx.fillStyle= 'white';
-ctx.font = "50px Cooper";
-ctx.fillText("Psuedocode", 1300, 65);
-
-
-}
-
-else if(i== squarecolourpair[J][1])
-{
-ctx.fillStyle= 'blue';
-ctx.fillRect(20+(80*j),20+(80*column),rectSize,rectSize);
-ctx.fillStyle= 'white';
-ctx.font = "18px Verdana";
-ctx.fillText(array[J][i], 22+(80*j), 55+(80*column));
-
-for(var q=0;q<noflinesofpsuedocode;q++) {
-if(p==q)
-{
-ctx.fillStyle= 'green';
-
-}
-else
-{
-ctx.fillStyle= 'white';
-}
-ctx.fillRect(1100,130+(q*60),700,40);
-}
-
-
-if(algorithmnumber==0)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-ctx.fillText("Line 9",  1110, 640);
-ctx.fillText("Line 10",  1110, 700);
-ctx.fillText("Line 11",  1110, 760);
-ctx.fillText("Line 12",  1110, 820);
-}
-
-
-if(algorithmnumber==1)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-ctx.fillText("Line 9",  1110, 640);
-ctx.fillText("Line 10",  1110, 700);
-ctx.fillText("Line 11",  1110, 760);
-
-}
-
-
-if(algorithmnumber==2)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("for index in range(1 to length(list)):", 1110, 160);
-ctx.fillText("list_item = list[index]",  1160, 220);
-ctx.fillText("location = index",  1160, 280);
-ctx.fillText("while location > 0 and list[location-1] > list_item:",  1160, 340);
-ctx.fillText("list[location] = list[location-1]",  1210, 400);
-ctx.fillText("location = location - 1",  1210, 460);
-ctx.fillText("list[location] = list_item", 1160, 520);
-ctx.fillText("list[location] = list_item",  1110, 580);
-
-}
-
-
-if(algorithmnumber==3)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-
-}
-
-
-if(algorithmnumber==4)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-ctx.fillText("Line 9",  1110, 640);
-ctx.fillText("Line 10",  1110, 700);
-ctx.fillText("Line 11",  1110, 760);
-}
-
-
-ctx.fillStyle= 'maroon';
-ctx.fillRect(1050,10,800,90);
-ctx.fillStyle= 'white';
-ctx.font = "50px Cooper";
-ctx.fillText("Psuedocode", 1300, 65);
-
-}
-
-else
-{
-ctx.fillStyle= 'black';
-ctx.fillRect(20+(80*j),22+(80*column),rectSize,rectSize);
-ctx.fillStyle= 'white';
-ctx.font = "18px Verdana";
-ctx.fillText(array[J][i], 22+(80*j), 55+(80*column));
-
-for(var q=0;q<noflinesofpsuedocode;q++) {
-if(p==q)
-{
-ctx.fillStyle= 'green';
-
-}
-else
-{
-ctx.fillStyle= 'white';
-}
-ctx.fillRect(1100,130+(q*60),700,40);
-}
-
-
-if(algorithmnumber==0)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-ctx.fillText("Line 9",  1110, 640);
-ctx.fillText("Line 10",  1110, 700);
-ctx.fillText("Line 11",  1110, 760);
-ctx.fillText("Line 12",  1110, 820);
-}
-
-
-if(algorithmnumber==1)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-ctx.fillText("Line 9",  1110, 640);
-ctx.fillText("Line 10",  1110, 700);
-ctx.fillText("Line 11",  1110, 760);
-
-}
-
-
-if(algorithmnumber==2)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("for index in range(1 to length(list)):", 1110, 160);
-ctx.fillText("list_item = list[index]",  1160, 220);
-ctx.fillText("location = index",  1160, 280);
-ctx.fillText("while location > 0 and list[location-1] > list_item:",  1160, 340);
-ctx.fillText("list[location] = list[location-1]",  1210, 400);
-ctx.fillText("location = location - 1",  1210, 460);
-ctx.fillText("list[location] = list_item", 1160, 520);
-ctx.fillText("list[location] = list_item",  1110, 580);
-
-}
-
-
-if(algorithmnumber==3)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-
-}
-
-
-if(algorithmnumber==4)
-{
-ctx.fillStyle= 'black';
-ctx.font = "22px Verdana";
-ctx.fillText("Line 1 ", 1110, 160);
-ctx.fillText("Line 2",  1110, 220);
-ctx.fillText("Line 3",  1110, 280);
-ctx.fillText("Line 4",  1110, 340);
-ctx.fillText("Line 5",  1110, 400);
-ctx.fillText("Line 6",  1110, 460);
-ctx.fillText("Line 7 ", 1110, 520);
-ctx.fillText("Line 8",  1110, 580);
-ctx.fillText("Line 9",  1110, 640);
-ctx.fillText("Line 10",  1110, 700);
-ctx.fillText("Line 11",  1110, 760);
-}
-
-
-
-ctx.fillStyle= 'maroon';
-ctx.fillRect(1050,10,800,90);
-ctx.fillStyle= 'white';
-ctx.font = "50px Cooper";
-ctx.fillText("Psuedocode", 1300, 65);
-
-}
-
-}
-}
-
-//SQUARE CREATION ENDS
-
-//var func = function(k)
-//{
-//  setTimeout(function() {
-//    SQUARES(squarenumber,k);
-//    }
-//}
-
-//for(var k=0;k<5;k++)
-//{
-//  func(k)
-//}
-
-//SQUARES(squarenumber,0);
-
-for (var i = 0; i<steps;i++){
-    (function(i){
-       setTimeout(function(){SQUARES(squarenumber,i,executingline[i]); },i*
-       1000);
-       })(i);
+    //Input data needed
+
+    var squarenumber = {{ squarenumber }};
+    var squarecolourpair = {{ squarecolourpair }};
+    var array = {{ array }};
+    var noflinesofpsuedocode = {{ noflinesofpsuedocode }};
+    var steps = {{ steps }};
+    var executingline = {{ pseudocode }};
+    var algorithmnumber = {{ algorithmnumber }};
+
+    console.log(executingline);
+    console.log(steps);
+    console.log(array);
+    console.log(noflinesofpsuedocode);
+    console.log(squarecolourpair);
+
+    function pseudo_highlight(p, ctx) {
+        for (x = 0; x < noflinesofpsuedocode; x++) {
+//            if (p[q] == x) { 
+            if (p.includes(x)) {
+                ctx.fillStyle = 'green';
+            } else {
+                ctx.fillStyle = 'white';
+            }
+            if (algorithmnumber==3 || algorithmnumber==4) {
+                ctx.fillRect(1100, 143 + (x * 30), 700, 20);
+            }
+            else {
+                ctx.fillRect(1100, 130 + (x * 60), 700, 40);
+            }
+        }
+        
+        if (algorithmnumber == 0) {
+                ctx.fillStyle = 'black';
+                ctx.font = "22px Verdana";
+                ctx.fillText("for i in range(0 to length(list)):", 1110, 160);
+                ctx.fillText("for index in range(0 to length(list)-i-1):", 1160, 220);
+                ctx.fillText("if list[index] > list [index + 1]", 1210, 280);
+                ctx.fillText("swap(list[index], list[index + 1]", 1260, 340);
+            } else if (algorithmnumber == 1) {
+                ctx.fillStyle = 'black';
+                ctx.font = "22px Verdana";
+                ctx.fillText("Max = largest element in List", 1110, 160);
+                ctx.fillText("Count = a new list of length max+1", 1110, 220);
+                ctx.fillText("For number in List:", 1110, 280);
+                ctx.fillText("Increment Count[number] ", 1160, 340);
+                ctx.fillText("index=0", 1110, 400);
+                ctx.fillText("For values in range 0 to max+1:", 1110, 460);
+                ctx.fillText("For number in range 0 to count[value]:", 1160, 520);
+                ctx.fillText("List[index] = value", 1210, 580);
+                ctx.fillText("Increment index", 1210, 640);
+            } else if (algorithmnumber == 2) {
+                ctx.fillStyle = 'black';
+                ctx.font = "22px Verdana";
+                ctx.fillText("for index in range(1 to length(list)):", 1110, 160);
+                ctx.fillText("list_item = list[index]", 1160, 220);
+                ctx.fillText("location = index", 1160, 280);
+                ctx.fillText("while location > 0 and list[location-1] > list_item:", 1160, 340);
+                ctx.fillText("list[location] = list[location-1]", 1210, 400);
+                ctx.fillText("location = location - 1", 1210, 460);
+                ctx.fillText("list[location] = list_item", 1160, 520);
+                ctx.fillText("list[location] = list_item", 1110, 580);
+            } else if (algorithmnumber == 3) {
+                ctx.fillStyle = 'black';
+                ctx.font = "18px Verdana";
+                ctx.fillText("def mergeSort(list):", 1110, 160);
+                ctx.fillText("if length(list) > 1:",  1160, 190);
+                ctx.fillText("midway_point = length(list) / 2",  1210, 220);
+                ctx.fillText("lefthalf = list[beginning to midway_point]",  1210, 250);
+                ctx.fillText("righthalf = list[midway_point to end]",  1210, 280);
+                ctx.fillText("mergeSort(lefthalf)",  1210, 310);
+                ctx.fillText("mergeSort(righthalf)", 1210, 340);
+                ctx.fillText("i,j,k = 0",  1210, 370);
+                ctx.fillText("while i < length(lefthalf) and j < length(righthalf):",  1210, 400);
+                ctx.fillText("if lefthalf[i] < righthalf[j]:",  1260, 430);
+                ctx.fillText("list[k] = lefthalf[i]",  1310, 460);
+                ctx.fillText("i = i+1",  1310, 490);
+                ctx.fillText("else:", 1260, 520);
+                ctx.fillText("list[k] = righthalf[j]",  1310, 550);
+                ctx.fillText("j = j+1",  1310, 580);
+                ctx.fillText("k = k+1",  1260, 610);
+                ctx.fillText("while i < length(lefthalf):",  1210, 640);
+                ctx.fillText("list[k] = lefthalf[i]",  1260, 670);
+                ctx.fillText("i = i+1", 1260, 700);
+                ctx.fillText("k=k+1",  1260, 730);
+                ctx.fillText("while j < length(righthalf):",  1210, 760);
+                ctx.fillText("list[k] = righthalf[j]",  1260, 790);
+                ctx.fillText("j=j+1",  1260, 820);
+                ctx.fillText("k=k+1",  1260, 850);
+            } else if (algorithmnumber == 4) {
+                ctx.fillStyle = 'black';
+                ctx.font = "18px Verdana";
+                ctx.fillText("quicksort(list, first, last): /* first = starting index, last = ending index */", 1110, 160);
+                ctx.fillText("If (first < last):",  1160, 190);
+                ctx.fillText("Splitpoint = partition(list, first, last)",  1210, 220);
+                ctx.fillText("quicksort(list, first, splitpoint-1)",  1210, 250);
+                ctx.fillText("quicksort(list, splitpoint-1, last)",  1210, 280);
+                ctx.fillText("partition(list, first, last)",  1160, 310);
+                ctx.fillText("Pivot = list[first]", 1160, 340);
+                ctx.fillText("Leftmark = first + 1",  1160, 370);
+                ctx.fillText("Rightmark = last",  1160, 400);
+                ctx.fillText("Done  = False",  1160, 430);
+                ctx.fillText("While not done:",  1160, 460);
+                ctx.fillText("While leftmark <= rightmark and list[leftmark] <= pivot:",  1210, 490);
+                ctx.fillText("Increment Leftmark", 1260, 520);
+                ctx.fillText("While list[rightmark] >=pivot and rightmark >= leftmark:",  1210, 550);
+                ctx.fillText("Increment rightmark",  1260, 580);
+                ctx.fillText("If rightmark < leftmark:",  1210, 610);
+                ctx.fillText("Done = True",  1260, 640);
+                ctx.fillText("Else:",  1210, 670);
+                ctx.fillText("Swap list[leftmark], list[rightmark]", 1260, 700);
+                ctx.fillText("If first != rightmark:",  1160, 730);
+                ctx.fillText("Swap list[first], list[rightmark]",  1210, 760);
+            }
+            ctx.fillStyle = 'maroon';
+            ctx.fillRect(1050, 10, 800, 90);
+            ctx.fillStyle = 'white';
+            ctx.font = "50px Cooper";
+            ctx.fillText("Psuedocode", 1300, 65);
+    }
+    
+    
+    // CREATING SQUARES OF REQUIRED ARRAY SIZE
+    function SQUARES(sizeofarray, J, p) {
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var width = canvas.width;
+        var height = canvas.height;
+
+
+
+        //Seperation line
+        ctx.fillStyle = 'red';
+        ctx.fillRect(1000, 20, 5, 835);
+
+
+
+
+        var rectSize = 50;
+        for (var i = 0; i < sizeofarray; i++) {
+
+            if (i < 12) {
+                j = i;
+                column = 0;
+            } else if (i >= 12 && i < 24) {
+                j = i - 12;
+                column = 1;
+            } else if (i >= 24 && i < 36) {
+                j = i - 24;
+                column = 2;
+            } else if (i >= 36 && i < 48) {
+                j = i - 36;
+                column = 3;
+            } else if (i >= 48 && i < 60) {
+                j = i - 48;
+                column = 4;
+            } else if (i >= 60 && i < 72) {
+                j = i - 60;
+                column = 5;
+            } else if (i >= 72 && i < 84) {
+                j = i - 72;
+                column = 6;
+            } else if (i >= 84 && i < 96) {
+                j = i - 84;
+                column = 7;
+            } else if (i >= 96 && i < 108) {
+                j = i - 96;
+                column = 8;
+            } else if (i >= 108 && i < 120) {
+                j = i - 108;
+                column = 9;
+            } else if (i >= 120 && i < 132) {
+                j = i - 120;
+                column = 10;
+            } else if (i >= 132 && i < 144) {
+                j = i - 132;
+                column = 11;
+            } else {
+                j = i - 144;
+                column = 12;
+            }
+
+            if (i == squarecolourpair[J][0]) {
+                ctx.fillStyle = 'green';
+                ctx.fillRect(20 + (80 * j), 20 + (80 * column), rectSize, rectSize);
+                ctx.fillStyle = 'white';
+                ctx.font = "18px Verdana";
+                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
+            } else if (i == squarecolourpair[J][1]) {
+                ctx.fillStyle = 'blue';
+                ctx.fillRect(20 + (80 * j), 20 + (80 * column), rectSize, rectSize);
+                ctx.fillStyle = 'white';
+                ctx.font = "18px Verdana";
+                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
+            } else {
+                ctx.fillStyle = 'black';
+                ctx.fillRect(20 + (80 * j), 22 + (80 * column), rectSize, rectSize);
+                ctx.fillStyle = 'white';
+                ctx.font = "18px Verdana";
+                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
+            }
+        }
+//        for (var q = 0; q < p.length; q++) {
+//            pseudo_highlight(p, ctx);
+//        }
+        pseudo_highlight(p, ctx)
     }
 
+    for (var i = 0; i < steps; i++) {
+        (function(i){
+            setTimeout(function(){SQUARES(squarenumber,i,executingline[i]); },i*1000);
+       })(i);
+    }
 
 </script>
 
