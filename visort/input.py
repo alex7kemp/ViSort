@@ -52,9 +52,11 @@ class Input:
         self.input_list = []
         m_list = "".join(m_list.split())
         temp_list = m_list.split(',')
+        i = 0
         for x in temp_list:
             try:
-                x = int(x)
+                temp_list[i] = int(x)
+                i += 1
             except:
                 self.errors.append("List contains invalid character(s).")
         self.input_list = temp_list
@@ -70,9 +72,11 @@ class Input:
                 m_list = file_name.read()  # read again
             m_list = "".join(m_list.split())
             temp_list = m_list.split(',')
+            i = 0
             for x in temp_list:
                 try:
-                    x = int(x)
+                    temp_list[i] = int(x)
+                    i += 1
                 except:
                     self.errors.append("List contains invalid value(s).")
             self.input_list = temp_list

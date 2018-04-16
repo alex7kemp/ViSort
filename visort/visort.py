@@ -2,8 +2,8 @@ import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from .input import Input
+from .algorithm_class import Algorithm_class
 import sys
-import webbrowser
 
 app = Flask(__name__) # create the application instance
 app.config.from_object(__name__) # load config from this file , visort.py
@@ -14,54 +14,9 @@ app.config.update(dict(
 app.config.from_envvar('VISORT_SETTINGS', silent=True)
 
 input_class = Input()
+global algorithm_class
+algorithm_class = 0
 
-noflinesofpsuedocode=12
-# Line of psuedocode executed for each list
-executingline = [0,1,2,3,4,5,6,7,8,9,10,11] #Line 0 is line 1, line 1 is line 2 and so on+/6
-
-# Changing colour
-# If we are comparing 2 with 3, 2 is green and 3 is blue
-squarecolourpair=[[2,13],[14,2],[8,10],[12,5],[14,5],[3,14],[2,13],[4,2],[8,1],[2,9],[14,2],[8,10]]
-
-array=[[16,13,11,12,1,6,9,12,9,120,11,12,1,6,9],[1,3,1,2,1,6,9,1,9,0,11,12,1,6,9],[16,4,121,102,11,6,91,12,9,0,11,12,1,6,9],[1,3,1,2,1,6,9,2,9,0,11,12,1,6,9],
-       [116,113,111,112,11,16,19,112,91,120,11,12,1,6,9],[116,113,111,112,11,6,9,12,9,12,11,12,1,6,9],[16,13,11,12,1,6,9,12,9,120,11,12,1,6,9],
-       [1,3,1,2,1,6,9,1,9,0,11,12,1,6,9],[16,4,121,102,11,6,91,12,9,0,11,12,1,6,9],[1,3,1,2,1,6,9,2,9,0,11,12,1,6,999],
-[116,113,111,112,11,6,9,12,9,12,11,12,1,6,9],[16,13,11,12,1,6,9,112,119,120,11,12,21,336,4499]
-       ]
-steps=12 #vTotal number of lists
-squarenumber=15 # Total number of elements in each list
-
-# print "Number of lines of psuedocode :",noflinesofpsuedocode
-# print "Executing line array :",executingline
-# print "Pair for squaring array :",squarecolourpair
-# print "All the sequence of steps :",array
-# print "Total number of lists :",steps
-# print "Number of elements in each list :", squarenumber
-
-tb=10
-sb=10
-cb=10
-db=10
-
-tc=10
-sc=10
-cc=10
-dc=10
-
-ti=10
-si=10
-ci=10
-di=10
-
-tq=10
-sq=10
-cq=10
-dq=10
-
-tm=0
-sm=0
-cm=0
-dm=0
 
 @app.route('/')
 def enter_list():
@@ -195,6 +150,7 @@ def add_algorithm():
     input_class.errors = []
     data = {}
     if request.method == 'POST':
+        global algorithm_class
         if request.form.get('benchmark') == "benchmark":
             algorithms = []
             if request.form.get('algorithm1') == "bubble":
@@ -211,9 +167,55 @@ def add_algorithm():
             if not input_class.errors:
                 input_class.output_type2 = "benchmark"
                 data.update({'algorithms': input_class.alg_types, 'list': input_class.input_list})
-                return render_template('benchmark.html', error=errors, entries=data, tb=tb, tc=tc, ti =ti,tq =tq,tm=tm,
-                                       sb =sb,sc=sc, si=si, sq =sq,sm=sm,cb=cb ,cc=cc, ci=ci ,cq=cq, cm=cm, db=db,
-                                       dc=dc,di=di,dq=dq,dm=dm)
+                algorithm_class = Algorithm_class(input_class.input_list)
+                if "bubble" in input_class.alg_types:
+                    tb = algorithm_class.bubble_time()
+                    sb = algorithm_class.bubble_memory()
+                    cb, db = algorithm_class.bubble_comparisons()
+                else:
+                    tb = 0
+                    sb = 0
+                    cb = 0
+                    db = 0
+                if "counting" in input_class.alg_types:
+                    tc = algorithm_class.counting_time()
+                    sc = algorithm_class.counting_memory()
+                    cc, dc = algorithm_class.counting_comparisons()
+                else:
+                    tc = 0
+                    sc = 0
+                    cc = 0
+                    dc = 0
+                if "insertion" in input_class.alg_types:
+                    ti = algorithm_class.insertion_time()
+                    si = algorithm_class.insertion_memory()
+                    ci, di = algorithm_class.insertion_comparisons()
+                else:
+                    ti = 0
+                    si = 0
+                    ci = 0
+                    di = 0
+                if "merge" in input_class.alg_types:
+                    tm = algorithm_class.merge_time()
+                    sm = algorithm_class.merge_memory()
+                    cm, dm = algorithm_class.merge_comparisons()
+                else:
+                    tm = 0
+                    sm = 0
+                    cm = 0
+                    dm = 0
+                if "quick" in input_class.alg_types:
+                    tq = algorithm_class.quick_time()
+                    sq = algorithm_class.quick_memory()
+                    cq, dq = algorithm_class.quick_comparisons()
+                else:
+                    tq = 0
+                    sq = 0
+                    cq = 0
+                    dq = 0
+                return render_template('benchmark.html', error=errors, entries=data, tb=tb, tc=tc, ti=ti, tq=tq, tm=tm,
+                                       sb=sb, sc=sc, si=si, sq=sq, sm=sm, cb=cb, cc=cc, ci=ci, cq=cq, cm=cm, db=db,
+                                       dc=dc, di=di, dq=dq, dm=dm)
             else:
                 errors.extend(input_class.errors)
                 data.update(
@@ -255,9 +257,65 @@ def add_algorithm():
                         return render_template('enter_algorithm.html', error=errors, entries=data)
                     else:
                         data.update({'algorithms': input_class.alg_types, 'list': input_class.input_list})
+                        algorithm_class = Algorithm_class(input_class.input_list)
+                        if "bubble" in input_class.alg_types:
+                            algorithm_class.bubble_visual()
+                            noflinesofpsuedocode = len(algorithm_class.bubble_pseudo)  # Length of pseudocode list
+                            executingline = []  # Order of execution for psuedocode list
+                            for x in range(0, noflinesofpsuedocode):
+                                executingline.append(x)
+                            squarecolourpair = algorithm_class.bubble_indices  # List of the selected indices
+                            array = algorithm_class.bubble_steps  # Steps array
+                            steps = len(algorithm_class.bubble_steps)  # Total number of lists in steps array
+                            squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+                            pseudocode = algorithm_class.bubble_pseudo  # Pseudocode array
+                        elif "counting" in input_class.alg_types:
+                            algorithm_class.counting_visual()
+                            noflinesofpsuedocode = len(algorithm_class.counting_pseudo)  # Length of psuedocode list
+                            executingline = []  # Order of execution for psuedocode list
+                            for x in range(0, noflinesofpsuedocode):
+                                executingline.append(x)
+                            squarecolourpair = algorithm_class.counting_indices  # List of the selected indices
+                            array = algorithm_class.counting_steps  # Steps array
+                            steps = len(algorithm_class.counting_steps)  # Total number of lists in steps array
+                            squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+                            pseudocode = algorithm_class.counting_pseudo  # Pseudocode array
+                        elif "insertion" in input_class.alg_types:
+                            algorithm_class.insertion_visual()
+                            noflinesofpsuedocode = len(algorithm_class.insertion_pseudo)  # Length of psuedocode list
+                            executingline = []  # Order of execution for psuedocode list
+                            for x in range(0, noflinesofpsuedocode):
+                                executingline.append(x)
+                            squarecolourpair = algorithm_class.insertion_indices  # List of the selected indices
+                            array = algorithm_class.insertion_steps  # Steps array
+                            steps = len(algorithm_class.insertion_steps)  # Total number of lists in steps array
+                            squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+                            pseudocode = algorithm_class.insertion_pseudo  # Pseudocode array
+                        elif "merge" in input_class.alg_types:
+                            algorithm_class.merge_visual()
+                            noflinesofpsuedocode = len(algorithm_class.merge_pseudo)  # Length of psuedocode list
+                            executingline = []  # Order of execution for psuedocode list
+                            for x in range(0, noflinesofpsuedocode):
+                                executingline.append(x)
+                            squarecolourpair = algorithm_class.merge_indices  # List of the selected indices
+                            array = algorithm_class.merge_steps  # Steps array
+                            steps = len(algorithm_class.merge_steps)  # Total number of lists in steps array
+                            squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+                            pseudocode = algorithm_class.merge_pseudo  # Pseudocode array
+                        elif "quick" in input_class.alg_types:
+                            algorithm_class.quick_visual()
+                            noflinesofpsuedocode = len(algorithm_class.quick_pseudo)  # Length of psuedocode list
+                            executingline = []  # Order of execution for psuedocode list
+                            for x in range(0, noflinesofpsuedocode):
+                                executingline.append(x)
+                            squarecolourpair = algorithm_class.quick_indices  # List of the selected indices
+                            array = algorithm_class.quick_steps  # Steps array
+                            steps = len(algorithm_class.quick_steps)  # Total number of lists in steps array
+                            squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+                            pseudocode = algorithm_class.quick_pseudo  # Pseudocode array
                         return render_template('visualize.html', error=errors, entries=data, squarenumber=squarenumber,
-                                               squarecolourpair=squarecolourpair,array=array,
-                                               steps=steps,noflinesofpsuedocode=noflinesofpsuedocode,
+                                               squarecolourpair=squarecolourpair, array=array,
+                                               steps=steps, noflinesofpsuedocode=noflinesofpsuedocode,
                                                executingline=executingline)
                 else:
                     errors.extend(input_class.errors)
@@ -283,10 +341,73 @@ def visualize():
     errors = []
     data = {}
     data.update({'algorithms': input_class.alg_types, 'list': input_class.input_list})
+    algorithm_class = Algorithm_class(input_class.input_list)
+    if "bubble" in input_class.alg_types:
+        algorithm_class.bubble_visual()
+        noflinesofpsuedocode = len(algorithm_class.bubble_pseudo)  # Length of pseudocode list
+        print(noflinesofpsuedocode, file=sys.stderr)
+        executingline = []  # Order of execution for psuedocode list
+        for x in range(0, noflinesofpsuedocode):
+            executingline.append(x)
+        print(executingline, file=sys.stderr)
+        squarecolourpair = algorithm_class.bubble_indices  # List of the selected indices
+        print(squarecolourpair, file=sys.stderr)
+        array = algorithm_class.bubble_steps  # Steps array
+        print(array, file=sys.stderr)
+        steps = len(algorithm_class.bubble_steps)  # Total number of lists in steps array
+        print(steps, file=sys.stderr)
+        squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+        print(squarenumber, file=sys.stderr)
+        pseudocode = algorithm_class.bubble_pseudo  # Pseudocode array
+        print(pseudocode, file=sys.stderr)
+    elif "counting" in input_class.alg_types:
+        algorithm_class.counting_visual()
+        noflinesofpsuedocode = len(algorithm_class.counting_pseudo)  # Length of psuedocode list
+        executingline = []  # Order of execution for psuedocode list
+        for x in range(0, noflinesofpsuedocode):
+            executingline.append(x)
+        squarecolourpair = algorithm_class.counting_indices  # List of the selected indices
+        array = algorithm_class.counting_steps  # Steps array
+        steps = len(algorithm_class.counting_steps)  # Total number of lists in steps array
+        squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+        pseudocode = algorithm_class.counting_pseudo  # Pseudocode array
+    elif "insertion" in input_class.alg_types:
+        algorithm_class.insertion_visual()
+        noflinesofpsuedocode = len(algorithm_class.insertion_pseudo)  # Length of psuedocode list
+        executingline = []  # Order of execution for psuedocode list
+        for x in range(0, noflinesofpsuedocode):
+            executingline.append(x)
+        squarecolourpair = algorithm_class.insertion_indices  # List of the selected indices
+        array = algorithm_class.insertion_steps  # Steps array
+        steps = len(algorithm_class.insertion_steps)  # Total number of lists in steps array
+        squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+        pseudocode = algorithm_class.insertion_pseudo  # Pseudocode array
+    elif "merge" in input_class.alg_types:
+        algorithm_class.merge_visual()
+        noflinesofpsuedocode = len(algorithm_class.merge_pseudo)  # Length of psuedocode list
+        executingline = []  # Order of execution for psuedocode list
+        for x in range(0, noflinesofpsuedocode):
+            executingline.append(x)
+        squarecolourpair = algorithm_class.merge_indices  # List of the selected indices
+        array = algorithm_class.merge_steps  # Steps array
+        steps = len(algorithm_class.merge_steps)  # Total number of lists in steps array
+        squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+        pseudocode = algorithm_class.merge_pseudo  # Pseudocode array
+    elif "quick" in input_class.alg_types:
+        algorithm_class.quick_visual()
+        noflinesofpsuedocode = len(algorithm_class.quick_pseudo)  # Length of psuedocode list
+        executingline = []  # Order of execution for psuedocode list
+        for x in range(0, noflinesofpsuedocode):
+            executingline.append(x)
+        squarecolourpair = algorithm_class.quick_indices  # List of the selected indices
+        array = algorithm_class.quick_steps  # Steps array
+        steps = len(algorithm_class.quick_steps)  # Total number of lists in steps array
+        squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
+        pseudocode = algorithm_class.quick_pseudo  # Pseudocode array
     return render_template('visualize.html', error=errors, entries=data, squarenumber=squarenumber,
                            squarecolourpair=squarecolourpair, array=array,
                            steps=steps, noflinesofpsuedocode=noflinesofpsuedocode,
-                           executingline=executingline)
+                           executingline=executingline, pseudocode=pseudocode)
 
 
 @app.route('/benchmark', methods=['GET'])
@@ -295,6 +416,51 @@ def benchmark():
     data = {}
     input_class.output_type2 = "benchmark"
     data.update({'algorithms': input_class.alg_types, 'list': input_class.input_list})
+    if "bubble" in input_class.alg_types:
+        tb = algorithm_class.bubble_time()
+        sb = algorithm_class.bubble_memory()
+        cb, db = algorithm_class.bubble_comparisons()
+    else:
+        tb = 0
+        sb = 0
+        cb = 0
+        db = 0
+    if "counting" in input_class.alg_types:
+        tc = algorithm_class.counting_time()
+        sc = algorithm_class.counting_memory()
+        cc, dc = algorithm_class.counting_comparisons()
+    else:
+        tc = 0
+        sc = 0
+        cc = 0
+        dc = 0
+    if "insertion" in input_class.alg_types:
+        ti = algorithm_class.insertion_time()
+        si = algorithm_class.insertion_memory()
+        ci, di = algorithm_class.insertion_comparisons()
+    else:
+        ti = 0
+        si = 0
+        ci = 0
+        di = 0
+    if "merge" in input_class.alg_types:
+        tm = algorithm_class.merge_time()
+        sm = algorithm_class.merge_memory()
+        cm, dm = algorithm_class.merge_comparisons()
+    else:
+        tm = 0
+        sm = 0
+        cm = 0
+        dm = 0
+    if "quick" in input_class.alg_types:
+        tq = algorithm_class.quick_time()
+        sq = algorithm_class.quick_memory()
+        cq, dq = algorithm_class.quick_comparisons()
+    else:
+        tq = 0
+        sq = 0
+        cq = 0
+        dq = 0
     return render_template('benchmark.html', error=errors, entries=data, tb=tb, tc=tc, ti=ti, tq=tq, tm=tm,
                            sb=sb, sc=sc, si=si, sq=sq, sm=sm, cb=cb, cc=cc, ci=ci, cq=cq, cm=cm, db=db,
                            dc=dc, di=di, dq=dq, dm=dm)
