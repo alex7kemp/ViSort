@@ -44,19 +44,28 @@ def add_list():
                 input_class.manual(manual_list)
                 if not input_class.errors:
                     input_class.analyze_list()
-                    if input_class.output_type == "benchmark":
-                        data.update(
-                            {'enter_list': request.form.get('enter_list'),
-                             'manual_list': request.form.get('manual_list'),
-                             'benchmark': 'true', 'list': input_class.input_list}
-                        )
+                    if not input_class.errors:
+                        if input_class.output_type == "benchmark":
+                            data.update(
+                                {'enter_list': request.form.get('enter_list'),
+                                 'manual_list': request.form.get('manual_list'),
+                                 'benchmark': 'true', 'list': input_class.input_list}
+                            )
+                        else:
+                            data.update(
+                                {'enter_list': request.form.get('enter_list'),
+                                 'manual_list': request.form.get('manual_list'),
+                                 'benchmark': 'false', 'list': input_class.input_list}
+                            )
+                        return render_template('enter_algorithm.html', error=errors, entries=data)
                     else:
+                        errors.extend(input_class.errors)
                         data.update(
                             {'enter_list': request.form.get('enter_list'),
                              'manual_list': request.form.get('manual_list'),
-                             'benchmark': 'false', 'list': input_class.input_list}
-                        )
-                    return render_template('enter_algorithm.html', error=errors, entries=data)
+                             'file_name': request.form.get('file_name'), 'size': request.form.get('size'),
+                             'range_min': request.form.get('range_min'), 'range_max': request.form.get('range_max')})
+                        return render_template('enter_list.html', error=errors, entries=data)
                 else:
                     errors.extend(input_class.errors)
                     data.update(
@@ -80,17 +89,26 @@ def add_list():
                 input_class.load(file)
                 if not input_class.errors:
                     input_class.analyze_list()
-                    if input_class.output_type == "benchmark":
-                        data.update(
-                            {'enter_list': request.form.get('enter_list'), 'file_name': request.form.get('file_name'),
-                             'benchmark': 'true', 'list': input_class.input_list}
-                        )
+                    if not input_class.errors:
+                        if input_class.output_type == "benchmark":
+                            data.update(
+                                {'enter_list': request.form.get('enter_list'), 'file_name': request.form.get('file_name'),
+                                 'benchmark': 'true', 'list': input_class.input_list}
+                            )
+                        else:
+                            data.update(
+                                {'enter_list': request.form.get('enter_list'), 'file_name': request.form.get('file_name'),
+                                 'benchmark': 'false', 'list': input_class.input_list}
+                            )
+                        return render_template('enter_algorithm.html', error=errors, entries=data)
                     else:
+                        errors.extend(input_class.errors)
                         data.update(
-                            {'enter_list': request.form.get('enter_list'), 'file_name': request.form.get('file_name'),
-                             'benchmark': 'false', 'list': input_class.input_list}
-                        )
-                    return render_template('enter_algorithm.html', error=errors, entries=data)
+                            {'enter_list': request.form.get('enter_list'),
+                             'manual_list': request.form.get('manual_list'),
+                             'file_name': file_name, 'size': request.form.get('size'),
+                             'range_min': request.form.get('range_min'), 'range_max': request.form.get('range_max')})
+                        return render_template('enter_list.html', error=errors, entries=data)
                 else:
                     errors.extend(input_class.errors)
                     data.update(
@@ -113,19 +131,28 @@ def add_list():
                 input_class.generate(range_min, range_max, size)
                 if not input_class.errors:
                     input_class.analyze_list()
-                    if input_class.output_type == "benchmark":
-                        data.update(
-                            {'enter_list': request.form.get('enter_list'), 'size': request.form.get('size'),
-                             'range_min': request.form.get('range_min'), 'range_max': request.form.get('range_max'),
-                             'benchmark': 'true', 'list': input_class.input_list}
-                        )
+                    if not input_class.errors:
+                        if input_class.output_type == "benchmark":
+                            data.update(
+                                {'enter_list': request.form.get('enter_list'), 'size': request.form.get('size'),
+                                 'range_min': request.form.get('range_min'), 'range_max': request.form.get('range_max'),
+                                 'benchmark': 'true', 'list': input_class.input_list}
+                            )
+                        else:
+                            data.update(
+                                {'enter_list': request.form.get('enter_list'), 'size': request.form.get('size'),
+                                 'range_min': request.form.get('range_min'), 'range_max': request.form.get('range_max'),
+                                 'benchmark': 'false', 'list': input_class.input_list}
+                            )
+                        return render_template('enter_algorithm.html', error=errors, entries=data)
                     else:
+                        errors.extend(input_class.errors)
                         data.update(
-                            {'enter_list': request.form.get('enter_list'), 'size': request.form.get('size'),
-                             'range_min': request.form.get('range_min'), 'range_max': request.form.get('range_max'),
-                             'benchmark': 'false', 'list': input_class.input_list}
-                        )
-                    return render_template('enter_algorithm.html', error=errors, entries=data)
+                            {'enter_list': request.form.get('enter_list'),
+                             'manual_list': request.form.get('manual_list'),
+                             'file_name': request.form.get('file_name'), 'size': request.form.get('size'),
+                             'range_min': request.form.get('range_min'), 'range_max': request.form.get('range_max')})
+                        return render_template('enter_list.html', error=errors, entries=data)
                 else:
                     errors.extend(input_class.errors)
                     data.update(

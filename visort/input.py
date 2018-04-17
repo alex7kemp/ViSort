@@ -95,6 +95,8 @@ class Input:
     def analyze_list(self):
         if len(self.input_list) > 100:
             self.output_type = "benchmark"
+        elif len(self.input_list) == 1:
+            self.errors.append("List needs to be more than 1 element.")
         else:
             count = 0
             for each in self.input_list:
