@@ -631,32 +631,37 @@ class Algorithm_class:
     # this function sorts the list and writes data to the associated steps, indices, and pseduo variables
     def insertion_visual(self):
         self.insertion_sorted = list(self.myList)
-        index1 = 0
         pseudo_list = []
         for index in range(0, len(self.insertion_sorted)):
             pseudo_list.append(0)
-            index1 = index
             value = self.insertion_sorted[index]
             pseudo_list.append(1)
             location = index
             pseudo_list.append(2)
+            self.insertion_steps.append(list(self.insertion_sorted))
+            self.insertion_indices.append([index, location])
+            self.insertion_pseudo.append(pseudo_list)
+            pseudo_list = []
 
             while location > 0 and self.insertion_sorted[location - 1] > value:
                 pseudo_list.append(3)
+                self.insertion_steps.append(list(self.insertion_sorted))
+                self.insertion_indices.append([location, location-1])
+                self.insertion_pseudo.append(pseudo_list)
+                pseudo_list = []
                 self.insertion_sorted[location] = self.insertion_sorted[location - 1]
                 pseudo_list.append(4)
                 location -= 1
                 pseudo_list.append(5)
-                if location != 0 and self.insertion_sorted[location - 1] > value:
-                    self.insertion_steps.append(list(self.insertion_sorted))
-                    self.insertion_indices.append([index, location])
-                    self.insertion_pseudo.append(pseudo_list)
-                    pseudo_list = []
+                self.insertion_steps.append(list(self.insertion_sorted))
+                self.insertion_indices.append([location+1, location])
+                self.insertion_pseudo.append(pseudo_list)
+                pseudo_list = []
 
             self.insertion_sorted[location] = value
             pseudo_list.append(6)
             self.insertion_steps.append(list(self.insertion_sorted))
-            self.insertion_indices.append([index, location])
+            self.insertion_indices.append([location, location])
             self.insertion_pseudo.append(pseudo_list)
             pseudo_list = []
 
@@ -664,9 +669,6 @@ class Algorithm_class:
         pseudo_list = self.insertion_pseudo[-1]
         pseudo_list.append(7)
         self.insertion_pseudo[-1] = pseudo_list
-        self.insertion_pseudo.pop(0)
-        self.insertion_indices.pop(0)
-        self.insertion_steps.pop(0)
 
     # this function returns the amount of comparisons and data movements used to sort the list
     def insertion_comparisons(self):

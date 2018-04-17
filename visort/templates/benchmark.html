@@ -65,22 +65,21 @@
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
         data.addRows([
-          ['Bubble Sort',{{tb }} ],
-          ['Counting Sort',{{tc }} ],
-          ['Insertion Sort',{{ti}} ],
-          ['Quick Sort',{{ tq }} ],
-          ['Merge Sort',{{tm}} ]
+          ['Bubble',{{tb }} ],
+          ['Counting',{{tc }} ],
+          ['Insertion',{{ti}} ],
+          ['Quick',{{ tq }} ],
+          ['Merge',{{tm}} ]
 
         ]);
 
-        var options = {title:' Time Complexity',
-                       width:550
-,
-                       height:300,
-
-            titleTextStyle: {
-               fontSize: 15,
-                    }};
+        var options = {title:'Time Complexity',
+                       width:273,
+                       height:250,
+                       'chartArea': {'width': '90%', 'height': '80%'},
+                       'legend': {'alignment': 'center'},
+                       titleTextStyle: {fontSize: 15,}
+                      };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart1_div'));
         chart.draw(data, options);
@@ -92,23 +91,22 @@
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
          data.addRows([
-          ['Bubble Sort',{{sb}} ],
-          ['Counting Sort',{{ sc }} ],
-          ['Insertion Sort',{{si }} ],
-          ['Quick Sort',{{sq }} ],
-          ['Merge Sort',{{sm}} ]
+          ['Bubble',{{sb}} ],
+          ['Counting',{{ sc }} ],
+          ['Insertion',{{si }} ],
+          ['Quick',{{sq }} ],
+          ['Merge',{{sm}} ]
 
         ]);
 
 
-        var options = {title:' Space Complexity',
-                       width:400
-,
-                       height:300,
-
-            titleTextStyle: {
-               fontSize: 15,
-                    }};
+        var options = {title:'Space Complexity',
+                       width:273,
+                       height:250,
+                       'chartArea': {'width': '90%', 'height': '80%'},
+                       'legend': {'alignment': 'center'},
+                       titleTextStyle: {fontSize: 15,}
+                      };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart2_div'));
         chart.draw(data, options);
@@ -120,23 +118,22 @@
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
          data.addRows([
-          ['Bubble Sort',{{cb }} ],
-          ['Counting Sort',{{cc }} ],
-          ['Insertion Sort',{{ci }} ],
-          ['Quick Sort',{{cq }} ],
-          ['Merge Sort',{{cm}} ]
+          ['Bubble',{{cb }} ],
+          ['Counting',{{cc }} ],
+          ['Insertion',{{ci }} ],
+          ['Quick',{{cq }} ],
+          ['Merge',{{cm}} ]
 
         ]);
 
 
-        var options = {title:' Comparisions',
-                       width:400
-,
-                       height:300,
-
-            titleTextStyle: {
-               fontSize: 15,
-                    }};
+        var options = {title:'Comparisions',
+                       width:273,
+                       height:250,
+                       'chartArea': {'width': '90%', 'height': '80%'},
+                       'legend': {'alignment': 'center'},
+                       titleTextStyle: {fontSize: 15,}
+                      };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart3_div'));
         chart.draw(data, options);
@@ -148,23 +145,22 @@
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
          data.addRows([
-          ['Bubble Sort',{{db }} ],
-          ['Counting Sort',{{dc }} ],
-          ['Insertion Sort',{{di}} ],
-          ['Quick Sort',{{ dq }} ],
-          ['Merge Sort',{{dm}} ]
+          ['Bubble',{{db }} ],
+          ['Counting',{{dc }} ],
+          ['Insertion',{{di}} ],
+          ['Quick',{{ dq }} ],
+          ['Merge',{{dm}} ]
 
         ]);
 
 
-        var options = {title:' Data Movement',
-                       width:400
-,
-                       height:300,
-
-            titleTextStyle: {
-               fontSize: 15,
-                    }};
+        var options = {title:'Data Movement',
+                       width:273,
+                       height:250,
+                       'chartArea': {'width': '90%', 'height': '80%'},
+                       'legend': {'alignment': 'center'},
+                       titleTextStyle: {fontSize: 15,}
+                      };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart4_div'));
         chart.draw(data, options);
@@ -184,16 +180,8 @@
 </table>
 
     </div>
-
-
-
-<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<div id="chartContainer" style="width: 100%; height: 400px;display: inline-block;"></div>
-<div id="chartContainer1" style="width: 100%; height: 400px;display: inline-block;"></div>
-<div id="chartContainer2" style="width: 100%; height: 400px;display: inline-block;"></div>
-<div id="chartContainer3" style="width: 100%; height: 400px;display: inline-block;"></div>
-<br/>
-
+<br>
+<br>
 
 <table id="customers">
   <tr>
@@ -249,6 +237,7 @@
 
 </table>
 <br>
+<br>
 <div class="row text-center">
     <div class="col">
         <a href="{{ url_for('benchmark') }}" class="links">Rerun</a>
@@ -263,5 +252,6 @@
         <a href="{{ url_for('enter_list') }}" class="links">Quit</a>
     </div>
 </div>
+<br>
 
 {% endblock %}

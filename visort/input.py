@@ -93,12 +93,12 @@ class Input:
             self.input_list.append(random.randint(l_min, l_max))
 
     def analyze_list(self):
-        if len(self.input_list) > 120:
+        if len(self.input_list) > 100:
             self.output_type = "benchmark"
         else:
             count = 0
             for each in self.input_list:
-                if int(each) > 9999:
+                if int(each) > 99:
                     count += 1
             if count >= 1:
                 self.output_type = "benchmark"

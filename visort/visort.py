@@ -236,7 +236,7 @@ def add_algorithm():
             if request.form.get('algorithm5') == "quick":
                 algorithms.append("quick")
             if input_class.output_type == "benchmark":
-                errors.append("Benchmark must be selected if list is greater than 120 elements or if any element is 10000 or larger.")
+                errors.append("Benchmark must be selected if list is greater than 100 elements or if any element is 100 or larger.")
                 data.update(
                     {'algorithm1': request.form.get('algorithm1'), 'algorithm2': request.form.get('algorithm2'),
                      'algorithm3': request.form.get('algorithm3'), 'algorithm4': request.form.get('algorithm4'),
@@ -333,63 +333,53 @@ def visualize():
     algorithm_class = Algorithm_class(input_class.input_list)
     if "bubble" in input_class.alg_types:
         algorithm_class.bubble_visual()
-        noflinesofpsuedocode = len(algorithm_class.bubble_pseudo)  # Length of pseudocode list
-        executingline = []  # Order of execution for psuedocode list
-        for x in range(0, noflinesofpsuedocode):
-            executingline.append(x)
+        noflinesofpsuedocode = 4  # Length of pseudocode list
         squarecolourpair = algorithm_class.bubble_indices  # List of the selected indices
         array = algorithm_class.bubble_steps  # Steps array
         steps = len(algorithm_class.bubble_steps)  # Total number of lists in steps array
         squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
         pseudocode = algorithm_class.bubble_pseudo  # Pseudocode array
+        algorithmnumber = 0
     elif "counting" in input_class.alg_types:
         algorithm_class.counting_visual()
-        noflinesofpsuedocode = len(algorithm_class.counting_pseudo)  # Length of psuedocode list
-        executingline = []  # Order of execution for psuedocode list
-        for x in range(0, noflinesofpsuedocode):
-            executingline.append(x)
+        noflinesofpsuedocode = 9  # Length of psuedocode list
         squarecolourpair = algorithm_class.counting_indices  # List of the selected indices
         array = algorithm_class.counting_steps  # Steps array
         steps = len(algorithm_class.counting_steps)  # Total number of lists in steps array
         squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
         pseudocode = algorithm_class.counting_pseudo  # Pseudocode array
+        algorithmnumber = 1
     elif "insertion" in input_class.alg_types:
         algorithm_class.insertion_visual()
-        noflinesofpsuedocode = len(algorithm_class.insertion_pseudo)  # Length of psuedocode list
-        executingline = []  # Order of execution for psuedocode list
-        for x in range(0, noflinesofpsuedocode):
-            executingline.append(x)
+        noflinesofpsuedocode = 8  # Length of psuedocode list
         squarecolourpair = algorithm_class.insertion_indices  # List of the selected indices
         array = algorithm_class.insertion_steps  # Steps array
         steps = len(algorithm_class.insertion_steps)  # Total number of lists in steps array
         squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
         pseudocode = algorithm_class.insertion_pseudo  # Pseudocode array
+        algorithmnumber = 2
     elif "merge" in input_class.alg_types:
         algorithm_class.merge_visual()
-        noflinesofpsuedocode = len(algorithm_class.merge_pseudo)  # Length of psuedocode list
-        executingline = []  # Order of execution for psuedocode list
-        for x in range(0, noflinesofpsuedocode):
-            executingline.append(x)
+        noflinesofpsuedocode = 24  # Length of psuedocode list
         squarecolourpair = algorithm_class.merge_indices  # List of the selected indices
         array = algorithm_class.merge_steps  # Steps array
         steps = len(algorithm_class.merge_steps)  # Total number of lists in steps array
         squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
         pseudocode = algorithm_class.merge_pseudo  # Pseudocode array
+        algorithmnumber = 3
     elif "quick" in input_class.alg_types:
         algorithm_class.quick_visual()
-        noflinesofpsuedocode = len(algorithm_class.quick_pseudo)  # Length of psuedocode list
-        executingline = []  # Order of execution for psuedocode list
-        for x in range(0, noflinesofpsuedocode):
-            executingline.append(x)
+        noflinesofpsuedocode = 21  # Length of psuedocode list
         squarecolourpair = algorithm_class.quick_indices  # List of the selected indices
         array = algorithm_class.quick_steps  # Steps array
         steps = len(algorithm_class.quick_steps)  # Total number of lists in steps array
         squarenumber = len(algorithm_class.myList)  # Total number of elements in original list
         pseudocode = algorithm_class.quick_pseudo  # Pseudocode array
+        algorithmnumber = 4
     return render_template('visualize.html', error=errors, entries=data, squarenumber=squarenumber,
                            squarecolourpair=squarecolourpair, array=array,
                            steps=steps, noflinesofpsuedocode=noflinesofpsuedocode,
-                           executingline=executingline, pseudocode=pseudocode)
+                           algorithmnumber=algorithmnumber, pseudocode=pseudocode)
 
 
 @app.route('/benchmark', methods=['GET'])

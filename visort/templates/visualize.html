@@ -22,8 +22,11 @@
 </div>
 
 <p class="subtitle">Visualization</p>
+    <p id="previous" class="links2" onclick="previous()">Previous</p>
+    <p id="play" class="links2" onclick="play()">Play</p>
+    <p id="next" class="links2" onclick="next()">Next</p>
 
-<canvas id="myCanvas" width="1870" height="900" style="border:8px solid #6699cc;">
+<canvas id="myCanvas" width="1110" height="760">
     </canvas>
 <br><br>
 <div class="row text-center">
@@ -43,6 +46,7 @@
         <a href="{{ url_for('enter_list') }}" class="links">Quit</a>
     </div>
 </div>
+<br>
 
 <script>
     //Input data needed
@@ -74,71 +78,62 @@
         var height = canvas.height;
 
         //Seperation line
-        ctx.fillStyle = 'red';
-        ctx.fillRect(1000, 20, 5, 835);
+        ctx.fillStyle = 'black';
+        ctx.fillRect(600, 0, 2, 760);
 
-        var rectSize = 50;
+        var rectSize = 40;
         for (var i = 0; i < sizeofarray; i++) {
 
-            if (i < 12) {
+            if (i < 10) {
                 j = i;
                 column = 0;
-            } else if (i >= 12 && i < 24) {
-                j = i - 12;
+            } else if (i >= 10 && i < 20) {
+                j = i - 10;
                 column = 1;
-            } else if (i >= 24 && i < 36) {
-                j = i - 24;
+            } else if (i >= 20 && i < 30) {
+                j = i - 20;
                 column = 2;
-            } else if (i >= 36 && i < 48) {
-                j = i - 36;
+            } else if (i >= 30 && i < 40) {
+                j = i - 30;
                 column = 3;
-            } else if (i >= 48 && i < 60) {
-                j = i - 48;
+            } else if (i >= 40 && i < 50) {
+                j = i - 40;
                 column = 4;
-            } else if (i >= 60 && i < 72) {
-                j = i - 60;
+            } else if (i >= 50 && i < 60) {
+                j = i - 50;
                 column = 5;
-            } else if (i >= 72 && i < 84) {
-                j = i - 72;
+            } else if (i >= 60 && i < 70) {
+                j = i - 60;
                 column = 6;
-            } else if (i >= 84 && i < 96) {
-                j = i - 84;
+            } else if (i >= 70 && i < 80) {
+                j = i - 70;
                 column = 7;
-            } else if (i >= 96 && i < 108) {
-                j = i - 96;
+            } else if (i >= 80 && i < 90) {
+                j = i - 80;
                 column = 8;
-            } else if (i >= 108 && i < 120) {
-                j = i - 108;
+            } else if (i >= 90 && i < 100) {
+                j = i - 90;
                 column = 9;
-            } else if (i >= 120 && i < 132) {
-                j = i - 120;
-                column = 10;
-            } else if (i >= 132 && i < 144) {
-                j = i - 132;
-                column = 11;
-            } else {
-                j = i - 144;
-                column = 12;
             }
 
             if (i == squarecolourpair[J][0]) {
-                ctx.fillStyle = 'green';
-                ctx.fillRect(20 + (80 * j), 20 + (80 * column), rectSize, rectSize);
+                ctx.fillStyle = 'maroon';
+                ctx.fillRect((60 * j), (60 * column), rectSize, rectSize);
                 ctx.fillStyle = 'white';
-                ctx.font = "18px Verdana";
-                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
+                ctx.font = "bold 1rem Arial";
+                ctx.fillText(array[J][i], 11 + (60 * j), 26 + (60 * column));
             } else if (i == squarecolourpair[J][1]) {
-                ctx.fillStyle = 'blue';
-                ctx.fillRect(20 + (80 * j), 20 + (80 * column), rectSize, rectSize);
-                ctx.fillStyle = 'white';
-                ctx.font = "18px Verdana";
-                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
-            } else {
                 ctx.fillStyle = 'black';
-                ctx.fillRect(20 + (80 * j), 22 + (80 * column), rectSize, rectSize);
+                ctx.fillRect((60 * j), (60 * column), rectSize, rectSize);
                 ctx.fillStyle = 'white';
-                ctx.font = "18px Verdana";
-                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
+                ctx.font = "bold 1rem Arial";
+                ctx.fillText(array[J][i], 11 + (60 * j), 26 + (60 * column));
+            } else {
+                ctx.fillStyle = 'grey';
+                ctx.fillRect((60 * j),(60 * column), rectSize, rectSize);
+                ctx.fillStyle = 'white';
+                ctx.font = "bold 1rem Arial";
+                ctx.fillText(array[J][i], 11 + (60 * j), 26 + (60 * column));
             }
         }
 //        for (var q = 0; q < p.length; q++) {
@@ -146,105 +141,100 @@
 //        }
         for (x = 0; x < noflinesofpsuedocode; x++) {
             if (p[index_p] == x) { 
-                ctx.fillStyle = 'green';
+                ctx.fillStyle = 'grey';
             } else {
                 ctx.fillStyle = 'white';
             }
-            if (algorithmnumber==3 || algorithmnumber==4) {
-                ctx.fillRect(1100, 145 + (x * 30), 700, 20);
-            }
-            else {
-                ctx.fillRect(1100, 130 + (x * 60), 700, 40);
-            }
+            ctx.fillRect(615, 42 + (x * 30), 495, 25);
         }
         
         if (algorithmnumber == 0) {
                 ctx.fillStyle = 'black';
-                ctx.font = "22px Verdana";
-                ctx.fillText("for i in range(0 to length(list)):", 1110, 160);
-                ctx.fillText("for index in range(0 to length(list)-i-1):", 1160, 220);
-                ctx.fillText("if list[index] > list [index + 1]", 1210, 280);
-                ctx.fillText("swap(list[index], list[index + 1]", 1260, 340);
+                ctx.font = "1rem Arial";
+                ctx.fillText("for i in range(0 to length(list)):", 620, 60);
+                ctx.fillText("for index in range(0 to length(list) - i - 1):", 670, 90);
+                ctx.fillText("if list[index] > list [index + 1]", 720, 120);
+                ctx.fillText("swap(list[index], list[index + 1]", 770, 150);
             } else if (algorithmnumber == 1) {
                 ctx.fillStyle = 'black';
-                ctx.font = "22px Verdana";
-                ctx.fillText("Max = largest element in List", 1110, 160);
-                ctx.fillText("Count = a new list of length max+1", 1110, 220);
-                ctx.fillText("For number in List:", 1110, 280);
-                ctx.fillText("Increment Count[number] ", 1160, 340);
-                ctx.fillText("index=0", 1110, 400);
-                ctx.fillText("For values in range 0 to max+1:", 1110, 460);
-                ctx.fillText("For number in range 0 to count[value]:", 1160, 520);
-                ctx.fillText("List[index] = value", 1210, 580);
-                ctx.fillText("Increment index", 1210, 640);
+                ctx.font = "1rem Arial";
+                ctx.fillText("Max = largest element in List", 620, 60);
+                ctx.fillText("Count = a new list of length(max + 1)", 620, 90);
+                ctx.fillText("For number in List:", 620, 120);
+                ctx.fillText("Increment Count[number] ", 670, 150);
+                ctx.fillText("index=0", 620, 180);
+                ctx.fillText("For values in range(0 to max + 1):", 620, 210);
+                ctx.fillText("For number in range(0 to count[value]):", 670, 240);
+                ctx.fillText("List[index] = value", 720, 270);
+                ctx.fillText("Increment index", 720, 300);
             } else if (algorithmnumber == 2) {
                 ctx.fillStyle = 'black';
-                ctx.font = "22px Verdana";
-                ctx.fillText("for index in range(1 to length(list)):", 1110, 160);
-                ctx.fillText("list_item = list[index]", 1160, 220);
-                ctx.fillText("location = index", 1160, 280);
-                ctx.fillText("while location > 0 and list[location-1] > list_item:", 1160, 340);
-                ctx.fillText("list[location] = list[location-1]", 1210, 400);
-                ctx.fillText("location = location - 1", 1210, 460);
-                ctx.fillText("list[location] = list_item", 1160, 520);
-                ctx.fillText("list[location] = list_item", 1110, 580);
+                ctx.font = "1rem Arial";
+                ctx.fillText("for index in range(1 to length(list)):", 620, 60);
+                ctx.fillText("list_item = list[index]", 670, 90);
+                ctx.fillText("location = index", 670, 120);
+                ctx.fillText("while location > 0 and list[location-1] > list_item:", 670, 150);
+                ctx.fillText("list[location] = list[location-1]", 720, 180);
+                ctx.fillText("location = location - 1", 720, 210);
+                ctx.fillText("list[location] = list_item", 670, 240);
+                ctx.fillText("list[location] = list_item", 620, 270);
             } else if (algorithmnumber == 3) {
                 ctx.fillStyle = 'black';
-                ctx.font = "18px Verdana";
-                ctx.fillText("def mergeSort(list):", 1110, 160);
-                ctx.fillText("if length(list) > 1:",  1160, 190);
-                ctx.fillText("midway_point = length(list) / 2",  1210, 220);
-                ctx.fillText("lefthalf = list[beginning to midway_point]",  1210, 250);
-                ctx.fillText("righthalf = list[midway_point to end]",  1210, 280);
-                ctx.fillText("mergeSort(lefthalf)",  1210, 310);
-                ctx.fillText("mergeSort(righthalf)", 1210, 340);
-                ctx.fillText("i,j,k = 0",  1210, 370);
-                ctx.fillText("while i < length(lefthalf) and j < length(righthalf):",  1210, 400);
-                ctx.fillText("if lefthalf[i] < righthalf[j]:",  1260, 430);
-                ctx.fillText("list[k] = lefthalf[i]",  1310, 460);
-                ctx.fillText("i = i+1",  1310, 490);
-                ctx.fillText("else:", 1260, 520);
-                ctx.fillText("list[k] = righthalf[j]",  1310, 550);
-                ctx.fillText("j = j+1",  1310, 580);
-                ctx.fillText("k = k+1",  1260, 610);
-                ctx.fillText("while i < length(lefthalf):",  1210, 640);
-                ctx.fillText("list[k] = lefthalf[i]",  1260, 670);
-                ctx.fillText("i = i+1", 1260, 700);
-                ctx.fillText("k=k+1",  1260, 730);
-                ctx.fillText("while j < length(righthalf):",  1210, 760);
-                ctx.fillText("list[k] = righthalf[j]",  1260, 790);
-                ctx.fillText("j=j+1",  1260, 820);
-                ctx.fillText("k=k+1",  1260, 850);
+                ctx.font = "1rem Arial";
+                ctx.fillText("def mergeSort(list):", 620, 60);
+                ctx.fillText("if length(list) > 1:",  670, 90);
+                ctx.fillText("midway_point = length(list) / 2",  720, 120);
+                ctx.fillText("lefthalf = list[beginning to midway_point]",  720, 150);
+                ctx.fillText("righthalf = list[midway_point to end]",  720, 180);
+                ctx.fillText("mergeSort(lefthalf)",  720, 210);
+                ctx.fillText("mergeSort(righthalf)", 720, 240);
+                ctx.fillText("i,j,k = 0",  720, 270);
+                ctx.fillText("while i < length(lefthalf) and j < length(righthalf):",  720, 300);
+                ctx.fillText("if lefthalf[i] < righthalf[j]:",  770, 330);
+                ctx.fillText("list[k] = lefthalf[i]",  630, 360);
+                ctx.fillText("i = i+1",  820, 390);
+                ctx.fillText("else:", 770, 420);
+                ctx.fillText("list[k] = righthalf[j]",  820, 450);
+                ctx.fillText("j = j+1",  820, 480);
+                ctx.fillText("k = k+1",  770, 510);
+                ctx.fillText("while i < length(lefthalf):",  720, 540);
+                ctx.fillText("list[k] = lefthalf[i]",  770, 570);
+                ctx.fillText("i = i+1", 770, 600);
+                ctx.fillText("k=k+1",  770, 630);
+                ctx.fillText("while j < length(righthalf):",  720, 660);
+                ctx.fillText("list[k] = righthalf[j]",  770, 690);
+                ctx.fillText("j=j+1",  770, 720);
+                ctx.fillText("k=k+1",  770, 750);
             } else if (algorithmnumber == 4) {
                 ctx.fillStyle = 'black';
-                ctx.font = "18px Verdana";
-                ctx.fillText("quicksort(list, first, last): /* first = starting index, last = ending index */", 1110, 160);
-                ctx.fillText("If (first < last):",  1160, 190);
-                ctx.fillText("Splitpoint = partition(list, first, last)",  1210, 220);
-                ctx.fillText("quicksort(list, first, splitpoint-1)",  1210, 250);
-                ctx.fillText("quicksort(list, splitpoint-1, last)",  1210, 280);
-                ctx.fillText("partition(list, first, last)",  1160, 310);
-                ctx.fillText("Pivot = list[first]", 1160, 340);
-                ctx.fillText("Leftmark = first + 1",  1160, 370);
-                ctx.fillText("Rightmark = last",  1160, 400);
-                ctx.fillText("Done  = False",  1160, 430);
-                ctx.fillText("While not done:",  1160, 460);
-                ctx.fillText("While leftmark <= rightmark and list[leftmark] <= pivot:",  1210, 490);
-                ctx.fillText("Increment Leftmark", 1260, 520);
-                ctx.fillText("While list[rightmark] >=pivot and rightmark >= leftmark:",  1210, 550);
-                ctx.fillText("Increment rightmark",  1260, 580);
-                ctx.fillText("If rightmark < leftmark:",  1210, 610);
-                ctx.fillText("Done = True",  1260, 640);
-                ctx.fillText("Else:",  1210, 670);
-                ctx.fillText("Swap list[leftmark], list[rightmark]", 1260, 700);
-                ctx.fillText("If first != rightmark:",  1160, 730);
-                ctx.fillText("Swap list[first], list[rightmark]",  1210, 760);
+                ctx.font = "1rem Arial";
+                ctx.fillText("quicksort(list, first, last): /* first = starting index, last = ending index */", 620, 60);
+                ctx.fillText("If (first < last):",  670, 90);
+                ctx.fillText("Splitpoint = partition(list, first, last)",  720, 120);
+                ctx.fillText("quicksort(list, first, splitpoint-1)",  720, 150);
+                ctx.fillText("quicksort(list, splitpoint-1, last)",  720, 180);
+                ctx.fillText("partition(list, first, last)",  670, 210);
+                ctx.fillText("Pivot = list[first]", 670, 240);
+                ctx.fillText("Leftmark = first + 1",  670, 270);
+                ctx.fillText("Rightmark = last",  670, 300);
+                ctx.fillText("Done  = False",  670, 330);
+                ctx.fillText("While not done:",  670, 360);
+                ctx.fillText("While leftmark <= rightmark and list[leftmark] <= pivot:",  720, 390);
+                ctx.fillText("Increment Leftmark", 770, 420);
+                ctx.fillText("While list[rightmark] >=pivot and rightmark >= leftmark:",  720, 450);
+                ctx.fillText("Increment rightmark",  770, 480);
+                ctx.fillText("If rightmark < leftmark:",  720, 510);
+                ctx.fillText("Done = True",  770, 540);
+                ctx.fillText("Else:",  720, 570);
+                ctx.fillText("Swap list[leftmark], list[rightmark]", 770, 600);
+                ctx.fillText("If first != rightmark:",  670, 630);
+                ctx.fillText("Swap list[first], list[rightmark]",  720, 660);
             }
-            ctx.fillStyle = 'maroon';
-            ctx.fillRect(1050, 10, 800, 90);
             ctx.fillStyle = 'white';
-            ctx.font = "50px Cooper";
-            ctx.fillText("Psuedocode", 1300, 65);
+            ctx.fillRect(620, 0, 490, 16);
+            ctx.fillStyle = 'black';
+            ctx.font = "bold 1rem Arial";
+            ctx.fillText("Psuedocode:", 620, 14);
     }
 
     // Helper function found at https://stackoverflow.com/questions/22815790/set-a-delay-timeout-inside-a-double-nested-loop
@@ -252,7 +242,7 @@
     // helper function
     var delayed = (function() {
     var queue = [];
-
+        
     function processQueue() {
         if (queue.length > 0) {
           setTimeout(function () {
@@ -271,14 +261,57 @@
       };
     }());
     
-    for (var i = 0; i < steps; i++) {
-        pseudo = executingline[i]
-        for (var j = 0; j < pseudo.length; j++) {
-            delayed(1000, function(i, j) {
-                return function() {
-                    SQUARES(squarenumber,i,executingline[i], j);
-                };
-            }(i, j));
+    function play() {
+        for (var i = 0; i < steps; i++) {
+            pseudo = executingline[i]
+            for (var j = 0; j < pseudo.length; j++) {
+                delayed(1000, function(i, j) {
+                    return function() {
+                        SQUARES(squarenumber,i,executingline[i], j);
+                    };
+                }(i, j));
+            }
+        }
+    }
+    
+    SQUARES(squarenumber,0, [], 0);
+    
+    var a = 0;
+    var b = 0;
+    function next() {
+        if (a < steps) {
+            pseudo = executingline[a]
+            if (pseudo.length == 0) {
+                a++;
+                pseudo = executingline[a]
+            }
+            if (b < pseudo.length) {
+                SQUARES(squarenumber,a,executingline[a], b);
+                b++;
+                if (b >= pseudo.length) {
+                    b = 0;
+                    a++;
+                }
+                
+            }
+        }
+    }
+    
+    function previous() {
+        if (b == 0) {
+            if (a > 0) {
+                a--;
+                pseudo = executingline[a];
+                if (pseudo.length == 0 && a == 0) {
+                    SQUARES(squarenumber,0, [], 0);
+                } else {
+                    b = pseudo.length - 1;
+                    SQUARES(squarenumber,a,executingline[a], b);
+                }
+            }
+        } else {
+            b--;
+            SQUARES(squarenumber,a,executingline[a], b);
         }
     }
 

@@ -222,11 +222,13 @@
 }
 
 #customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, "Trebuchet MS", sans-serif;
     border-collapse: collapse;
     width: 100%;
+/*
     margin-left: 0px;
     margin-top: -1500px;
+*/
 }
 
 #customers td, #customers th {
@@ -268,12 +270,32 @@
     text-decoration: none;
 }
 
+.links2 {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #aeadad;
+    padding: 1px 12px;
+    cursor: pointer;
+    width: 90px;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.links2:hover {
+    color: black;
+    text-decoration: none;
+}
+
+/*
 #myCanvas {
     left: -368px;
     position: relative;
 }
+*/
 
+/*
 .tl {
     position: relative;
     left: -330px;
-}
+}*/
