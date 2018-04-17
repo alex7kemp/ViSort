@@ -62,15 +62,96 @@
     console.log(squarecolourpair);
 
     function pseudo_highlight(p, ctx) {
+        
+    }
+    
+    
+    // CREATING SQUARES OF REQUIRED ARRAY SIZE
+    function SQUARES(sizeofarray, J, p, index_p) {
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var width = canvas.width;
+        var height = canvas.height;
+
+        //Seperation line
+        ctx.fillStyle = 'red';
+        ctx.fillRect(1000, 20, 5, 835);
+
+        var rectSize = 50;
+        for (var i = 0; i < sizeofarray; i++) {
+
+            if (i < 12) {
+                j = i;
+                column = 0;
+            } else if (i >= 12 && i < 24) {
+                j = i - 12;
+                column = 1;
+            } else if (i >= 24 && i < 36) {
+                j = i - 24;
+                column = 2;
+            } else if (i >= 36 && i < 48) {
+                j = i - 36;
+                column = 3;
+            } else if (i >= 48 && i < 60) {
+                j = i - 48;
+                column = 4;
+            } else if (i >= 60 && i < 72) {
+                j = i - 60;
+                column = 5;
+            } else if (i >= 72 && i < 84) {
+                j = i - 72;
+                column = 6;
+            } else if (i >= 84 && i < 96) {
+                j = i - 84;
+                column = 7;
+            } else if (i >= 96 && i < 108) {
+                j = i - 96;
+                column = 8;
+            } else if (i >= 108 && i < 120) {
+                j = i - 108;
+                column = 9;
+            } else if (i >= 120 && i < 132) {
+                j = i - 120;
+                column = 10;
+            } else if (i >= 132 && i < 144) {
+                j = i - 132;
+                column = 11;
+            } else {
+                j = i - 144;
+                column = 12;
+            }
+
+            if (i == squarecolourpair[J][0]) {
+                ctx.fillStyle = 'green';
+                ctx.fillRect(20 + (80 * j), 20 + (80 * column), rectSize, rectSize);
+                ctx.fillStyle = 'white';
+                ctx.font = "18px Verdana";
+                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
+            } else if (i == squarecolourpair[J][1]) {
+                ctx.fillStyle = 'blue';
+                ctx.fillRect(20 + (80 * j), 20 + (80 * column), rectSize, rectSize);
+                ctx.fillStyle = 'white';
+                ctx.font = "18px Verdana";
+                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
+            } else {
+                ctx.fillStyle = 'black';
+                ctx.fillRect(20 + (80 * j), 22 + (80 * column), rectSize, rectSize);
+                ctx.fillStyle = 'white';
+                ctx.font = "18px Verdana";
+                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
+            }
+        }
+//        for (var q = 0; q < p.length; q++) {
+//            pseudo_highlight(p, ctx);
+//        }
         for (x = 0; x < noflinesofpsuedocode; x++) {
-//            if (p[q] == x) { 
-            if (p.includes(x)) {
+            if (p[index_p] == x) { 
                 ctx.fillStyle = 'green';
             } else {
                 ctx.fillStyle = 'white';
             }
             if (algorithmnumber==3 || algorithmnumber==4) {
-                ctx.fillRect(1100, 143 + (x * 30), 700, 20);
+                ctx.fillRect(1100, 145 + (x * 30), 700, 20);
             }
             else {
                 ctx.fillRect(1100, 130 + (x * 60), 700, 40);
@@ -165,98 +246,40 @@
             ctx.font = "50px Cooper";
             ctx.fillText("Psuedocode", 1300, 65);
     }
+
+    // Helper function found at https://stackoverflow.com/questions/22815790/set-a-delay-timeout-inside-a-double-nested-loop
     
-    
-    // CREATING SQUARES OF REQUIRED ARRAY SIZE
-    function SQUARES(sizeofarray, J, p) {
-        var canvas = document.getElementById('myCanvas');
-        var ctx = canvas.getContext('2d');
-        var width = canvas.width;
-        var height = canvas.height;
+    // helper function
+    var delayed = (function() {
+    var queue = [];
 
-
-
-        //Seperation line
-        ctx.fillStyle = 'red';
-        ctx.fillRect(1000, 20, 5, 835);
-
-
-
-
-        var rectSize = 50;
-        for (var i = 0; i < sizeofarray; i++) {
-
-            if (i < 12) {
-                j = i;
-                column = 0;
-            } else if (i >= 12 && i < 24) {
-                j = i - 12;
-                column = 1;
-            } else if (i >= 24 && i < 36) {
-                j = i - 24;
-                column = 2;
-            } else if (i >= 36 && i < 48) {
-                j = i - 36;
-                column = 3;
-            } else if (i >= 48 && i < 60) {
-                j = i - 48;
-                column = 4;
-            } else if (i >= 60 && i < 72) {
-                j = i - 60;
-                column = 5;
-            } else if (i >= 72 && i < 84) {
-                j = i - 72;
-                column = 6;
-            } else if (i >= 84 && i < 96) {
-                j = i - 84;
-                column = 7;
-            } else if (i >= 96 && i < 108) {
-                j = i - 96;
-                column = 8;
-            } else if (i >= 108 && i < 120) {
-                j = i - 108;
-                column = 9;
-            } else if (i >= 120 && i < 132) {
-                j = i - 120;
-                column = 10;
-            } else if (i >= 132 && i < 144) {
-                j = i - 132;
-                column = 11;
-            } else {
-                j = i - 144;
-                column = 12;
-            }
-
-            if (i == squarecolourpair[J][0]) {
-                ctx.fillStyle = 'green';
-                ctx.fillRect(20 + (80 * j), 20 + (80 * column), rectSize, rectSize);
-                ctx.fillStyle = 'white';
-                ctx.font = "18px Verdana";
-                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
-            } else if (i == squarecolourpair[J][1]) {
-                ctx.fillStyle = 'blue';
-                ctx.fillRect(20 + (80 * j), 20 + (80 * column), rectSize, rectSize);
-                ctx.fillStyle = 'white';
-                ctx.font = "18px Verdana";
-                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
-            } else {
-                ctx.fillStyle = 'black';
-                ctx.fillRect(20 + (80 * j), 22 + (80 * column), rectSize, rectSize);
-                ctx.fillStyle = 'white';
-                ctx.font = "18px Verdana";
-                ctx.fillText(array[J][i], 22 + (80 * j), 55 + (80 * column));
-            }
+    function processQueue() {
+        if (queue.length > 0) {
+          setTimeout(function () {
+            queue.shift().cb();
+            processQueue();
+          }, queue[0].delay);
         }
-//        for (var q = 0; q < p.length; q++) {
-//            pseudo_highlight(p, ctx);
-//        }
-        pseudo_highlight(p, ctx)
     }
 
+    return function delayed(delay, cb) {
+        queue.push({ delay: delay, cb: cb });
+
+        if (queue.length === 1) {
+          processQueue();
+        }
+      };
+    }());
+    
     for (var i = 0; i < steps; i++) {
-        (function(i){
-            setTimeout(function(){SQUARES(squarenumber,i,executingline[i]); },i*1000);
-       })(i);
+        pseudo = executingline[i]
+        for (var j = 0; j < pseudo.length; j++) {
+            delayed(1000, function(i, j) {
+                return function() {
+                    SQUARES(squarenumber,i,executingline[i], j);
+                };
+            }(i, j));
+        }
     }
 
 </script>

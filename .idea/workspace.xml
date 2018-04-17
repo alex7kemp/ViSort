@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38bb3486-648c-489d-a2ec-680fe4698c37" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visort/templates/visualize.html" beforeDir="false" afterPath="$PROJECT_DIR$/visort/templates/visualize.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visort/visort.py" beforeDir="false" afterPath="$PROJECT_DIR$/visort/visort.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,7 +52,7 @@
       <file leaf-file-name="algorithm_class.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/visort/algorithm_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1842">
+            <state relative-caret-position="1189">
               <caret line="653" column="36" lean-forward="true" selection-start-line="653" selection-start-column="36" selection-end-line="653" selection-end-column="36" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -140,10 +138,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="806" />
-    <option name="y" value="-19" />
-    <option name="width" value="1124" />
-    <option name="height" value="750" />
+    <option name="x" value="645" />
+    <option name="y" value="-15" />
+    <option name="width" value="899" />
+    <option name="height" value="600" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -203,7 +201,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -514,7 +512,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/visort/algorithm_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1842">
+        <state relative-caret-position="1189">
           <caret line="653" column="36" lean-forward="true" selection-start-line="653" selection-start-column="36" selection-end-line="653" selection-end-column="36" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
