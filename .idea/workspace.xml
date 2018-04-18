@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38bb3486-648c-489d-a2ec-680fe4698c37" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visort/input.py" beforeDir="false" afterPath="$PROJECT_DIR$/visort/input.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visort/visort.py" beforeDir="false" afterPath="$PROJECT_DIR$/visort/visort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visort/visort_cmd.py" beforeDir="false" afterPath="$PROJECT_DIR$/visort/visort_cmd.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="visort.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="visort.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/visort/visort.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="80" column="40" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
+            <state relative-caret-position="216">
+              <caret line="91" column="46" lean-forward="true" selection-start-line="90" selection-start-column="20" selection-end-line="91" selection-end-column="46" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -33,17 +31,17 @@
       <file leaf-file-name="input.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/visort/input.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
+            <state relative-caret-position="1869">
               <caret line="90" column="41" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="visort_cmd.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="visort_cmd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/visort/visort_cmd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2860">
-              <caret line="145" column="57" selection-start-line="145" selection-start-column="57" selection-end-line="145" selection-end-column="57" />
+            <state relative-caret-position="194">
+              <caret line="212" column="56" lean-forward="true" selection-start-line="212" selection-start-column="56" selection-end-line="212" selection-end-column="56" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -54,7 +52,7 @@
       <file leaf-file-name="algorithm_class.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/visort/algorithm_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="830">
+            <state relative-caret-position="13965">
               <caret line="667" column="47" selection-start-line="667" selection-start-column="47" selection-end-line="667" selection-end-column="47" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -74,7 +72,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>read</find>
       <find>output_type</find>
       <find>Input()</find>
       <find>append</find>
@@ -104,6 +101,7 @@
       <find>self.insertion_indices</find>
       <find>analyze</find>
       <find>list size</find>
+      <find>benc</find>
     </findStrings>
     <replaceStrings>
       <replace>request.form.get(</replace>
@@ -125,10 +123,10 @@
         <option value="$PROJECT_DIR$/visort/test.py" />
         <option value="$PROJECT_DIR$/visort/__init__.py" />
         <option value="D:/Downloads/project/project/project.py" />
-        <option value="$PROJECT_DIR$/visort/visort_cmd.py" />
         <option value="$PROJECT_DIR$/visort/algorithm_class.py" />
         <option value="$PROJECT_DIR$/visort/input.py" />
         <option value="$PROJECT_DIR$/visort/visort.py" />
+        <option value="$PROJECT_DIR$/visort/visort_cmd.py" />
       </list>
     </option>
   </component>
@@ -144,7 +142,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="645" />
     <option name="y" value="-15" />
-    <option name="width" value="899" />
+    <option name="width" value="900" />
     <option name="height" value="600" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -202,7 +200,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -235,6 +233,43 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/visort/visort.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="80" column="40" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visort/input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1869">
+          <caret line="90" column="41" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visort/visort_cmd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3003">
+          <caret line="145" column="57" selection-start-line="145" selection-start-column="57" selection-end-line="145" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visort/algorithm_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13965">
+          <caret line="667" column="47" selection-start-line="667" selection-start-column="47" selection-end-line="667" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/visort/visort.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7540">
@@ -491,19 +526,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/visort/visort_cmd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2860">
-          <caret line="145" column="57" selection-start-line="145" selection-start-column="57" selection-end-line="145" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/visort/algorithm_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="830">
+        <state relative-caret-position="13965">
           <caret line="667" column="47" selection-start-line="667" selection-start-column="47" selection-end-line="667" selection-end-column="47" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -513,17 +538,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/visort/input.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
+        <state relative-caret-position="1869">
           <caret line="90" column="41" selection-start-line="90" selection-start-column="32" selection-end-line="90" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/visort/visort.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="80" column="40" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
+        <state relative-caret-position="216">
+          <caret line="91" column="46" lean-forward="true" selection-start-line="90" selection-start-column="20" selection-end-line="91" selection-end-column="46" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/visort/visort_cmd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="212" column="56" lean-forward="true" selection-start-line="212" selection-start-column="56" selection-end-line="212" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>

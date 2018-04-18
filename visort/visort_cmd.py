@@ -179,7 +179,13 @@ if __name__ == '__main__':
             manual_list = myargs['manual']
             input_class.manual(manual_list)
             if not input_class.errors:
-                algorithm()
+                input_class.analyze_list()
+                if not input_class.errors:
+                    algorithm()
+                else:
+                    error_list.extend(input_class.errors)
+                    for item in error_list:
+                        print(item)
             else:
                 error_list.extend(input_class.errors)
                 for item in error_list:
@@ -189,7 +195,13 @@ if __name__ == '__main__':
             file = open(file_name, "r")
             input_class.load(file)
             if not input_class.errors:
-                algorithm()
+                input_class.analyze_list()
+                if not input_class.errors:
+                    algorithm()
+                else:
+                    error_list.extend(input_class.errors)
+                    for item in error_list:
+                        print(item)
             else:
                 error_list.extend(input_class.errors)
                 for item in error_list:
@@ -198,14 +210,20 @@ if __name__ == '__main__':
             size = myargs['size']
             range_min = myargs['range_min']
             range_max = myargs['range_max']
-            if size == 0 or range_max == 0:
+            if size == 0 or range_max == 0 or size == 1:
                 error_list.append("Size and maximum range cannot be 0. Please select larger values.")
                 for item in error_list:
                     print(item)
             else:
                 input_class.generate(range_min, range_max, size)
                 if not input_class.errors:
-                    algorithm()
+                    input_class.analyze_list()
+                    if not input_class.errors:
+                        algorithm()
+                    else:
+                        error_list.extend(input_class.errors)
+                        for item in error_list:
+                            print(item)
                 else:
                     error_list.extend(input_class.errors)
                     for item in error_list:
